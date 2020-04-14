@@ -5,7 +5,6 @@
   border: none;
   border-radius: 2rem;
   padding: 0 1rem;
-  margin: 0 0.5rem;
   background-color: transparent;
   cursor: pointer;
   color: white;
@@ -16,7 +15,7 @@
   align-items: center;
 
   &:hover {
-    color: $blue-light;
+    color: $blue-5;
   }
 
   &:focus {
