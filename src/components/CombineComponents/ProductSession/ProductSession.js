@@ -1,7 +1,8 @@
 import React from "react";
 import style from "./ProductSession.module.scss";
-import Product from "../../BaseComponents/Product/Product";
+import Product from "../Product/Product";
 import { ChevronRight } from "react-feather";
+import UnderlineButton from "../../BaseComponents/UnderlineButton/UnderlineButton";
 
 var listProduct = [];
 for (let i = 0; i < 6; i++) {
@@ -17,9 +18,10 @@ class ProductSession extends React.Component {
             <ChevronRight />
           </div>
           <div className={style.right}>
-            <button>New Release</button>
-            {/* <button>Cooktops</button> */}
-            <button>Dish Washer</button>
+            <UnderlineButton>New Release</UnderlineButton>
+            <UnderlineButton>Cooktops</UnderlineButton>
+            <UnderlineButton>Dish Washer</UnderlineButton>
+            <button className={style.lastButton}>See All</button>
           </div>
         </div>
         <div className={style.listProduct}>{listProduct}</div>
