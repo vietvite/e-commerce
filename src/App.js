@@ -4,7 +4,7 @@ import Layout from './views/Layout';
 import Home from './views/Home'
 import ListProductByCategory from './views/ListProductByCategory';
 import ProductDetail from './views/ProductDetail';
-import PageNotFound from './components/PageNotFound'
+import PageNotFound from './components/PageNotFound/PageNotFound'
 
 function App() {
   return (
