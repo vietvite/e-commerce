@@ -2,7 +2,7 @@
 
 .sessionProduct {
   padding: 0 100px 0 100px;
-  border-bottom: 1px solid $grey-light;
+  border-bottom: 1px solid $gray-5;
   .type {
     height: 30px;
     .left {
@@ -25,8 +25,8 @@
         background-color: lightgrey;
         font-weight: $bold;
         &:hover {
-          color: $blue-light;
-          border-bottom: 2px solid $blue-light;
+          color: $blue-7;
+          border-bottom: 2px solid $blue-7;
         }
       }
     }
