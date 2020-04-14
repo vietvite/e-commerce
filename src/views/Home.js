@@ -1,5 +1,5 @@
 import React from "react";
-import ProductSession from "../components/CombineComponents/ProductSession/ProductSession";
+import ProductSession from "../components/CombineComponents/ProductSection/ProductSection";
 function Home() {
   return (
     <div>
