@@ -1,0 +1,38 @@
+@import "../../../scss/variable";
+
+.sessionProduct {
+  padding: 0 100px 0 100px;
+  border-bottom: 1px solid $grey-light;
+  .type {
+    height: 30px;
+    .left {
+      display: flex;
+      float: left;
+      font-size: 23px;
+      font-weight: $medium;
+      cursor: pointer;
+    }
+    .right {
+      float: right;
+      height: 100%;
+      button {
+        height: 100%;
+        border: none;
+        background-color: $white;
+        cursor: pointer;
+        margin: 0 0 0 40px;
+        padding: 0;
+        background-color: lightgrey;
+        font-weight: $bold;
+        &:hover {
+          color: $blue-light;
+          border-bottom: 2px solid $blue-light;
+        }
+      }
+    }
+  }
+  .listProduct {
+    display: flex;
+    justify-content: space-between;
+  }
+}
