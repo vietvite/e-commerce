@@ -1,5 +1,5 @@
 import React from 'react'
-import { User, ChevronDown } from 'react-feather'
+import {ChevronDown } from 'react-feather'
 import ButtonTransparent from '../../BaseComponents/ButtonTransparent/ButtonTransparent'
 import styles from './AccountButton.module.scss'
 import DropdownMenu from '../../BaseComponents/DropdownMenu/DropdownMenu'
