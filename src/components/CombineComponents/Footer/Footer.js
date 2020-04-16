@@ -36,9 +36,9 @@ class Footer extends React.Component {
                                 Số 28 X, Phường XX, Quận XXX, TP. HCM                
                             </div>
                             <div className={style.footerPhone}>
-                                <a class={style.footerPhoneBtn} href="/">
+                                <a className={style.footerPhoneBtn} href="/">
                                     <PhoneCall/>
-                                    <span class={style.footerPhoneNumber}>1900 xxx xxx</span>
+                                    <span className={style.footerPhoneNumber}>1900 xxx xxx</span>
                                 </a>
                             </div>
                         </div>
@@ -50,9 +50,9 @@ class Footer extends React.Component {
                                 Số 28 X, Phường XX, Quận XXX, TP.Hà Nội               
                             </div>
                             <div className={style.footerPhone}>
-                                <a class={style.footerPhoneBtn} href="/">
+                                <a className={style.footerPhoneBtn} href="/">
                                     <PhoneCall/>
-                                    <span class={style.footerPhoneNumber}>1900 xxx xxx</span>
+                                    <span className={style.footerPhoneNumber}>1900 xxx xxx</span>
                                 </a>
                             </div>
                         </div>
@@ -64,9 +64,9 @@ class Footer extends React.Component {
                                 Số 28 X, Phường XX, Quận XXX, TP.Đà Nẵng              
                             </div>
                             <div className={style.footerPhone}>
-                                <a class={style.footerPhoneBtn} href="/">
+                                <a className={style.footerPhoneBtn} href="/">
                                     <PhoneCall/>
-                                    <span class={style.footerPhoneNumber}>1900 xxx xxx</span>
+                                    <span className={style.footerPhoneNumber}>1900 xxx xxx</span>
                                 </a>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ class Footer extends React.Component {
 
                     <div className={style.footerBodyCenter}>
                         <div className={style.footerDesInfo}>
-                            <div class={style.footerTitle}>Tên doanh nghiệp: CÔNG TY CỔ PHẦN XXX VIỆT NAM</div>
+                            <div className={style.footerTitle}>Tên doanh nghiệp: CÔNG TY CỔ PHẦN XXX VIỆT NAM</div>
                             <div>
                                 Địa chỉ công ty: X, Phường X, Thành phố Huế, Việt Nam
                             </div>
@@ -107,18 +107,15 @@ class Footer extends React.Component {
                     </div>
 
                     <div className={style.footerBodyRight}>
-                        <div className={style.registerMail}>
+                        <div className={style.footerRegisterMail}>
                             <div className={style.footerTitle}>
-                                Đăng kí nhận tin ưu đãi
+                                Đăng kí bán hàng
                             </div>
-                            <div className={style.registerMailDes}> 
-                                Đừng bỏ lỡ sự kiện nóng hổi và triệu chương trình giảm giá siêu hấp dẫn sẽ được Fado cập nhật đến quý khách hàng tuần.
+                            <div className={style.footerRegisterDes}> 
+                                Nếu bạn mong muốn thử sức trên lĩnh vực kinh doanh, đừng ngần ngại hãy biến mình trở thành một thành viên trong đại gia đình XXX.
                             </div>
-                            <form id="register-mail-form" class={style.registerMailForm}>
-                                <input type="email"  name="email" placeholder="Nhập email nhận tin"/>
-                                <button type="submit" name="submit">
-                                    <Send />
-                                </button>
+                            <form id="register-mail-form" className={style.footerRegisterForm}>
+                                <button type="submit" name="">Mở shop ngay</button>
                             </form>
                         </div>
                         <div className={style.footerPartner}>
@@ -126,10 +123,10 @@ class Footer extends React.Component {
                                 Đối tác thương mại
                             </div>
                             <div className={style.footerLinkList}>
-                                <a class={style.footerLinkItemFooterPartnerLinkItem} href="/" target="_blank">
+                                <a className={style.footerLinkItemFooterPartnerLinkItem} href="/" target="_blank">
                                     <img src="https://st-fe-v2.fado.vn/desktop/dist/images/logo/fptshop-fado.png" alt="FPTShop"/>
                                 </a>
-                                <a class={style.footerLinkItemFooterPartnerLinkItem} href="/" target="_blank">
+                                <a className={style.footerLinkItemFooterPartnerLinkItem} href="/" target="_blank">
                                     <img src="https://st-fe-v2.fado.vn/desktop/dist/images/logo/alibaba.png" alt="Alibaba"/>
                                 </a>
                             </div>
@@ -141,7 +138,23 @@ class Footer extends React.Component {
                     <div className={style.footerTitle}>
                         Hình thức thanh toán
                     </div>
-                    <div className={style.imgBankcard}><img src='bankcard.jpg' alt="bankcard" /></div>
+                    <div className={style.footerPaymentList}>
+                        <div className={style.footerPaymentItem}>
+                            <img src="https://st-fe-v2.fado.vn/desktop/dist/images/general/footer-section/payment-visa.png" alt=""/>
+                        </div>
+                        <div className={style.footerPaymentItem}>
+                            <img src="https://st-fe-v2.fado.vn/desktop/dist/images/general/footer-section/payment-master.png" alt=""/>
+                        </div>
+                        <div className={style.footerPaymentItem}>
+                            <img src="https://st-fe-v2.fado.vn/desktop/dist/images/general/footer-section/payment-jcb.png" alt=""/>
+                        </div>
+                        <div className={style.footerPaymentItem}>
+                            <img src="https://st-fe-v2.fado.vn/desktop/dist/images/general/footer-section/payment-payoo.png" alt=""/>
+                        </div>
+                        <div className={style.footerPaymentItem}>
+                            <img src="https://st-fe-v2.fado.vn/desktop/dist/images/general/footer-section/payment-zalopay.png" alt=""/>
+                        </div>
+                    </div>
                 </div>  
             </footer>
         );
