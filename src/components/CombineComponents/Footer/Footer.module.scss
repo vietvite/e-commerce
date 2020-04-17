@@ -17,13 +17,16 @@
     flex-wrap: wrap;
     margin-left: -16px;
     margin-right: -16px;
+    padding: 20px;
   }
   .footerHeadLeft {
-    font-size: 20px;
+    font-size: 15px;
     flex: 50%;
     max-width: 50%;
     font-weight: $medium;
     font-style: italic;
+    line-height: 25px;
+
   }
   .footerHeadRight {
     flex: 50%;
@@ -53,9 +56,9 @@
     margin-bottom: 24px;
   }
   .footerTitle {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
-    font-weight: $medium;
+    font-weight: $bold;
     margin-bottom: 8px;
     color: $gray-8;
   }
@@ -104,6 +107,13 @@
     .footerServicesInfo {
       display: flex;
       justify-content: space-between;
+      a {
+        text-decoration: none;
+        color: $gray-7;
+      }
+      a:hover {
+        color: $blue-7;
+      }
     }
   }
 
@@ -116,6 +126,7 @@
   }
   .footerRegisterDes {
     text-align: justify;
+    color: $gray-7;
   }
   .footerRegisterForm {
     margin-top: 15px;
@@ -157,7 +168,7 @@
     width: 100%;
     .footerTitle {
       margin: 20px;
-      font-size: 25px;
+      font-size: 16px;
       font-style: italic;
     }
     .footerPaymentList {
@@ -167,6 +178,9 @@
         width: 100%;
         flex: 48px;
         margin: 0px 4px 4px 0px;
+      }
+      .footerPaymentItem img {
+        width: 30%;
       }
     }
   }

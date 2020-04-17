@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Footer.module.scss"
-import { Send, PhoneCall} from 'react-feather';
+import { PhoneCall} from 'react-feather';
 
 
 class Footer extends React.Component {
