@@ -15,7 +15,7 @@ function Layout({ children, user }) {
     <AuthGroupButton />
   )
   return (
-    <div>
+    <>
       <Header>
         {
           user ? authenticatedMenu : unAuthenticatedMenu
@@ -26,7 +26,7 @@ function Layout({ children, user }) {
       {children}
 
       <Footer />
-    </div>
+    </>
   )
 }
 

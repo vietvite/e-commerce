@@ -1,0 +1,13 @@
+@import "../../../scss/variable";
+
+.menuItem {
+  font-size: 1.2rem;
+  color: $gray-8;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+
+  &:hover {
+    background-color: $gray-4;
+  }
+}

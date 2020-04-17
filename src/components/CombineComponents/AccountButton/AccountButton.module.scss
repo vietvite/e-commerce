@@ -1,3 +1,9 @@
+@import "../../../scss/variable";
+
 .buttonText {
   padding: 0 0.125rem;
+}
+.dropdownWrapper {
+  position: fixed;
+  margin-top: 1rem;
 }

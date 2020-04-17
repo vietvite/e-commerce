@@ -11,7 +11,6 @@ export default function AuthGroupButton() {
       <ButtonOutline>
         Đăng ký
       </ButtonOutline>
-
     </>
   )
 }
