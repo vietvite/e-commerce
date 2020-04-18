@@ -1,11 +1,11 @@
 import React from "react";
-import ProductSection from "../components/CombineComponents/ProductSection/ProductSection";
+import ProductSession from "../components/CombineComponents/ProductSection/ProductSection";
+import Banner from "../components/CombineComponents/Banner/Banner";
 function Home() {
   return (
     <div>
-      <ProductSection />
-      <ProductSection />
-      <ProductSection />
+      <Banner />
+      <ProductSession />
     </div>
   );
 }

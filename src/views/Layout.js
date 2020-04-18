@@ -4,8 +4,6 @@ import Footer from '../components/CombineComponents/Footer/Footer'
 import Navbar from '../components/CombineComponents/Navbar/Navbar'
 import AuthGroupButton from '../components/CombineComponents/AuthGroupButton/AuthGroupButton'
 import AccountButton from '../components/CombineComponents/AccountButton/AccountButton'
-import Banner from '../components/CombineComponents/Banner/Banner'
-
 
 function Layout({ children, user }) {
   const authenticatedMenu = (
@@ -22,7 +20,6 @@ function Layout({ children, user }) {
         }
       </Header>
       <Navbar />
-      <Banner />
       {children}
 
       <Footer />
