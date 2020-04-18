@@ -7,7 +7,7 @@ import Container from '../Container/Container'
 
 var listProduct = [];
 for (let i = 0; i < 6; i++) {
-  listProduct.push(<Product />);
+  listProduct.push(<Product key={i}/>);
 }
 class ProductSection extends React.Component {
   render() {

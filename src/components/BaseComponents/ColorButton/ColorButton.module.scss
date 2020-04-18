@@ -1,0 +1,14 @@
+@import "../../../scss/variable";
+
+.colorButton {
+  cursor: pointer;
+  color: $white;
+  height: 40px;
+  width: 90px;
+  background-color: $orange-5;
+  border: 1px solid $orange-5;
+  border-radius: 10px;
+  &:hover{
+    background-color: $orange-7;
+  }
+}

@@ -1,0 +1,15 @@
+@import "../../../scss/variable";
+
+.priceFilter {
+  margin-top: 15px;
+  .title {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .priceFilterInput {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,9 +1,11 @@
 import React from "react";
-import ProductSession from "../components/CombineComponents/ProductSection/ProductSection";
+import ProductSection from "../components/CombineComponents/ProductSection/ProductSection";
 function Home() {
   return (
     <div>
-      <ProductSession />
+      <ProductSection />
+      <ProductSection />
+      <ProductSection />
     </div>
   );
 }

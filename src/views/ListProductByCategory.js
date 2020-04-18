@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import Container from "../components/CombineComponents/Container/Container";
+import FilterBar from "../components/CombineComponents/FilterBar/FilterBar";
 
 function ListProductByCategory() {
   return (
-    <div>
+    <Container>
       <h1>List products</h1>
-    </div>
-  )
+      <FilterBar/>
+    </Container>
+  );
 }
 
-export default ListProductByCategory
+export default ListProductByCategory;
