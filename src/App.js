@@ -5,6 +5,7 @@ import Home from './views/Home'
 import ListProductByCategory from './views/ListProductByCategory';
 import ProductDetail from './views/ProductDetail';
 import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound'
+import Cart from './views/Cart';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/category' component={ListProductByCategory} />
           <Route path='/detail' component={ProductDetail} />
+          <Route path='/cart' component={Cart} />
           <Route component={PageNotFound} />
         </Switch>
       </Layout>
