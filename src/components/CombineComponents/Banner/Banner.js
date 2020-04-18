@@ -7,7 +7,8 @@ import styles from './Banner.module.scss'
 
 
 const slides = [chicago, ny, la]
-var chuyen = 0;
+
+let chuyen = 0;
 
 class Banner extends React.Component {
     constructor() {

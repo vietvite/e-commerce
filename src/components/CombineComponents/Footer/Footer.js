@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Footer.module.scss"
 import { PhoneCall } from 'react-feather';
 
-
 class Footer extends React.Component {
     render() {
         return (
