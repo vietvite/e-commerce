@@ -11,33 +11,33 @@ var chuyen = 0;
 
 class Banner extends React.Component {
     constructor() {
-
         super()
         this.state = {
             'current': 0,
             widthSlide: 0,
-            time: 2000
+            time: 2000,
+            interval: undefined
         }
     }
     componentDidMount = () => {
-        var t = "" + styles.box;
-        var widthSlide = document.getElementsByClassName(t)[0].clientWidth;
+        const t = "" + styles.box;
+        const widthSlide = document.getElementsByClassName(t)[0].clientWidth;
         this.setState({
             widthSlide: widthSlide
         });
-        var setIn = setInterval(() => {
+        const setIn = setInterval(() => {
             this.onRightClick();
         }, this.state.time);
-
-
+        this.setState({ interval: setIn })
+    }
+    componentWillUnmount() {
+        clearInterval(this.state.interval)
     }
     onRightClick = () => {
-
-
-        var img = document.getElementsByClassName('slide');
-        var max = (this.state.widthSlide * img.length) - this.state.widthSlide;
-        var t = "" + styles.main;
-        var main = document.getElementsByClassName(t)[0];
+        const img = document.getElementsByClassName('slide');
+        const max = (this.state.widthSlide * img.length) - this.state.widthSlide;
+        const t = "" + styles.main;
+        const main = document.getElementsByClassName(t)[0];
         this.setState({
             time: this.state.time,
         })
@@ -48,14 +48,13 @@ class Banner extends React.Component {
             chuyen = 0;
         }
         main.style.marginLeft = '-' + chuyen + 'px';
-
     }
 
     onLeftClick = () => {
-        var img = document.getElementsByClassName('slide');
-        var max = (this.state.widthSlide * img.length) - this.state.widthSlide;
-        var t = "" + styles.main;
-        var main = document.getElementsByClassName(t)[0];
+        const img = document.getElementsByClassName('slide');
+        const max = (this.state.widthSlide * img.length) - this.state.widthSlide;
+        const t = "" + styles.main;
+        const main = document.getElementsByClassName(t)[0];
 
         if (chuyen === 0) {
             chuyen += max;
@@ -67,13 +66,10 @@ class Banner extends React.Component {
     }
     loadImage = () => {
         return slides.map((e, index) => {
-            return <div className="slide"><img src={e} /></div>;
+            return <div className="slide"><img src={e} alt="banner" /></div>;
         })
     }
     render() {
-        console.log(styles, "asd");
-
-
         return (
             <div className={styles.Banner}>
                 <div className={styles.arrowLeft} onClick={this.onLeftClick} >
@@ -86,16 +82,12 @@ class Banner extends React.Component {
                 <div className={styles.box} >
                     <div className={styles.main} >
                         {this.loadImage()}
-
                     </div>
                 </div>
-
             </div>
-
         )
     }
 
 }
 
 export default Banner
-
