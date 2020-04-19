@@ -1,26 +1,34 @@
 import React, { Component } from 'react'
 import styles from './SearchProduct.module.scss'
 import { Search } from 'react-feather'
+import { connect } from 'react-redux'
+import { searchProduct } from '../../../redux/product/actionCreator'
 
-export default class SearchProduct extends Component {
+class SearchProduct extends Component {
   constructor() {
     super()
     this.state = {
       text: ''
     }
     this.textChangeHandler = this.textChangeHandler.bind(this)
+    this.submitHandler = this.submitHandler.bind(this)
   }
 
-  textChangeHandler({ target: { text } }) {
+  textChangeHandler({ target: { value } }) {
     this.setState({
-      text
+      text: value
     })
+  }
+
+  submitHandler(e) {
+    e.preventDefault()
+    this.props.doSearch(this.state.text)
   }
 
   render() {
     return (
       <div className={styles.searchForm}>
-        <form>
+        <form onSubmit={this.submitHandler}>
           <input
             value={this.state.text}
             onChange={this.textChangeHandler}
@@ -34,3 +42,13 @@ export default class SearchProduct extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+  doSearch: title => dispatch(searchProduct(title))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchProduct)
