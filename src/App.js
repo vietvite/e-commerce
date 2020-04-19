@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Layout from './views/Layout';
 import Home from './views/Home'
-import ListProductByCategory from './views/ListProductByCategory';
+import ListProductByCategory from './views/ListProductByCategory/ListProductByCategory';
 import ProductDetail from './views/ProductDetail';
 import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound'
 import Cart from './views/Cart';

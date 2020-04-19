@@ -1,0 +1,25 @@
+.Total{
+    border-style: ridge;
+    border-width: 3px;
+    color: black;
+    height: 160px;
+    margin-left: 50px;
+    background: #F4F4F4;
+   
+    
+    .T{
+        height: 30%;
+        border-bottom: 1px solid black;
+        
+        .P{
+            padding-left: 20px;
+            padding-top: 10px;
+        }
+    }
+    .V{
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+    
+
+}
