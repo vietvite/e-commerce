@@ -12,6 +12,7 @@ class FilterBar extends React.Component {
   render() {
     return (
       <form className={style.filterBar} onSubmit={this.handleSubmit}>
+        <h3>Bộ lọc tìm kiếm</h3>
         <PriceFilter />
         {/* <LocationFilter /> */}
         <StarFilter />
