@@ -4,7 +4,7 @@ import styles from "./CartShop.module.scss";
 class CartShop extends React.Component{
     render(){
         return(
-            5
+            <p>Có 5 sản phẩm</p>
         )
     }
 }

@@ -8,6 +8,8 @@ class ShoppingCart extends React.Component{
         return(
             <div className={styles.ShoppingCart}>
                 <CartItem></CartItem>
+                <CartItem></CartItem>
+                <CartItem></CartItem>
             </div>
         )
     }

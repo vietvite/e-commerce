@@ -7,14 +7,7 @@ class Cart extends Component {
   render() {
     return (
       <Container>
-        <div className={styles.CartShop}>
-          <h5 className={styles.content}>
-          Giỏ hàng
-          <span>
-              1 sản phẩm
-          </span>
-          </h5>
-        </div>
+        <CartShop />
         <ShopTotal/>
         <OrderProduct />
       </Container>
