@@ -34,7 +34,7 @@ class SearchProduct extends Component {
             onChange={this.textChangeHandler}
             name='search'
             placeholder='Tìm kiếm' />
-          <button type='submit'>
+          <button type='submit' disabled={this.props.isFetching}>
             <Search />
           </button>
         </form>
@@ -44,7 +44,7 @@ class SearchProduct extends Component {
 }
 
 const mapStateToProps = state => ({
-
+  isFetching: state.product.fetching
 })
 
 const mapDispatchToProps = dispatch => ({
