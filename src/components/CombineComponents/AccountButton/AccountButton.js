@@ -44,12 +44,12 @@ export default class AccountButton extends React.Component {
     }, 150);
   }
   render() {
-    const { username = 'Username' } = this.props
+    const { fullname } = this.props
     return (
       <div className={styles.account}>
         <div onMouseDown={this.toggleDropdown} >
           <ButtonTransparent>
-            <span className={styles.buttonText}>{username}</span>
+            <span className={styles.buttonText}>{fullname}</span>
             <ChevronDown />
           </ButtonTransparent>
         </div>

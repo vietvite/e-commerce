@@ -46,7 +46,7 @@ class CategoryMenu extends React.Component {
     return (
       <>
         <button className={styles.Button}
-          onClick={() => this.setState({ showSideBar: !this.state.showSideBar })}>
+          onClick={this.toggleDropdown}>
           <Menu style={{ marginRight: '0.5em' }} /> DANH MỤC SẢN PHẨM
         </button>
 

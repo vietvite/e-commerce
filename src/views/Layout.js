@@ -4,10 +4,11 @@ import Footer from '../components/CombineComponents/Footer/Footer'
 import Navbar from '../components/CombineComponents/Navbar/Navbar'
 import AuthGroupButton from '../components/CombineComponents/AuthGroupButton/AuthGroupButton'
 import AccountButton from '../components/CombineComponents/AccountButton/AccountButton'
+import { connect } from 'react-redux'
 
-function Layout({ children, user }) {
+function Layout({ children, user = { fullname: 'Customer' } }) {
   const authenticatedMenu = (
-    <AccountButton />
+    <AccountButton {...user} />
   )
   const unAuthenticatedMenu = (
     <AuthGroupButton />
@@ -27,4 +28,10 @@ function Layout({ children, user }) {
   )
 }
 
-export default Layout
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout)
