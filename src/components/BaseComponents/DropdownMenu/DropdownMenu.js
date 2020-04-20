@@ -6,7 +6,7 @@ function DropdownMenu({ listMenu }) {
   return (
     <div className={styles.dropdownMenu}>
       {listMenu.map(
-        item => <MenuItem name={item.name} url={item.url} />)
+        (item, i) => <MenuItem key={i} {...item} />)
       }
     </div>
   )

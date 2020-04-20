@@ -1,49 +1,42 @@
 @import "../../../scss/variable";
 
 .formSignUp {
-    width: 100%;
-    display: block;
-    font-size: 14px;
-    line-height: 20px;
-    margin: auto;
-    background-color: $white;
-    h1 {
-        text-align: center;
+  width: 100%;
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  margin: auto;
+  background-color: $white;
+  h1 {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 30px;
+    font-weight: $medium;
+  }
+  .formGroupBody {
+    padding: 30px;
+    .formGroup {
+      margin-bottom: 15px;
+      display: flex;
+      .formGroupItem {
+        flex: 0 0 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
         font-size: 20px;
-        padding-top: 30px;
-        font-weight: $medium;
+        line-height: 26px;
+        color: $gray-5;
+        padding-top: 10px;
+      }
+      .formGroupInfo {
+        flex: 1 1;
+      }
+      ::placeholder {
+        font-style: italic;
+      }
     }
-    .formGroupBody {
-        padding: 30px;
-        .formGroup {
-            margin-bottom: 15px;
-            display: flex;
-            .formGroupItem {
-                flex: 0 0 40px;
-                height: 40px;
-                justify-content: center;
-                align-items: center;
-                font-size: 20px;
-                line-height: 26px;
-                color: $gray-5;
-                padding-top: 10px;
-            }
-            .formGroupInfo {
-                flex: 1 1;
-            }
-            ::placeholder {
-                font-style: italic;
-            }       
-        }
-        .formSubcribe{
-            text-align: left;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            padding-left: 40px;
-        }
-        .btnSubmitWrap {
-            text-align: center;
-        }
+    .btnSubmitWrap {
+      text-align: center;
     }
+  }
 }
-

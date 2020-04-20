@@ -1,19 +1,23 @@
 import React from "react";
 import PriceFilter from "../PriceFilter/PriceFilter";
 import style from "./FilterBar.module.scss";
-import LocationFilter from "../LocationFilter/LocationFilter";
+// import LocationFilter from "../LocationFilter/LocationFilter";
 import StarFilter from "../StarFilter/StarFilter";
 import FilterBottom from "../FilterBottom/FilterBottom";
 
 class FilterBar extends React.Component {
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
   render() {
     return (
-      <div className={style.filterBar}>
+      <form className={style.filterBar} onSubmit={this.handleSubmit}>
+        <h3>Bộ lọc tìm kiếm</h3>
         <PriceFilter />
-        <LocationFilter />
+        {/* <LocationFilter /> */}
         <StarFilter />
         <FilterBottom />
-      </div>
+      </form>
     );
   }
 }

@@ -5,6 +5,7 @@ import Navbar from "../components/CombineComponents/Navbar/Navbar";
 import AuthGroupButton from "../components/CombineComponents/AuthGroupButton/AuthGroupButton";
 import AccountButton from "../components/CombineComponents/AccountButton/AccountButton";
 import Modal from "../components/CombineComponents/Modal/Modal";
+import { connect } from "react-redux";
 
 class Layout extends React.Component {
   constructor(props) {
@@ -14,14 +15,13 @@ class Layout extends React.Component {
       form: 1,
     };
   }
-
   toggleFormModal = (form) => {
     this.setState({ showForm: !this.state.showForm });
     this.setState({ form: form });
   };
 
   render() {
-    const authenticatedMenu = <AccountButton />;
+    const authenticatedMenu = <AccountButton {...this.props.user} />;
     const unAuthenticatedMenu = (
       <AuthGroupButton toggleFormModal={this.toggleFormModal} />
     );
@@ -49,4 +49,10 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

@@ -1,6 +1,9 @@
-@import '../../../scss/variable';
+@import "../../../scss/variable";
 
 .filterBar {
   width: 20%;
-  padding: 10px;
+  h3 {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
 }
