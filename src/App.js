@@ -5,7 +5,7 @@ import Home from './views/Home'
 import ListProductByCategory from './views/ListProductByCategory/ListProductByCategory';
 import ProductDetail from './views/ProductDetail';
 import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound'
-import Cart from './views/Cart';
+import Cart from './views/Cart/Cart';
 
 function App() {
   return (
