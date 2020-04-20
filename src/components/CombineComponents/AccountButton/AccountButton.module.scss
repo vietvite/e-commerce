@@ -1,9 +1,38 @@
 @import "../../../scss/variable";
 
-.buttonText {
-  padding: 0 0.125rem;
+.account {
+  position: relative;
+
+  .buttonText {
+    padding: 0 0.125rem;
+  }
+  .dropdownWrapper {
+    position: fixed;
+    z-index: 1;
+  }
 }
-.dropdownWrapper {
-  position: fixed;
-  margin-top: 1rem;
+
+.orderListIcon {
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  background-color: $blue-6;
+  margin-right: 1rem;
+}
+.favListIcon {
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  background-color: $pink-5;
+  margin-right: 1rem;
+}
+.orderLaterIcon {
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  background-color: $teal-5;
+  margin-right: 1rem;
+}
+.logOutIcon {
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  background-color: $gray-6;
+  margin-right: 1rem;
 }

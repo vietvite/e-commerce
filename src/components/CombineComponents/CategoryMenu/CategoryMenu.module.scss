@@ -1,0 +1,54 @@
+@import "../../../scss/variable";
+
+.Button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 13rem;
+  background-color: $white;
+  padding: 0;
+  font-size: 1rem;
+  background-color: inherit;
+  color: $white;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  
+  & + div {
+    z-index: 1;
+  }
+}
+
+.icon {
+  padding: 0.25rem;
+  margin-right: 0.5rem;
+
+  .red {
+    color: $red-6;
+  }
+  .teal {
+    color: $teal-6;
+  }
+  .orange {
+    color: $orange-6;
+  }
+  .blue {
+    color: $blue-5;
+  }
+  .green {
+    color: $green-5;
+  }
+  .indigo {
+    color: $indigo-6;
+  }
+  .pink {
+    color: $pink-5;
+  }
+  .gray {
+    color: $gray-6;
+  }
+  
+}

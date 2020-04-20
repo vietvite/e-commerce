@@ -66,7 +66,7 @@ class Banner extends React.Component {
     }
     loadImage = () => {
         return slides.map((e, index) => {
-            return <div className="slide"><img src={e} alt="banner" /></div>;
+            return <div key={index} className="slide"><img src={e} alt="banner" /></div>;
         })
     }
     render() {
