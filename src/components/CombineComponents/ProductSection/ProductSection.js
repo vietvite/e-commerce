@@ -3,13 +3,23 @@ import style from "./ProductSection.module.scss";
 import Product from "../Product/Product";
 import { ChevronRight } from "react-feather";
 import UnderlineButton from "../../BaseComponents/UnderlineButton/UnderlineButton";
-import Container from '../Container/Container'
+import Container from "../Container/Container";
 
-var listProduct = [];
-for (let i = 0; i < 6; i++) {
-  listProduct.push(<Product key={i}/>);
-}
 class ProductSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: [],
+    };
+  }
+  componentDidMount() {
+    var content = [];
+    let listProduct = this.props.list;
+    for (let i = 0, len = listProduct.length; i < len; i++) {
+      content.push(<Product key={i} item={listProduct[i]} />);
+    }
+    this.setState({ content: content });
+  }
   render() {
     return (
       <Container>
@@ -17,16 +27,15 @@ class ProductSection extends React.Component {
           <div className={style.type}>
             <div className={style.left}>
               Electric Product
-            <ChevronRight />
+              <ChevronRight />
             </div>
             <div className={style.right}>
               <UnderlineButton>New Release</UnderlineButton>
-              <UnderlineButton>Cooktops</UnderlineButton>
-              <UnderlineButton>Dish Washer</UnderlineButton>
+              <UnderlineButton>Top Sales</UnderlineButton>
               <button className={style.lastButton}>See All</button>
             </div>
           </div>
-          <div className={style.listProduct}>{listProduct}</div>
+          <div className={style.listProduct}>{this.state.content}</div>
         </div>
       </Container>
     );
