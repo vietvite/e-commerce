@@ -17,7 +17,7 @@ class Cart extends Component {
         <div className={cartBody}>
           <h2>Có <span>{cartCount}</span> sản phẩm trong giỏ hàng</h2>
           <div>
-            <CartList cart={this.props.cart} />
+            <CartList listProduct={this.props.cart} />
             <CartTotal {...{ totalPrice, shippingFee }} />
           </div>
         </div>

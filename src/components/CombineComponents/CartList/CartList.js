@@ -6,7 +6,7 @@ class CartList extends React.Component {
   render() {
     return (
       <div className={style}>
-        {this.props.cart.map(
+        {this.props.listProduct.map(
           (product, i) => <CartItem key={i} {...product} />)
         }
       </div>
