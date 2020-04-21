@@ -1,6 +1,7 @@
 @import "../../../scss/variable";
 
 .sessionProduct {
+  margin-top: 30px;
   border-bottom: 1px solid $gray-5;
   .type {
     height: 30px;
@@ -28,6 +29,6 @@
   }
   .listProduct {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
   }
 }

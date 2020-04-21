@@ -12,6 +12,10 @@
   white-space: nowrap;
   font-weight: bolder;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     background-color: white;
     color: $blue-9;

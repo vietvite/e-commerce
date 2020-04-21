@@ -58,6 +58,9 @@
           border: none;
           background-color: $gray-3;
           border-radius: 50%;
+          &:hover{
+            background-color: $gray-5;
+          }
         }
       }
     }

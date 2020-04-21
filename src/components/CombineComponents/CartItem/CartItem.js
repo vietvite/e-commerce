@@ -1,42 +1,64 @@
 import React, { Component } from 'react'
 import styles from './CartItem.module.scss'
+import { NavLink, Link } from 'react-router-dom'
+import QuantityForm from '../../BaseComponents/QuantityForm/QuantityForm'
+import { Heart, Trash2, ShoppingBag } from 'react-feather'
+import ButtonLink from '../../BaseComponents/ButtonLink/ButtonLink'
+import { parseCurrency } from '../../../commons'
+import { connect } from 'react-redux'
+import { updateQuantity, removeCart } from '../../../redux/cart/action'
+import ButtonGraySm from '../../BaseComponents/ButtonGraySm/ButtonGraySm'
 
-export default class CartItem extends Component {
+class CartItem extends Component {
   render() {
-    return (
-      <div className={styles.CartItem}>
-        <div className={styles.Productthumbnail}>
-          <img alt='1' height='130px' width='130px' src="https://salt.tikicdn.com/cache/175x175/ts/product/14/91/01/c6cafb8778e0dfb0b9b9fde3a656c38c.jpg" />
-        </div>
-        <div className={styles.ProductInfo}>
-          <a href='#' className={styles.detail}>
-            Điện Thoại Samsung Galaxy M30s (64GB/4GB) - Hàng Chính Hãng - Trắng Tinh Vânại Samsung Galaxy M30s (64GB/4GB) - Hàng Chính Hãng - Trắng Tinh Vân
-                </a>
-          <div className={styles.supply}>
-            Cung cấp bởi <a class={styles.provider} href='#'>Shopee</a>
-          </div>
-          <div className={styles.controlBox}>
-            <a href='#' className={styles.controlItem}>Xóa</a>
-            <a href='#' className={styles.controlItem}>Để giành mua sau</a>
-          </div>
+    const { id, title, url, imageUrl, seller, price, quantity } = this.props
 
-        </div>
-        <div className={styles.ProductPrice}>
-          <p className={styles.priceNow}>5.190.000đ</p>
-          <p className={styles.discount}> <span className={styles.pricePre}>6.990.000đ</span>  | <span className={styles.precentDis}>-26%</span> </p>
-        </div>
-        <div className={styles.ProductOrderQuantity}>
-          <div className={styles.controlQuantity}>
-            <span className={styles.btnControlInc}>
-              -
-            </span>
-            <input name='quantity' className={styles.inputQuantity} value='1' />
-            <span className={styles.btnControlDes}>
-              +
-            </span>
+    return (
+      <div className={styles.cartItem}>
+        <div className={styles.detail}>
+          <img alt='thumbnail' src={imageUrl} />
+          <div>
+            <p><NavLink className={styles.navLink} to={url}>
+              {title}
+            </NavLink></p>
+            <p>Shop: <Link to={`/${seller.username}`}>{seller.fullname}</Link></p>
           </div>
+          <div className={styles.price}>
+            <p>{parseCurrency(price)}đ</p>
+          </div>
+        </div>
+
+        <div className={styles.control}>
+          <QuantityForm
+            fullWidth={true}
+            quantity={quantity}
+            updateQuantity={this.props.updateQuantity(id)} />
+
+          <ButtonLink to={`/favorite/${id}`} fullWidth={true}>
+            <Heart size='0.9rem' strokeWidth='1.5px'
+              style={{ marginRight: '0.125rem' }} />
+            Yêu thích
+          </ButtonLink>
+          <ButtonLink to={`/orderlater/${id}`} fullWidth={true}>
+            <ShoppingBag size='0.9rem' strokeWidth='1.5px'
+              style={{ marginRight: '0.125rem' }} />
+            Mua sau
+          </ButtonLink>
+          <ButtonGraySm onClick={() => this.props.removeProduct(id)} fullWidth={true} >
+            <Trash2 size='0.9rem' strokeWidth='1.5px'
+              style={{ marginRight: '0.125rem' }} />
+            Xóa
+          </ButtonGraySm>
         </div>
       </div>
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  updateQuantity: id => quantity => dispatch(updateQuantity(id, quantity)),
+  removeProduct: id => dispatch(removeCart(id))
+})
+
+
+export default connect(null, mapDispatchToProps)(CartItem)

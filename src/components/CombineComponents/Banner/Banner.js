@@ -1,11 +1,12 @@
 import React from "react";
-import chicago from "./img/chicago.jpg";
-import la from "./img/la.jpg";
-import ny from "./img/ny.jpg";
+import banner1 from "./img/banner1.jpg";
+import banner2 from "./img/banner2.jpg";
+import banner3 from "./img/banner3.jpg";
 import { ArrowLeftCircle, ArrowRightCircle } from "react-feather";
 import styles from "./Banner.module.scss";
-
-const slides = [chicago, ny, la];
+import config from '../../../config'
+import { connect } from "react-redux";
+import { getBanner } from '../../../redux/banner/actionCreator'
 
 let chuyen = 0;
 
@@ -15,8 +16,9 @@ class Banner extends React.Component {
         this.state = {
             'current': 0,
             widthSlide: 0,
-            time: 2000,
-            interval: undefined
+            time: 5000,
+            interval: undefined,
+            listBanner: []
         }
     }
     componentDidMount = () => {
@@ -29,6 +31,9 @@ class Banner extends React.Component {
             this.onRightClick();
         }, this.state.time);
         this.setState({ interval: setIn })
+
+        // Call middleware fetch list banner
+        this.props.getBanner()
     }
     componentWillUnmount() {
         clearInterval(this.state.interval)
@@ -65,8 +70,9 @@ class Banner extends React.Component {
         main.style.marginLeft = '-' + chuyen + 'px';
     }
     loadImage = () => {
-        return slides.map((e, index) => {
-            return <div key={index} className="slide"><img src={e} alt="banner" /></div>;
+        const list = this.props.listBanner || []
+        return list.map((banner, index) => {
+            return <div key={index} className="slide"><img src={`${config.baseURL}/${banner.img}`} alt="banner" /></div>;
         })
     }
     render() {
@@ -90,4 +96,12 @@ class Banner extends React.Component {
 
 }
 
-export default Banner
+const mapDispatchToProps = dispatch => ({
+    getBanner: () => dispatch(getBanner())
+})
+
+const mapStateToProps = state => ({
+    listBanner: state.banner
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Banner);

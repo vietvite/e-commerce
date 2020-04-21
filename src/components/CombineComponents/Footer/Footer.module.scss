@@ -1,186 +1,188 @@
 @import "../../../scss/variable";
 
-.footerSection {
+.footerSectionAll {
   background: $gray-1;
-  color: $black;
-  display: block;
   border-top: 1px solid $gray-5;
-  position: relative;
-  width: 100%;
-  padding: 0 48px;
-  margin: auto;
-  width: auto;
-  .footerHead {
-    border-bottom: 1px solid $gray-5;
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -16px;
-    margin-right: -16px;
-    padding: 1rem 0;
-  }
-  .footerHeadLeft {
-    font-size: 15px;
-    flex: 50%;
-    max-width: 50%;
-    font-weight: $medium;
-    font-style: italic;
-    line-height: 25px;
-
-  }
-  .footerHeadRight {
-    flex: 50%;
-    text-align: right;
-  }
-  .certifyItem {
-    margin-left: 16px;
-  }
-  a {
-    outline: none;
-    cursor: pointer;
-  }
-  .footerBody {
-    padding: 24px 0 32px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -16px;
-    margin-left: -16px;
-    text-align: left;
-    border-bottom: 1px solid $gray-5;
-  }
-  .footerBodyLeft {
-    flex: 25%;
-    max-width: 25%;
-  }
-  .footerAddressItem {
-    margin-bottom: 24px;
-  }
-  .footerTitle {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: $bold;
-    margin-bottom: 8px;
-    color: $gray-8;
-  }
-  .footerAddress {
-    font-size: 13px;
-    line-height: 18px;
-    color: $gray-7;
-    margin-bottom: 8px;
-  }
-  .footerPhoneBtn {
-    display: inline-flex;
-    background-color: $red-7;
-    border-radius: 12px;
-    padding: 4px 12px;
-    color: $white;
-    font-weight: $medium;
-    align-items: center;
-    transition: 0.3s;
-    font-size: 13px;
-    line-height: 18px;
-    .footerPhoneNumber {
-      margin-left: 4px;
-    }
-  }
-  .footerBodyCenter {
-    flex: 50%;
-    max-width: 50%;
-  }
-  .footerDesInfo {
-    font-size: 13px;
-    line-height: 18px;
-    margin-bottom: 24px;
-    color: $gray-7;
-    .footerContents {
-      text-align: justify;
-      background-color: $gray-1;
-      width: 95%;
-      height: 150px;
-      overflow: auto;
-    }
-  }
-
-  .footerServices {
+  .footerSection {
+    color: $black;
+    display: block;
+    position: relative;
     width: 95%;
-    line-height: 50px;
-    .footerServicesInfo {
-      display: flex;
-      justify-content: space-between;
-      a {
-        text-decoration: none;
-        color: $gray-7;
-      }
-      a:hover {
-        color: $blue-7;
-      }
-    }
-  }
-
-  .footerBodyRight {
-    flex: 25%;
-    max-width: 25%;
-  }
-  .footerRegister {
-    margin-bottom: 24px;
-  }
-  .footerRegisterDes {
-    text-align: justify;
-    color: $gray-7;
-  }
-  .footerRegisterForm {
-    margin-top: 15px;
-    margin-left: 200px;
-    Button {
-      width: 120px ;
-      height: 30px;
-      background-color: $red-7;
-      border-radius: 15px;  
-      color: $white;
-      font-style: italic;
-      font-weight: $bold;
-    }
-    Button:hover {
-      background-color: $gray-4;
-      color: $black;
-    }
-  }
-
-  .footerPartner {
-    margin-top: 20px;
-    line-height: 70px;
-  }
-  .footerPartnerLinkItem {
-    padding: 16px;
-    border-bottom: 1px solid $gray-4;
-  }
-  .footerLinkItemFooterPartnerLinkItem {
-    margin-left: 50px;
-    img {
-      max-width: 70%;
-      max-height: 70%;
-      color: transparent;
-      border-style: none;
-    }
-  }
-  .footerFoot {
-    text-align: center;
-    width: 100%;
-    .footerTitle {
-      margin: 20px;
-      font-size: 16px;
-      font-style: italic;
-    }
-    .footerPaymentList {
+    padding: 0 48px;
+    margin: auto;
+    .footerHead {
+      border-bottom: 1px solid $gray-5;
+      align-items: center;
       display: flex;
       flex-wrap: wrap;
-      .footerPaymentItem {
-        width: 100%;
-        flex: 48px;
-        margin: 0px 4px 4px 0px;
+      margin-left: -16px;
+      margin-right: -16px;
+      padding: 1rem 0;
+    }
+    .footerHeadLeft {
+      font-size: 15px;
+      flex: 50%;
+      max-width: 50%;
+      font-weight: $medium;
+      font-style: italic;
+      line-height: 25px;
+    }
+    .footerHeadRight {
+      flex: 50%;
+      text-align: right;
+    }
+    .certifyItem {
+      margin-left: 16px;
+    }
+    a {
+      outline: none;
+      cursor: pointer;
+    }
+    .footerBody {
+      padding: 24px 0 32px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -16px;
+      margin-left: -16px;
+      text-align: left;
+      border-bottom: 1px solid $gray-5;
+    }
+    .footerBodyLeft {
+      flex: 25%;
+      max-width: 25%;
+    }
+    .footerAddressItem {
+      margin-bottom: 24px;
+    }
+    .footerTitle {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: $medium;
+      margin-bottom: 8px;
+      color: $gray-8;
+    }
+    .footerAddress {
+      font-size: 13px;
+      line-height: 18px;
+      color: $gray-7;
+      margin-bottom: 8px;
+    }
+    .footerPhoneBtn {
+      display: inline-flex;
+      background-color: $red-7;
+      border-radius: 12px;
+      padding: 4px 12px;
+      color: $white;
+      font-weight: $medium;
+      align-items: center;
+      transition: 0.3s;
+      font-size: 13px;
+      line-height: 18px;
+      text-decoration: none;
+      .footerPhoneNumber {
+        margin-left: 4px;
       }
-      .footerPaymentItem img {
-        width: 30%;
+    }
+    .footerBodyCenter {
+      flex: 50%;
+      max-width: 50%;
+    }
+    .footerDesInfo {
+      font-size: 13px;
+      line-height: 18px;
+      margin-bottom: 24px;
+      color: $gray-7;
+      .footerContents {
+        text-align: justify;
+        background-color: $gray-1;
+        width: 95%;
+        height: 150px;
+        overflow: auto;
+      }
+    }
+
+    .footerServices {
+      width: 95%;
+      line-height: 50px;
+      .footerServicesInfo {
+        display: flex;
+        justify-content: space-between;
+        a {
+          text-decoration: none;
+          color: $gray-7;
+        }
+        a:hover {
+          color: $blue-7;
+        }
+      }
+    }
+
+    .footerBodyRight {
+      flex: 25%;
+      max-width: 25%;
+    }
+    .footerRegister {
+      margin-bottom: 24px;
+    }
+    .footerRegisterDes {
+      text-align: justify;
+      color: $gray-7;
+    }
+    .footerRegisterForm {
+      margin-top: 15px;
+      margin-left: 200px;
+      Button {
+        width: 120px;
+        height: 30px;
+        background-color: $red-7;
+        border-radius: 15px;
+        color: $white;
+        font-style: italic;
+        font-weight: $bold;
+        cursor: pointer;
+      }
+      Button:hover {
+        background-color: $gray-4;
+        color: $black;
+      }
+    }
+
+    .footerPartner {
+      margin-top: 20px;
+      line-height: 70px;
+    }
+    .footerPartnerLinkItem {
+      padding: 16px;
+      border-bottom: 1px solid $gray-4;
+    }
+    .footerLinkItemFooterPartnerLinkItem {
+      margin-left: 50px;
+      img {
+        max-width: 70%;
+        max-height: 70%;
+        color: transparent;
+        border-style: none;
+      }
+    }
+    .footerFoot {
+      text-align: center;
+      width: 100%;
+      .footerTitle {
+        margin: 20px;
+        font-size: 16px;
+        font-style: italic;
+      }
+      .footerPaymentList {
+        display: flex;
+        flex-wrap: wrap;
+        .footerPaymentItem {
+          width: 100%;
+          flex: 48px;
+          margin: 0px 4px 4px 0px;
+        }
+        .footerPaymentItem img {
+          width: 30%;
+        }
       }
     }
   }
