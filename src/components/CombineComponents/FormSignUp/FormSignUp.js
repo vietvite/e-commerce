@@ -41,13 +41,19 @@ class FormSignUp extends React.Component {
                 <Key />
               </div>
               <div className={style.formGroupInfo}>
-                <FormInput placeholder="Nhập mật khẩu"></FormInput>
+                <FormInput
+                  type="password"
+                  placeholder="Nhập mật khẩu"
+                ></FormInput>
               </div>
             </div>
             <div className={style.formGroup}>
               <div className={style.formGroupItem}></div>
               <div className={style.formGroupInfo}>
-                <FormInput placeholder="Nhập lại mật khẩu"></FormInput>
+                <FormInput
+                  type="password"
+                  placeholder="Nhập lại mật khẩu"
+                ></FormInput>
               </div>
             </div>
             <div className={style.btnSubmitWrap}>
