@@ -23,12 +23,12 @@ class ProductSection extends React.Component {
   render() {
     return (
       <Container>
-        <div className={style.sessionProduct}>
+        <div className={style.sectionProduct}>
           <div className={style.type}>
-            <div className={style.left}>
-              Electric Product
+            <a href={`/product?categoryId=${this.props.list[0].category.id}`} className={style.left}>
+              {this.props.list[0].category.name}
               <ChevronRight />
-            </div>
+            </a>
             <div className={style.right}>
               <UnderlineButton>New Release</UnderlineButton>
               <UnderlineButton>Top Sales</UnderlineButton>

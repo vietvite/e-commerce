@@ -1,20 +1,22 @@
 @import "../../../scss/variable";
 
 .product {
-  width: calc(100%/6);
+  width: calc(100% / 5);
   height: 250px;
   padding: 0 10px 0 10px;
-  .productImage {
-    height: 60%;
-    width: 100%;
-  }
+
   .productName {
     display: block;
-    height: 15%;
+    height: 75%;
     text-decoration: none;
     color: $black;
     &:hover {
       color: $blue-7;
+    }
+    .productImage {
+      display: block;
+      height: 80%;
+      width: 100%;
     }
   }
   .productMetaInfo {
@@ -40,7 +42,7 @@
       .infoCol {
         display: flex;
         align-items: center;
-        width: 50%;
+        width: 60%;
         height: 100%;
         color: $orange-5;
         font-weight: $bold;
@@ -48,7 +50,7 @@
       .action {
         display: flex;
         justify-content: space-around;
-        width: 50%;
+        width: 40%;
         height: 100%;
         align-items: center;
         button {
@@ -58,7 +60,7 @@
           border: none;
           background-color: $gray-3;
           border-radius: 50%;
-          &:hover{
+          &:hover {
             background-color: $gray-5;
           }
         }

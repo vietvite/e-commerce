@@ -13,7 +13,7 @@ function App() {
       <Layout>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/category' component={ListProductByCategory} />
+          <Route path='/product' component={ListProductByCategory} />
           <Route path='/detail' component={ProductDetail} />
           <Route path='/cart' component={Cart} />
           <Route component={PageNotFound} />

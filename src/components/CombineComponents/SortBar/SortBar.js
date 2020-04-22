@@ -17,15 +17,6 @@ class SortBar extends React.Component {
           <WhiteButton>Bán chạy</WhiteButton>
           <SortDropDownButton />
         </div>
-        <div className={style.paginationArea}>
-          <span>1/100</span>
-          <button>
-            <ChevronLeft size="10px" />
-          </button>
-          <button>
-            <ChevronRight size="10px" />
-          </button>
-        </div>
       </div>
     );
   }

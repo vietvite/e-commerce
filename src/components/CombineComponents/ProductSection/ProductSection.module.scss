@@ -1,6 +1,6 @@
 @import "../../../scss/variable";
 
-.sessionProduct {
+.sectionProduct {
   margin-top: 30px;
   border-bottom: 1px solid $gray-5;
   .type {
@@ -29,6 +29,6 @@
   }
   .listProduct {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
   }
 }

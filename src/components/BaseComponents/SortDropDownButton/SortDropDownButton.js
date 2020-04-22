@@ -5,7 +5,7 @@ class SortDropDownButton extends React.Component {
   render() {
     return (
       <select className={style.sortDropDownButton}>
-        <option value="" disabled selected hidden>
+        <option value="" disabled hidden>
           Giá:
         </option>
         <option value="increase">Giá: Thấp đến Cao</option>
