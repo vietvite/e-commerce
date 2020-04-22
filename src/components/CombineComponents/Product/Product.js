@@ -11,34 +11,42 @@ class Product extends React.Component {
   //   };
   // }
 
-  // componentDidMount() {
-  //   let reviewStar = this.props.item.reviewStar || 0;
-  //   if (reviewStar !== 0) {
-  //     let totalStars =
-  //       reviewStar._1star * 1 +
-  //       reviewStar._2star * 2 +
-  //       reviewStar._3star * 3 +
-  //       reviewStar._4star * 4 +
-  //       reviewStar._5star * 5;
-  //     let totalReviews =
-  //       reviewStar._1star +
-  //       reviewStar._2star +
-  //       reviewStar._3star +
-  //       reviewStar._4star +
-  //       reviewStar._5star;
+  componentDidMount() {
+    console.log(this.props.item);
+  }
 
-  //     this.setState({ totalStars: totalStars, totalReviews: totalReviews });
-  //   }
-  // }
+  getTotalStars = () => {
+    let reviewStar = this.props.item.reviewStar;
+    let totalStars =
+      reviewStar._1star * 1 +
+      reviewStar._2star * 2 +
+      reviewStar._3star * 3 +
+      reviewStar._4star * 4 +
+      reviewStar._5star * 5;
+    return totalStars;
+  };
 
-  // loadReviewStar = () => {
-  //   let n = Math.round(this.state.totalStars / this.state.totalReviews);
-  //   let stars = [];
-  //   for (let i = 0; i < n; i++) {
-  //     stars.push(<Star key={i} className={style.reviewStar} />);
-  //   }
-  //   return stars;
-  // };
+  getTotalReviews = () => {
+    let reviewStar = this.props.item.reviewStar;
+    let totalReviews =
+      reviewStar._1star +
+      reviewStar._2star +
+      reviewStar._3star +
+      reviewStar._4star +
+      reviewStar._5star;
+    return totalReviews;
+  };
+
+  loadReviewStar = () => {
+    let totalStars = this.getTotalStars();
+    let totalReviews = this.getTotalReviews();
+    let starCount = Math.round(totalStars / totalReviews);
+    let stars = [];
+    for (let i = 0; i < starCount; i++) {
+      stars.push(<Star key={i} className={style.reviewStar} />);
+    }
+    return stars;
+  };
 
   formatNumber = (number) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
@@ -58,15 +66,10 @@ class Product extends React.Component {
         </a>
         <div className={style.productMetaInfo}>
           <div className={style.review}>
-            <Star className={style.reviewStar} />
-            <Star className={style.reviewStar} />
-            <Star className={style.reviewStar} />
-            <Star className={style.reviewStar} />
-            <Star className={style.reviewStar} />
-            {/* {this.loadReviewStar()}
+            {this.loadReviewStar()}
             <div className={style.reviewCount}>
-              {`(${this.state.totalReviews})`}
-            </div> */}
+              {`(${this.getTotalReviews()})`}
+            </div>
           </div>
           <div className={style.productInfo}>
             <div className={style.infoCol}>
