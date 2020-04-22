@@ -3,18 +3,6 @@ import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
 
 class Product extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     totalStars: 0,
-  //     totalReviews: 0,
-  //   };
-  // }
-
-  componentDidMount() {
-    console.log(this.props.item);
-  }
-
   getTotalStars = () => {
     let reviewStar = this.props.item.reviewStar;
     let totalStars =

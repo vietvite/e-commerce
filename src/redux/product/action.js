@@ -1,4 +1,10 @@
-import { UPDATE_LIST_PRODUCT, FETCHING, LOAD_MORE } from "./constants";
+import {
+  UPDATE_LIST_PRODUCT,
+  FETCHING,
+  LOAD_MORE,
+  SORT_PRODUCT,
+  GET_SORT_CONDITION,
+} from "./constants";
 
 export const sendingRequest = () => ({
   type: FETCHING,
@@ -21,3 +27,12 @@ export const loadMore = (listProduct) => ({
     fetching: false,
   },
 });
+
+export const setSortCondition = (sortCondition) => ({
+  type: SORT_PRODUCT,
+  payload: {
+    sortCondition,
+  },
+});
+
+export const getSortCondition = () => ({ type: GET_SORT_CONDITION });

@@ -5,6 +5,19 @@ import SortDropDownButton from "../../BaseComponents/SortDropDownButton/SortDrop
 import { ChevronLeft, ChevronRight } from "react-feather";
 
 class SortBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeButton: 1,
+    };
+  }
+
+  isActive = (index) => (index === this.state.activeButton ? true : false);
+
+  onClick = (index) => {
+    this.setState({ activeButton: index });
+  };
+
   render() {
     return (
       <div className={style.sortBar}>
@@ -12,10 +25,28 @@ class SortBar extends React.Component {
           Sắp xếp theo
         </span>
         <div className={`${style.paddingLeft} ${style.buttonArea}`}>
-          <WhiteButton selected>Phổ biến</WhiteButton>
-          <WhiteButton>Mới nhất</WhiteButton>
-          <WhiteButton>Bán chạy</WhiteButton>
-          <SortDropDownButton />
+          <WhiteButton
+            onClick={this.onClick}
+            index={1}
+            status={this.isActive(1)}
+            sortBy="title"
+          >
+            Tên
+          </WhiteButton>
+          <WhiteButton
+            onClick={this.onClick}
+            index={2}
+            status={this.isActive(2)}
+            sortBy="date"
+          >
+            Mới nhất
+          </WhiteButton>
+          <SortDropDownButton
+            onClick={this.onClick}
+            index={4}
+            status={this.isActive(4)}
+            sortBy="price"
+          />
         </div>
       </div>
     );

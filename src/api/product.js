@@ -6,8 +6,14 @@ const ProductService = {
   getHomeProductSection: () => http().get("/product/home"),
   getProductByCategory: (categoryId) =>
     http().get(`/product?categoryId=${categoryId}`),
-  loadMore: (categoryId, page) =>
-    http().get(`/product?categoryId=${categoryId}&page=${page}`),
+  loadMore: (categoryId, page, { sortBy, sortDirection }) =>
+    http().get(
+      `/product?categoryId=${categoryId}&page=${page}&sortBy=${sortBy}&sortDirection=${sortDirection}`
+    ),
+  sortProduct: (categoryId, { sortBy, sortDirection }) =>
+    http().get(
+      `/product?categoryId=${categoryId}&sortBy=${sortBy}&sortDirection=${sortDirection}`
+    ),
 };
 
 export default ProductService;

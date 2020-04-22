@@ -1,8 +1,18 @@
-import { FETCHING, UPDATE_LIST_PRODUCT, LOAD_MORE } from "./constants";
+import {
+  FETCHING,
+  UPDATE_LIST_PRODUCT,
+  LOAD_MORE,
+  GET_SORT_CONDITION,
+  SORT_PRODUCT,
+} from "./constants";
 
 const initState = {
   list: [],
   fetching: false,
+  sortCondition: {
+    sortBy: "title",
+    sortDirection: "ascending",
+  },
 };
 
 export default (state = initState, action) => {
@@ -23,6 +33,10 @@ export default (state = initState, action) => {
           { fetching: action.payload.fetching }
         );
       }
+    case GET_SORT_CONDITION:
+      return state;
+    case SORT_PRODUCT:
+      return Object.assign({}, state, action.payload);
     default:
       return state;
   }

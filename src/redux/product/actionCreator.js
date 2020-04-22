@@ -1,5 +1,10 @@
 import ProductService from "../../api/product";
-import { receiveListProduct, sendingRequest, loadMore } from "./action";
+import {
+  receiveListProduct,
+  sendingRequest,
+  loadMore,
+  setSortCondition,
+} from "./action";
 
 export const searchProduct = (title) => (dispatch) => {
   dispatch(sendingRequest());
@@ -22,9 +27,21 @@ export const getProductByCategory = (categoryId) => (dispatch) => {
   });
 };
 
-export const loadMoreCreator = (categoryId, page) => (dispatch) => {
+export const loadMoreCreator = (categoryId, page, sortCondition) => (
+  dispatch
+) => {
   dispatch(sendingRequest());
-  return ProductService.loadMore(categoryId, page).then((res) => {
-    dispatch(loadMore([...res.data]));
+  return ProductService.loadMore(categoryId, page, sortCondition).then(
+    (res) => {
+      dispatch(loadMore([...res.data]));
+    }
+  );
+};
+
+export const sortProduct = (categoryId, sortCondition) => (dispatch) => {
+  dispatch(sendingRequest());
+  dispatch(setSortCondition(sortCondition));
+  return ProductService.sortProduct(categoryId, sortCondition).then((res) => {
+    dispatch(receiveListProduct([...res.data]));
   });
 };

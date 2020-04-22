@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   getProductByCategory,
-  getLoadMoreProductByCategory,
-  loadMore,
   loadMoreCreator,
 } from "../../../redux/product/actionCreator";
 import Product from "../Product/Product";
@@ -26,7 +24,7 @@ class ProductPageContent extends React.Component {
     let categoryId = url.searchParams.get("categoryId");
     let page = Math.ceil(this.props.listProduct.length / 15);
     page++;
-    this.props.loadMore(categoryId, page);
+    this.props.loadMore(categoryId, page, this.props.sortCondition);
   };
 
   loadContent = () => {
@@ -51,7 +49,7 @@ class ProductPageContent extends React.Component {
 const mapStateToProps = (state) => {
   return {
     listProduct: state.product.list,
-    fetching: state.product.fetching,
+    sortCondition: state.product.sortCondition,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -60,7 +58,8 @@ const mapDispatchToProps = (dispatch) => {
       let url = new URL(window.location.href);
       dispatch(getProductByCategory(url.searchParams.get("categoryId")));
     },
-    loadMore: (categoryId, page) => dispatch(loadMoreCreator(categoryId, page)),
+    loadMore: (categoryId, page, sortCondition) =>
+      dispatch(loadMoreCreator(categoryId, page, sortCondition)),
   };
 };
 
