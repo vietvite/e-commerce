@@ -25,7 +25,9 @@ class FormLogin extends React.Component {
                 <Key />
               </div>
               <div className={style.formGroupInfo}>
-                <FormInput placeholder="Nhập mật khẩu ">Password</FormInput>
+                <FormInput type="password" placeholder="Nhập mật khẩu ">
+                  Password
+                </FormInput>
               </div>
             </div>
             <p className={style.formForgot}>Quên mật khẩu ?</p>

@@ -10,8 +10,21 @@
     width: 95%;
     padding: 0 48px;
     margin: auto;
+    .footerDividerLineWrap {
+      height: 1px;
+      width: 100%;
+      position: relative;
+      .footerDividerLine {
+        width: 100vw;
+        position: absolute;
+        display: block;
+        border-bottom: 1px solid $gray-5;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
     .footerHead {
-      border-bottom: 1px solid $gray-5;
       align-items: center;
       display: flex;
       flex-wrap: wrap;
@@ -45,7 +58,6 @@
       margin-right: -16px;
       margin-left: -16px;
       text-align: left;
-      border-bottom: 1px solid $gray-5;
     }
     .footerBodyLeft {
       flex: 25%;

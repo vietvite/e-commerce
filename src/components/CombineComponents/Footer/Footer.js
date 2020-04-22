@@ -35,7 +35,9 @@ class Footer extends React.Component {
               </a>
             </div>
           </div>
-
+          <div className={style.footerDividerLineWrap}>
+            <div className={style.footerDividerLine}></div>
+          </div>
           <div className={style.footerBody}>
             <div className={style.footerBodyLeft}>
               <div className={style.footerAddressItem}>
@@ -43,7 +45,7 @@ class Footer extends React.Component {
                   Trụ sở giao dịch tại TP. Hồ Chí Minh
                 </div>
                 <div className={style.footerAddress}>
-                  Số 128 Nguyễn Văn Linh, Phường 7, Quận 1, TP. HCM
+                  Số 128 Đống Đa, Phường 7, Quận 1, TP. HCM
                 </div>
                 <div className={style.footerPhone}>
                   <a className={style.footerPhoneBtn} href="/">
@@ -59,8 +61,7 @@ class Footer extends React.Component {
                   Chi nhánh tại TP. Hà Nội
                 </div>
                 <div className={style.footerAddress}>
-                  Số 68 Phan Chu Trinh, Phường Đồng Mai, Quận Đống Đa, TP. Hà
-                  Nội
+                  Số 68 Đội Cung, Quận Đống Đa, TP. Hà Nội
                 </div>
                 <div className={style.footerPhone}>
                   <a className={style.footerPhoneBtn} href="/">
@@ -76,8 +77,7 @@ class Footer extends React.Component {
                   Chi nhánh tại TP. Đà Nẵng
                 </div>
                 <div className={style.footerAddress}>
-                  Số 761 Điện Biên Phủ, Phường Chính Gián, Quận Thanh Khê, TP.
-                  Đà Nẵng
+                  Số 761 Nguyễn trãi, Quận Thanh Khê, TP. Đà Nẵng
                 </div>
                 <div className={style.footerPhone}>
                   <a className={style.footerPhoneBtn} href="/">
@@ -186,7 +186,9 @@ class Footer extends React.Component {
               </div>
             </div>
           </div>
-
+          <div className={style.footerDividerLineWrap}>
+            <div className={style.footerDividerLine}></div>
+          </div>
           <div className={style.footerFoot}>
             <div className={style.footerTitle}>Hình thức thanh toán</div>
             <div className={style.footerPaymentList}>
