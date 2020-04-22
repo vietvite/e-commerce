@@ -34,7 +34,7 @@ class CartItem extends Component {
             quantity={quantity}
             updateQuantity={this.props.updateQuantity(id)} />
 
-          <ButtonLink to={`/favorite/${id}`} fullWidth={true}>
+          <ButtonLink to={`/favorite/`} fullWidth={true}>
             <Heart size='0.9rem' strokeWidth='1.5px'
               style={{ marginRight: '0.125rem' }} />
             Yêu thích

@@ -4,8 +4,8 @@ import Layout from './views/Layout';
 import Home from './views/Home'
 import ListProductByCategory from './views/ListProductByCategory/ListProductByCategory';
 import ProductDetail from './views/ProductDetail';
-import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound'
 import Cart from './views/Cart/Cart';
+import FavoriteList from './views/FavoriteList/FavoriteList';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route path='/product' component={ListProductByCategory} />
           <Route path='/detail' component={ProductDetail} />
           <Route path='/cart' component={Cart} />
-          <Route component={PageNotFound} />
+          <Route path='/favorite' component={FavoriteList} />
         </Switch>
       </Layout>
     </Router>

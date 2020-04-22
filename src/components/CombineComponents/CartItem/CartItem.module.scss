@@ -3,7 +3,7 @@
 .cartItem {
   display: grid;
   grid-template-columns: 9fr 1fr;
-  padding-bottom: 2rem;;
+  padding-bottom: 2rem;
 
   img {
     height: 9rem;
@@ -21,37 +21,37 @@
       color: $black;
       text-decoration: none;
       margin-bottom: 1rem;
-      
+
       &:hover {
         color: $blue-7;
       }
     }
+  }
 
-    p {
+  p {
+    font-size: 1rem;
+    color: $gray-8;
+    margin-bottom: 0.75rem;
+    max-width: 100%;
+    & > a {
+      @extend .navLink;
+      color: $blue-7;
       font-size: 1rem;
-      color: $gray-8;
-      margin-bottom: 0.75rem;
-      max-width: 100%;
-      & > a {
-        @extend .navLink;
-        color: $blue-7;
-        font-size: 1rem;
-      }
-    }
-
-    .price {
-      margin-left: auto;
-      p {
-        margin-left: 2rem;
-        color: $blue-7;
-        font-weight: bolder;
-      }
     }
   }
 
-  .control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .price {
+    margin-left: auto;
+    p {
+      margin-left: 2rem;
+      color: $blue-7;
+      font-weight: bolder;
+    }
   }
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

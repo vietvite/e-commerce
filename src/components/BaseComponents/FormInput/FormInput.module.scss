@@ -1,13 +1,14 @@
 @import "../../../scss/variable";
 
 .formInput {
-    .tagInput {
-        width: 100%;
-        padding: 4px 8px;
-        border-radius: 5px;
-        border: 1px solid $gray-5;
-        height: 40px;
-        background: $white;
-        color: $gray-5;
-      }
+  .tagInput {
+    width: 100%;
+    padding: 4px 8px;
+    border-radius: 5px;
+    border: 1px solid $gray-5;
+    height: 40px;
+    background: $white;
+    color: $gray-8;
+    font-size: 0.9rem;
+  }
 }
