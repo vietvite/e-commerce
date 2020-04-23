@@ -1,9 +1,7 @@
 import React from "react";
-import style from "./HomeProduct.module.scss";
 import { connect } from "react-redux";
 import { getHomeProductSection } from "../../../redux/product/actionCreator";
 import ProductSection from "../ProductSection/ProductSection";
-import Product from "../Product/Product";
 
 class HomeProduct extends React.Component {
   componentDidMount() {
@@ -13,7 +11,6 @@ class HomeProduct extends React.Component {
     let listProduct = this.props.listProduct;
     let content = [];
     let temp = [];
-    console.log(listProduct);
 
     if (listProduct.length > 0) {
       for (let i = 0, len = listProduct.length; i < len; i++) {
@@ -24,15 +21,13 @@ class HomeProduct extends React.Component {
         ) {
           temp.push(listProduct[i]);
         } else {
-          content.push(<ProductSection list={temp} />);
+          content.push(<ProductSection key={i} list={temp} />);
           temp = [];
           temp.push(listProduct[i]);
         }
       }
-      content.push(<ProductSection list={temp} />);
+      content.push(<ProductSection key={listProduct.length} list={temp} />);
     }
-    console.log(content);
-
     return content;
   };
 

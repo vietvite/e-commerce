@@ -1,0 +1,13 @@
+.ShopTotal {
+  box-sizing: border-box;
+  display: flex;
+  margin: 0 auto;
+
+  .right {
+    width: 27%;
+  }
+
+  .left {
+    width: 73%;
+  }
+}
