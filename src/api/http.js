@@ -13,7 +13,7 @@ export default function () {
 
   const token = window.sessionStorage.getItem('jwt')
   if (token && !config.headers.Authorization) {
-    config.headers.Authorization = token
+    config.headers.Authorization = `Bearer ${token}`
   }
   let http = axios.create(config)
 
