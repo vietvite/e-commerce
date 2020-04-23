@@ -7,7 +7,7 @@ import ProductDetail from './views/ProductDetail';
 import Cart from './views/Cart/Cart';
 import FavoriteList from './views/FavoriteList/FavoriteList';
 import Logout from './views/Logout';
-import PageNotFound from './components/CombineComponents/PageNotFound'
+import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound'
 
 function App() {
   return (
