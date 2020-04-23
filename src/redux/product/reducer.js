@@ -4,14 +4,22 @@ import {
   LOAD_MORE,
   GET_SORT_CONDITION,
   SORT_PRODUCT,
+  SET_FILTER,
 } from "./constants";
-
+import { infinityNumber } from "../../commons/index";
 const initState = {
   list: [],
   fetching: false,
   sortCondition: {
     sortBy: "title",
     sortDirection: "ascending",
+  },
+  filter: {
+    title: "",
+    categoryId: "",
+    priceFrom: 0,
+    priceTo: infinityNumber(),
+    reviewStar: 0,
   },
 };
 
@@ -23,7 +31,7 @@ export default (state = initState, action) => {
       return Object.assign({}, state, action.payload);
     case LOAD_MORE:
       let list = action.payload.list;
-      if (list.length == 0 || typeof list == undefined) {
+      if (list.length === 0 || typeof list === undefined) {
         return state;
       } else {
         return Object.assign(
@@ -36,6 +44,8 @@ export default (state = initState, action) => {
     case GET_SORT_CONDITION:
       return state;
     case SORT_PRODUCT:
+      return Object.assign({}, state, action.payload);
+    case SET_FILTER:
       return Object.assign({}, state, action.payload);
     default:
       return state;

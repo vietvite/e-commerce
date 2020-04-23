@@ -1,19 +1,15 @@
 import React from "react";
 import style from "./WhiteButton.module.scss";
 import { connect } from "react-redux";
-import { sortProduct } from "../../../redux/product/actionCreator";
-import { getSortCondition } from "../../../redux/product/action";
+import { getProduct } from "../../../redux/product/actionCreator";
 
 class WhiteButton extends React.Component {
   handleClick = () => {
-    this.props.getSortCondition();
     this.props.onClick(this.props.index);
-    let url = new URL(window.location.href);
-    let categoryId = url.searchParams.get("categoryId");
     let sortBy = this.props.sortBy;
     let sortCondition = this.props.sortCondition;
     sortCondition.sortBy = sortBy;
-    this.props.sortProduct(categoryId, sortCondition);
+    this.props.sortProduct(this.props.filter, sortCondition);
   };
   render() {
     return (
@@ -33,16 +29,14 @@ class WhiteButton extends React.Component {
 const mapStateToProps = (state) => {
   return {
     sortCondition: state.product.sortCondition,
+    filter: state.product.filter,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sortProduct: (categoryId, sortCondition) => {
-      dispatch(sortProduct(categoryId, sortCondition));
-    },
-    getSortCondition: () => {
-      dispatch(getSortCondition());
+    sortProduct: (filter, sortCondition) => {
+      dispatch(getProduct(filter, sortCondition));
     },
   };
 };

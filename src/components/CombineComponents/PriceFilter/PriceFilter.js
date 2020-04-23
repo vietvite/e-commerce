@@ -8,9 +8,9 @@ class PriceFilter extends React.Component {
       <div className={style.priceFilter}>
         <div className={style.title}>Lọc giá</div>
         <div className={style.priceFilterInput}>
-          <PriceInput innerText="₫ TỪ" />
+          <PriceInput name="priceFrom" innerText="₫ TỪ" />
           <span>-</span>
-          <PriceInput innerText="₫ ĐẾN" />
+          <PriceInput name="priceTo" innerText="₫ ĐẾN" />
         </div>
       </div>
     );

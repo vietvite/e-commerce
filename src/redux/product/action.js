@@ -4,6 +4,7 @@ import {
   LOAD_MORE,
   SORT_PRODUCT,
   GET_SORT_CONDITION,
+  SET_FILTER,
 } from "./constants";
 
 export const sendingRequest = () => ({
@@ -35,4 +36,13 @@ export const setSortCondition = (sortCondition) => ({
   },
 });
 
-export const getSortCondition = () => ({ type: GET_SORT_CONDITION });
+export const setFilter = (filter) => ({
+  type: SET_FILTER,
+  payload: {
+    filter,
+  },
+});
+
+// export const getSortCondition = () => ({ type: GET_SORT_CONDITION });
+
+// export const filterProduct = () => ({ type: FILTER_PRODUCT });

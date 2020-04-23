@@ -2,4 +2,15 @@
 
 .starRow {
   cursor: pointer;
+  svg {
+    color: $orange-5;
+  }
+  &:hover {
+    svg {
+      fill: $orange-5;
+    }
+  }
+  .selected {
+    fill: $orange-5;
+  }
 }

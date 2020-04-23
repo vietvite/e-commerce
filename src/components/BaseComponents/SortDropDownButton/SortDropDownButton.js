@@ -1,17 +1,15 @@
 import React from "react";
 import style from "./SortDropDownButton.module.scss";
 import { connect } from "react-redux";
-import { sortProduct } from "../../../redux/product/actionCreator";
+import { getProduct } from "../../../redux/product/actionCreator";
 
 class SortDropDownButton extends React.Component {
   handleChange = (event) => {
     this.props.onClick(this.props.index);
-    let url = new URL(window.location.href);
-    let categoryId = url.searchParams.get("categoryId");
     let sortBy = this.props.sortBy;
     let sortDirection = event.target.value;
     let sortCondition = { sortBy, sortDirection };
-    this.props.sortProduct(categoryId, sortCondition);
+    this.props.sortProduct(this.props.filter, sortCondition);
   };
   render() {
     return (
@@ -31,11 +29,18 @@ class SortDropDownButton extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    filter: state.product.filter,
+    sortCondition: state.product.sortCondition,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    sortProduct: (categoryId, sortCondition) => {
-      dispatch(sortProduct(categoryId, sortCondition));
+    sortProduct: (filter, sortCondition) => {
+      dispatch(getProduct(filter, sortCondition));
     },
   };
 };
-export default connect(null, mapDispatchToProps)(SortDropDownButton);
+export default connect(mapStateToProps, mapDispatchToProps)(SortDropDownButton);

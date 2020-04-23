@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./FilterBottom.module.scss";
 import OrangeButton from "../../BaseComponents/OrangeButton/OrangeButton";
+import { getProduct } from "../../../redux/product/actionCreator";
+import { connect } from "react-redux";
 
 class FilterBottom extends React.Component {
   render() {
@@ -11,4 +13,18 @@ class FilterBottom extends React.Component {
     );
   }
 }
-export default FilterBottom;
+const mapStateToProps = (state) => {
+  return {
+    filter: state.product.filter,
+    sortCondition: state.product.sortCondition,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilter: (filter, sortCondition) => {
+      dispatch(getProduct(filter, sortCondition));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FilterBottom);
