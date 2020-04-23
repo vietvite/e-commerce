@@ -5,9 +5,9 @@ import Home from './views/Home'
 import ListProductByCategory from './views/ListProductByCategory/ListProductByCategory';
 import ProductDetail from './views/ProductDetail';
 import Cart from './views/Cart/Cart';
-import FavoriteList from './views/FavoriteList/FavoriteList';
 import Logout from './views/Logout';
-import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound'
+// import FavoriteItem from './components/CombineComponents/FavoriteItem/FavoriteItem'
+import FavoriteList from './views/FavoriteList/FavoriteList'
 
 function App() {
   return (
@@ -17,9 +17,8 @@ function App() {
         <Route path='/category' component={ListProductByCategory} />
         <Route path='/detail' component={ProductDetail} />
         <Route path='/cart' component={Cart} />
-        <Route path='/favorite' component={FavoriteList} />
         <Route path='/logout' component={Logout} />
-        <Route component={PageNotFound} />
+        <Route path='/favorites' component={FavoriteList} />
       </Switch>
     </Layout>
   )

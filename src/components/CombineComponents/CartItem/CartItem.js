@@ -7,6 +7,7 @@ import ButtonLink from '../../BaseComponents/ButtonLink/ButtonLink'
 import { parseCurrency } from '../../../commons'
 import { connect } from 'react-redux'
 import { updateQuantity, removeCart } from '../../../redux/cart/action'
+import { addFavorite } from '../../../redux/favorite/action'
 import ButtonGraySm from '../../BaseComponents/ButtonGraySm/ButtonGraySm'
 
 class CartItem extends Component {
@@ -34,11 +35,11 @@ class CartItem extends Component {
             quantity={quantity}
             updateQuantity={this.props.updateQuantity(id)} />
 
-          <ButtonLink to={`/favorite/`} fullWidth={true}>
+          <ButtonGraySm onClick={() => this.props.addFavorite({ id, title, url, imageUrl, seller, price })} >
             <Heart size='0.9rem' strokeWidth='1.5px'
               style={{ marginRight: '0.125rem' }} />
             Yêu thích
-          </ButtonLink>
+          </ButtonGraySm>
           <ButtonLink to={`/orderlater/${id}`} fullWidth={true}>
             <ShoppingBag size='0.9rem' strokeWidth='1.5px'
               style={{ marginRight: '0.125rem' }} />
@@ -57,7 +58,8 @@ class CartItem extends Component {
 
 const mapDispatchToProps = dispatch => ({
   updateQuantity: id => quantity => dispatch(updateQuantity(id, quantity)),
-  removeProduct: id => dispatch(removeCart(id))
+  removeProduct: id => dispatch(removeCart(id)),
+  addFavorite: item => dispatch(addFavorite(item))
 })
 
 
