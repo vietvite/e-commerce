@@ -36,23 +36,21 @@ class Layout extends React.Component {
 
         <Footer />
 
-        {this.state.showForm ? (
+        {this.state.showForm && !this.props.user ? (
           <Modal
             form={this.state.form}
             toggleFormModal={this.toggleFormModal}
           />
         ) : (
-          ""
-        )}
+            ""
+          )}
       </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user,
-});
+  user: state.account.user,
+})
 
-const mapDispatchToProps = (dispatch) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps)(Layout);

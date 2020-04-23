@@ -5,12 +5,5 @@ export const parseCurrency = (x) => {
 export const calcCostProductList = (array) =>
   array.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
-export const countProductList = (array) => {
-  console.log("Zoo");
-
-  return array.reduce((sum, product) => sum + product.quantity, 0);
-};
-
-export const infinityNumber = () => {
-  return 999999999999999;
-};
+export const countProductList = array =>
+  array.reduce((sum, product) => sum + product.quantity, 0)

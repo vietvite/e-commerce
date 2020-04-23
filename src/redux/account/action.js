@@ -1,11 +1,24 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from "./constants";
+import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING, END_REQUEST } from "./constants";
 
 export const setUser = (user) => ({
-  type: LOGIN_SUCCESS,
-  user
+  type: AUTH_SUCCESS,
+  payload: {
+    user,
+    requesting: false
+  }
 })
 
 export const removeUser = () => ({
   type: LOGOUT_SUCCESS,
-  user: null
+  user: null,
+  requesting: false
+})
+
+export const requesting = () => ({
+  type: REQUESTING,
+  requesting: true
+})
+export const endRequest = () => ({
+  type: END_REQUEST,
+  requesting: false
 })
