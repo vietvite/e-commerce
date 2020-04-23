@@ -6,7 +6,6 @@ import {
 } from "../../../redux/product/actionCreator";
 import Product from "../Product/Product";
 import style from "./ProductPageContent.module.scss";
-import { setFilter } from "../../../redux/product/action";
 
 class ProductPageContent extends React.Component {
   componentDidMount() {

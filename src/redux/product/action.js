@@ -3,7 +3,6 @@ import {
   FETCHING,
   LOAD_MORE,
   SORT_PRODUCT,
-  GET_SORT_CONDITION,
   SET_FILTER,
 } from "./constants";
 

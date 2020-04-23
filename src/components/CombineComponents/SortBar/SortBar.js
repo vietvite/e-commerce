@@ -2,7 +2,6 @@ import React from "react";
 import style from "./SortBar.module.scss";
 import WhiteButton from "../../BaseComponents/WhiteButton/WhiteButton";
 import SortDropDownButton from "../../BaseComponents/SortDropDownButton/SortDropDownButton";
-import { ChevronLeft, ChevronRight } from "react-feather";
 
 class SortBar extends React.Component {
   constructor(props) {
