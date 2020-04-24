@@ -8,18 +8,20 @@ import Cart from './views/Cart/Cart';
 import Logout from './views/Logout';
 import FavoriteList from './views/FavoriteList/FavoriteList'
 import SellerDashBoard from './views/SellerDashboard/SellerDashBoard';
+import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound';
 
 function App() {
   return (
     <Layout>
       <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/category' component={ListProductByCategory} />
+        <Route exact path='/' component={Home} />
+        <Route path='/category/:{categoryId}' component={ListProductByCategory} />
         <Route path='/detail' component={ProductDetail} />
         <Route path='/cart' component={Cart} />
         <Route path='/logout' component={Logout} />
         <Route path='/favorites' component={FavoriteList} />
         <Route path='/shop/:tab' component={SellerDashBoard} />
+        <Route component={PageNotFound} />
       </Switch>
     </Layout>
   )
