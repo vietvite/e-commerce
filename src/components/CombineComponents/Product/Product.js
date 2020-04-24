@@ -3,6 +3,7 @@ import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
 import { addFavorite } from '../../../redux/favorite/action'
 import { connect } from 'react-redux'
+import config from '../../../config'
 
 class Product extends React.Component {
   getTotalStars = () => {
