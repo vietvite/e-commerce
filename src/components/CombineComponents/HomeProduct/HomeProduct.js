@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getHomeProductSection } from "../../../redux/product/actionCreator";
 import ProductSection from "../ProductSection/ProductSection";
 
+
 class HomeProduct extends React.Component {
   componentDidMount() {
     this.props.getProduct();
@@ -44,7 +45,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getProduct: () => {
       dispatch(getHomeProductSection());
-    },
+    }
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HomeProduct);

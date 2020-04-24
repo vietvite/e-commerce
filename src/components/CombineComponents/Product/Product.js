@@ -1,7 +1,8 @@
 import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
-import config from "../../../config";
+import { addFavorite } from '../../../redux/favorite/action'
+import { connect } from 'react-redux'
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -40,6 +41,8 @@ class Product extends React.Component {
   formatNumber = (number) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   render() {
+    let { id, title, url, imageUrl, seller, price } = this.props.item
+
     return (
       <div className={style.product}>
         <a
@@ -68,7 +71,7 @@ class Product extends React.Component {
               <button>
                 <ShoppingCart size="15px" />
               </button>
-              <button>
+              <button onClick={() => this.props.addFav({ id, title, url, imageUrl, seller, price })}>
                 <Heart size="15px" />
               </button>
             </div>
@@ -78,4 +81,12 @@ class Product extends React.Component {
     );
   }
 }
-export default Product;
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addFav: (item) => {
+      dispatch(addFavorite(item))
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(Product);

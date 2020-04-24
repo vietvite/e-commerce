@@ -4,6 +4,8 @@
   display: grid;
   grid-template-columns: 9fr 1fr;
   padding-bottom: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
 
   img {
     height: 9rem;
