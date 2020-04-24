@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
+import config from "../../../config";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -46,7 +47,7 @@ class Product extends React.Component {
           className={style.productName}
         >
           <img
-            src={this.props.item.imageUrl}
+            src={`${config.baseURL}${this.props.item.imageUrl}`}
             className={style.productImage}
             alt={this.props.item.title}
           />
