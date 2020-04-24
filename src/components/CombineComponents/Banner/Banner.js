@@ -3,7 +3,7 @@ import { ArrowLeftCircle, ArrowRightCircle } from "react-feather";
 import styles from "./Banner.module.scss";
 import config from '../../../config'
 import { connect } from "react-redux";
-import { getBanner } from '../../../redux/banner/actionCreator'
+import { fetchBannerIfNeeded } from '../../../redux/banner/actionCreator'
 
 let chuyen = 0;
 
@@ -30,7 +30,7 @@ class Banner extends React.Component {
         this.setState({ interval: setIn })
 
         // Call middleware fetch list banner
-        this.props.getBanner()
+        this.props.shoundFetchBanner()
     }
     componentWillUnmount() {
         clearInterval(this.state.interval)
@@ -94,7 +94,7 @@ class Banner extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getBanner: () => dispatch(getBanner())
+    shoundFetchBanner: () => dispatch(fetchBannerIfNeeded())
 })
 
 const mapStateToProps = state => ({
