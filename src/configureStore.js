@@ -19,6 +19,8 @@ export default function configureStore(preloadState) {
     ) :
       applyMiddleware(
         thunkMiddleware,
+        // TODO: delete line below on production
+        loggerMiddleware,
         routerMiddleware(history),
       )
 

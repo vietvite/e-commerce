@@ -1,4 +1,4 @@
-import { requesting, setUser, endRequest, removeUser } from "./action"
+import { requesting, setUser, endRequest } from "./action"
 import { AuthService } from '../../api/auth'
 import { push } from 'connected-react-router'
 

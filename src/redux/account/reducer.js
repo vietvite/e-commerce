@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING } from "./constants"
+import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING_AUTH } from "./constants"
 
 const initState = {
   user: null,
@@ -12,7 +12,7 @@ export default (state = initState, action) => {
 
       return Object.assign({}, state, action.payload)
 
-    case REQUESTING:
+    case REQUESTING_AUTH:
       return Object.assign({}, state, {
         requesting: action.requesting
       })
