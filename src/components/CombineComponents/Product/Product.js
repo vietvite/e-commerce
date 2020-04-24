@@ -4,6 +4,7 @@ import { Star, ShoppingCart, Heart } from "react-feather";
 import { addFavorite } from '../../../redux/favorite/action'
 import { connect } from 'react-redux'
 import config from '../../../config'
+import { NavLink } from "react-router-dom";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -46,17 +47,16 @@ class Product extends React.Component {
 
     return (
       <div className={style.product}>
-        <a
-          href={`/product/${this.props.item.id}`}
-          className={style.productName}
-        >
+        <NavLink
+          to={`/detail/${this.props.item.id}`}
+          className={style.productName}>
           <img
             src={`${config.baseURL}${this.props.item.imageUrl}`}
             className={style.productImage}
             alt={this.props.item.title}
           />
           {this.props.item.title}
-        </a>
+        </NavLink>
         <div className={style.productMetaInfo}>
           <div className={style.review}>
             {this.loadReviewStar()}

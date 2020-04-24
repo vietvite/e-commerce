@@ -32,4 +32,4 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 
-export default connect(mapStateToProps, null)(FavoriteList)
+export default connect(mapStateToProps)(FavoriteList)
