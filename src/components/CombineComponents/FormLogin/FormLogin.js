@@ -103,6 +103,7 @@ class FormLogin extends React.Component {
             <p className={style.formForgot}>Quên mật khẩu?</p>
             <div className={style.btnSubmitWrap}>
               <ButtonBackground
+                disabled={this.props.disableButton}
                 onClick={this.loginHandler}>Đăng nhập</ButtonBackground>
             </div>
           </div>
@@ -116,4 +117,8 @@ const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password))
 })
 
-export default connect(null, mapDispatchToProps)(FormLogin)
+const mapStateToProps = state => ({
+  disableButton: state.account.requesting
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormLogin)
