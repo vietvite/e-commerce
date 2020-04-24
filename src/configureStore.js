@@ -5,12 +5,12 @@ import createRootReducer from './redux'
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
 import { isDev } from './config'
+import { loadState, saveState } from './api/sessionStorage'
 
 export const history = createBrowserHistory()
 
-export default function configureStore(preloadState) {
+export default function configureStore() {
   const loggerMiddleware = createLogger()
-
   const getMiddleware = () =>
     isDev ? applyMiddleware(
       thunkMiddleware,
@@ -24,9 +24,17 @@ export default function configureStore(preloadState) {
         routerMiddleware(history),
       )
 
-  return createStore(
+  const preloadState = loadState()
+
+  const store = createStore(
     createRootReducer(history),
     preloadState,
     compose(getMiddleware())
   )
+
+  store.subscribe(() => {
+    saveState(store.getState())
+  })
+
+  return store
 }
