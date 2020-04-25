@@ -5,14 +5,8 @@ import {
   loadMore,
   setSortCondition,
   setFilter,
+  receiveProductDetail,
 } from "./action";
-
-// export const searchProduct = (title) => (dispatch) => {
-//   dispatch(sendingRequest());
-//   return ProductService.findByTitle(title).then((res) =>
-//     dispatch(receiveListProduct([...res.data]))
-//   );
-// };
 
 export const getHomeProductSection = () => (dispatch) => {
   dispatch(sendingRequest());
@@ -21,13 +15,6 @@ export const getHomeProductSection = () => (dispatch) => {
   });
 };
 
-// export const getProductByCategory = (categoryId) => (dispatch) => {
-//   dispatch(sendingRequest());
-//   return ProductService.getProductByCategory(categoryId).then((res) => {
-//     dispatch(receiveListProduct([...res.data]));
-//   });
-// };
-
 export const loadMoreCreator = (filter, sortCondition, page) => (dispatch) => {
   dispatch(sendingRequest());
   return ProductService.getProduct(filter, sortCondition, page).then((res) => {
@@ -35,19 +22,18 @@ export const loadMoreCreator = (filter, sortCondition, page) => (dispatch) => {
   });
 };
 
-// export const sortProduct = (categoryId, sortCondition) => (dispatch) => {
-//   dispatch(sendingRequest());
-//   return ProductService.sortProduct(categoryId, sortCondition).then((res) => {
-//     dispatch(receiveListProduct([...res.data]));
-//     dispatch(setSortCondition(sortCondition));
-//   });
-// };
-
 export const getProduct = (filter, sortCondition, page = 1) => (dispatch) => {
   dispatch(sendingRequest());
   dispatch(setSortCondition(sortCondition));
   dispatch(setFilter(filter));
   return ProductService.getProduct(filter, sortCondition, page).then((res) => {
     dispatch(receiveListProduct([...res.data]));
+  });
+};
+
+export const getProductDetail = (productId) => (dispatch) => {
+  dispatch(sendingRequest());
+  return ProductService.findById(productId).then((res) => {
+    dispatch(receiveProductDetail(res.data));
   });
 };

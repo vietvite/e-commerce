@@ -1,0 +1,50 @@
+@import "../../../scss/variable";
+
+.bill {
+  width: 100%;
+  margin-bottom: 30px;
+  thead,
+  tbody,
+  tfoot {
+    tr {
+      height: 30px;
+      // border-bottom: 1px solid $gray-5;
+      th {
+        font-weight: $medium;
+        vertical-align: middle;
+      }
+      td {
+        vertical-align: middle;
+        text-align: center;
+        img {
+          height: 100%;
+        }
+        span {
+          margin-right: 10px;
+        }
+        button {
+          margin-right: 10px;
+          border: none;
+          height: 30px;
+          width: 90px;
+          border-radius: 3px;
+          cursor: pointer;
+          background-color: $red-7;
+          color: $white;
+          &:hover {
+            background-color: $red-8;
+          }
+        }
+      }
+    }
+  }
+  tfoot tr td {
+    text-align: right;
+  }
+  .grayBackground {
+    background-color: $gray-3;
+  }
+  .grayBackground2 {
+    background-color: $gray-2;
+  }
+}

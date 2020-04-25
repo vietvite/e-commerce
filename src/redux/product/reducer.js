@@ -5,10 +5,12 @@ import {
   GET_SORT_CONDITION,
   SORT_PRODUCT,
   SET_FILTER,
+  GET_PRODUCT_DETAIL,
 } from "./constants";
 import { infinityNumber } from "../../commons/index";
 const initState = {
   list: [],
+  product: "",
   fetching: false,
   sortCondition: {
     sortBy: "title",
@@ -46,6 +48,8 @@ export default (state = initState, action) => {
     case SORT_PRODUCT:
       return Object.assign({}, state, action.payload);
     case SET_FILTER:
+      return Object.assign({}, state, action.payload);
+    case GET_PRODUCT_DETAIL:
       return Object.assign({}, state, action.payload);
     default:
       return state;

@@ -9,6 +9,7 @@ class WhiteButton extends React.Component {
     let sortBy = this.props.sortBy;
     let sortCondition = this.props.sortCondition;
     sortCondition.sortBy = sortBy;
+    sortCondition.sortDirection = "ascending";
     this.props.sortProduct(this.props.filter, sortCondition);
   };
   render() {
