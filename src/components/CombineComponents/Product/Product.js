@@ -5,6 +5,7 @@ import { addFavorite } from '../../../redux/favorite/action'
 import { connect } from 'react-redux'
 import config from '../../../config'
 import { NavLink } from "react-router-dom";
+import { addCartRequest } from "../../../redux/cart/actionCreator";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -69,7 +70,7 @@ class Product extends React.Component {
               {`${this.formatNumber(this.props.item.price.toString())}đ`}
             </div>
             <div className={style.action}>
-              <button>
+              <button onClick={() => this.props.addCartRequest(id)}>
                 <ShoppingCart size="15px" />
               </button>
               <button onClick={() => this.props.addFav({ id, title, url, imageUrl, seller, price })}>
@@ -87,7 +88,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addFav: (item) => {
       dispatch(addFavorite(item))
-    }
+    },
+    addCartRequest: (productId) => dispatch(addCartRequest(productId, ownProps))
   }
 }
 export default connect(null, mapDispatchToProps)(Product);

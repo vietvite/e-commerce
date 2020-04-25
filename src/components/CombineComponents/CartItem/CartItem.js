@@ -6,9 +6,10 @@ import { Heart, Trash2, ShoppingBag } from 'react-feather'
 import ButtonLink from '../../BaseComponents/ButtonLink/ButtonLink'
 import { parseCurrency } from '../../../commons'
 import { connect } from 'react-redux'
-import { updateQuantity, removeCart } from '../../../redux/cart/action'
 import { addFavorite } from '../../../redux/favorite/action'
 import ButtonGraySm from '../../BaseComponents/ButtonGraySm/ButtonGraySm'
+import config from '../../../config'
+import { removeCartRequest, changeQuantityCartRequest } from '../../../redux/cart/actionCreator'
 
 class CartItem extends Component {
   render() {
@@ -17,9 +18,9 @@ class CartItem extends Component {
     return (
       <div className={styles.cartItem}>
         <div className={styles.detail}>
-          <img alt='thumbnail' src={imageUrl} />
+          <img alt='thumbnail' src={`${config.baseURL}${imageUrl}`} />
           <div>
-            <p><NavLink className={styles.navLink} to={url}>
+            <p><NavLink className={styles.navLink} to={`/product/${id}`}>
               {title}
             </NavLink></p>
             <p>Shop: <Link to={`/${seller.username}`}>{seller.fullname}</Link></p>
@@ -45,7 +46,7 @@ class CartItem extends Component {
               style={{ marginRight: '0.125rem' }} />
             Mua sau
           </ButtonLink>
-          <ButtonGraySm onClick={() => this.props.removeProduct(id)} fullWidth={true} >
+          <ButtonGraySm onClick={() => this.props.removeCart(id)} fullWidth={true} >
             <Trash2 size='0.9rem' strokeWidth='1.5px'
               style={{ marginRight: '0.125rem' }} />
             Xóa
@@ -57,10 +58,9 @@ class CartItem extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateQuantity: id => quantity => dispatch(updateQuantity(id, quantity)),
-  removeProduct: id => dispatch(removeCart(id)),
-  addFavorite: item => dispatch(addFavorite(item))
+  updateQuantity: id => quantity => dispatch(changeQuantityCartRequest(id, quantity)),
+  addFavorite: item => dispatch(addFavorite(item)),
+  removeCart: id => dispatch(removeCartRequest(id))
 })
-
 
 export default connect(null, mapDispatchToProps)(CartItem)
