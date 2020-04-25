@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING_AUTH, END_REQUEST } from "./constants";
+import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING_AUTH, END_REQUEST, SET_ERROR } from "./constants";
 
 export const setUser = (user) => ({
   type: AUTH_SUCCESS,
@@ -19,7 +19,13 @@ export const requesting = () => ({
   type: REQUESTING_AUTH,
   requesting: true
 })
+
 export const endRequest = () => ({
   type: END_REQUEST,
   requesting: false
+})
+
+export const setError = (error) => ({
+  type: SET_ERROR,
+  payload: error
 })

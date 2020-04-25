@@ -5,6 +5,7 @@ import ButtonBackground from "../../BaseComponents/ButtonBackground/ButtonBackgr
 import { Mail, Key, Users, Phone } from "react-feather";
 import { connect } from "react-redux";
 import { signup } from "../../../redux/account/actionCreator";
+import { setError } from "../../../redux/account/action";
 
 class FormSignUp extends React.Component {
   constructor() {
@@ -38,7 +39,7 @@ class FormSignUp extends React.Component {
 
     const error = this.validate()
     if (Object.keys(error).length !== 0) {
-      return this.pushErrorMessage(error)
+      return this.props.setError(error)
     }
 
     const credentials = {
@@ -48,22 +49,24 @@ class FormSignUp extends React.Component {
       phoneNumber: this.state.phoneNumber,
     }
     this.props.signup(credentials)
-      .then(error => {
-        if (!error) {
-          return
-        }
-        if (error instanceof Array) {
-          this.pushErrorMessage(arrayToObj(error))
-          function arrayToObj(array = []) {
-            return array.reduce((rs, { field, message }) => ({
-              ...rs,
-              [field]: message
-            }), {})
-          }
-        } else {
-          this.pushErrorMessage(error)
-        }
-      })
+    // The code below handle error response from server in case exist not valid field
+    // 
+    // .then(error => {
+    //   if (!error) {
+    //     return
+    //   }
+    //   if (error instanceof Array) {
+    //     this.pushErrorMessage(arrayToObj(error))
+    //     function arrayToObj(array = []) {
+    //       return array.reduce((rs, { field, message }) => ({
+    //         ...rs,
+    //         [field]: message
+    //       }), {})
+    //     }
+    //   } else {
+    //     this.pushErrorMessage(error)
+    //   }
+    // })
   }
   validate() {
     const PHONENUMBER_REGEX = /((09|03|07|08|05)+([0-9]{8})\b)/g
@@ -103,10 +106,12 @@ class FormSignUp extends React.Component {
     return error
   }
   render() {
+    console.log(this.props.errors);
+
     return (
       <div className={style.formSignUp}>
         <h1>ĐĂNG KÝ</h1>
-        <span>{this.state.error.message}</span>
+        <span>{this.props.errors.message}</span>
         <form>
           <div className={style.formGroupBody}>
             <div className={style.formGroup}>
@@ -117,7 +122,7 @@ class FormSignUp extends React.Component {
                 <FormInput
                   value={this.state.fullname}
                   textChangeHandler={this.textChangeHandler}
-                  tooltipMessage={this.state.error.fullname}
+                  tooltipMessage={this.props.errors.fullname}
                   name='fullname'
                   type='text'
                   placeholder="Nhập họ và tên"></FormInput>
@@ -131,7 +136,7 @@ class FormSignUp extends React.Component {
                 <FormInput
                   value={this.state.email}
                   textChangeHandler={this.textChangeHandler}
-                  tooltipMessage={this.state.error.email}
+                  tooltipMessage={this.props.errors.email}
                   name='email'
                   type='email'
                   placeholder="Nhập địa chỉ email" />
@@ -145,7 +150,7 @@ class FormSignUp extends React.Component {
                 <FormInput
                   value={this.state.phoneNumber}
                   textChangeHandler={this.textChangeHandler}
-                  tooltipMessage={this.state.error.phoneNumber}
+                  tooltipMessage={this.props.errors.phoneNumber}
                   name='phoneNumber'
                   type='text'
                   placeholder="Nhập số điện thoại" />
@@ -159,7 +164,7 @@ class FormSignUp extends React.Component {
                 <FormInput
                   value={this.state.password}
                   textChangeHandler={this.textChangeHandler}
-                  tooltipMessage={this.state.error.password}
+                  tooltipMessage={this.props.errors.password}
                   name='password'
                   type='password'
                   placeholder="Nhập mật khẩu" />
@@ -171,7 +176,7 @@ class FormSignUp extends React.Component {
                 <FormInput
                   value={this.state.reTypePassword}
                   textChangeHandler={this.textChangeHandler}
-                  tooltipMessage={this.state.error.reTypePassword}
+                  tooltipMessage={this.props.errors.reTypePassword}
                   name='reTypePassword'
                   type='password'
                   placeholder="Nhập lại mật khẩu" />
@@ -190,12 +195,14 @@ class FormSignUp extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  disableSignup: state.account.requesting
+  disableSignup: state.account.requesting,
+  errors: state.account.errors
 })
 
 const mapDispatchToProps = (dispatch, { push }) => ({
   signup: (credentials) => dispatch(signup(credentials)),
-  successRedirect: () => push('/')
+  successRedirect: () => push('/'),
+  setError: error => dispatch(setError(error))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormSignUp);

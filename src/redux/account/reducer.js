@@ -1,8 +1,9 @@
-import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING_AUTH } from "./constants"
+import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING_AUTH, END_REQUEST, SET_ERROR } from "./constants"
 
 const initState = {
   user: null,
-  requesting: false
+  requesting: false,
+  errors: {},
 }
 
 export default (state = initState, action) => {
@@ -14,6 +15,14 @@ export default (state = initState, action) => {
     case REQUESTING_AUTH:
       return Object.assign({}, state, {
         requesting: action.requesting
+      })
+    case END_REQUEST:
+      return Object.assign({}, state, {
+        requesting: action.requesting
+      })
+    case SET_ERROR:
+      return Object.assign({}, state, {
+        errors: { ...action.payload }
       })
 
     default:

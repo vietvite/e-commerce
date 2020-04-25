@@ -68,6 +68,7 @@ class FormLogin extends React.Component {
     return (
       <div className={style.formLogin}>
         <h1>ĐĂNG NHẬP</h1>
+        <span>{this.props.errors.message}</span>
         <form>
           <div className={style.formGroupBody}>
             <div className={style.formGroup}>
@@ -118,7 +119,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  disableButton: state.account.requesting
+  disableButton: state.account.requesting,
+  errors: state.account.errors
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormLogin)

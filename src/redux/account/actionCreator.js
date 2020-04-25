@@ -1,4 +1,4 @@
-import { requesting, setUser, endRequest } from "./action"
+import { requesting, setUser, endRequest, setError } from "./action"
 import { AuthService } from '../../api/auth'
 import { push } from 'connected-react-router'
 
@@ -30,12 +30,12 @@ function resSuccessHandler(dispatch) {
   return function (res) {
     if (res.status === 200) {
       dispatch(setUser(res.data))
-      console.log({ token: res.data.user.token });
+      console.log({ token: res.data.token });
 
-      window.sessionStorage.setItem('jwt', res.data.user.token)
+      window.sessionStorage.setItem('jwt', res.data.token)
 
       dispatch(push('/'))
-      return
+      dispatch(setError({}))
     }
   }
 }
@@ -43,21 +43,22 @@ function resSuccessHandler(dispatch) {
 function resErrorHandler(dispatch) {
   return function (err) {
     dispatch(endRequest())
-    console.log({ err });
 
     if (!err.response) {
-      return { message: 'Không có kết nối' }
+      return dispatch(setError({ message: 'Không có kết nối' }))
     }
     const errors = err.response.data.errors || []
     if (errors.length !== 0) {
-      return errors.map(error => ({
-        field: error.field,
-        message: error.defaultMessage
-      }))
+      return dispatch(setError(
+        errors.map(error => ({
+          field: error.field,
+          message: error.defaultMessage
+        }))
+      ))
     }
     const message = err.response.data.message
     if (message) {
-      return { email: message }
+      return dispatch(setError({ email: message }))
     }
   }
 }

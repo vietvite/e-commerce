@@ -12,6 +12,13 @@
     padding-top: 30px;
     font-weight: $medium;
   }
+  & > span {
+    color: $red-5;
+    display: block;
+    text-align: center;
+    padding-top: 0.5rem;
+    font-size: 1rem;
+  }
   .formGroupBody {
     padding: 30px;
     .formGroup {
