@@ -30,10 +30,7 @@ function resSuccessHandler(dispatch) {
   return function (res) {
     if (res.status === 200) {
       dispatch(setUser(res.data))
-      console.log({ token: res.data.token });
-
       window.sessionStorage.setItem('jwt', res.data.token)
-
       dispatch(push('/'))
       dispatch(setError({}))
     }

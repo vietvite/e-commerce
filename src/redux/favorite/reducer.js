@@ -29,11 +29,9 @@ const initState = [
 export default (state = initState, action) => {
   switch (action.type) {
     case ADD_FAVORITE:
-      console.log(action.payload);
-
       return [...state, action.payload]
     case REMOVE_FAVORITE:
-      return [...state.filter(x => x.id != action.payload)]
+      return [...state.filter(x => x.id !== action.payload)]
 
     default:
       return state

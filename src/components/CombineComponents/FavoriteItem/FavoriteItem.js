@@ -3,7 +3,6 @@ import styles from './FavoriteItem.module.scss'
 import { NavLink, Link } from 'react-router-dom'
 import { Heart, Trash2 } from 'react-feather'
 import ButtonLink from '../../BaseComponents/ButtonLink/ButtonLink'
-import { parseCurrency } from '../../../commons'
 import { connect } from 'react-redux'
 import ButtonGraySm from '../../BaseComponents/ButtonGraySm/ButtonGraySm'
 import Container from '../../CombineComponents/Container/Container'
@@ -12,9 +11,6 @@ import { removeFavorite } from '../../../redux/favorite/action'
 class FavoriteItem extends Component {
   render() {
     const { id, title, url, imageUrl, price, seller } = this.props.item
-    console.log(this.props);
-
-
     return (
       <Container>
         <div className={styles.cartItem}>

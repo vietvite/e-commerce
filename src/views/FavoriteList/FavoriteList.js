@@ -16,8 +16,6 @@ class FavoriteList extends Component {
 
     render() {
         let listFav = this.props.favoriteList
-        console.log(listFav);
-
         return (
             <Container>
                 {this.showFavorites(listFav)}
