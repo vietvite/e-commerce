@@ -19,7 +19,7 @@ class SortDropDownButton extends React.Component {
           this.props.status ? style.dropDownButtonSelected : ""
         }`}
       >
-        <option value="" disabled hidden>
+        <option value="" hidden>
           Giá:
         </option>
         <option value="ascending">Giá: Thấp đến Cao</option>

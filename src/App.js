@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Layout from './views/Layout';
 import Home from './views/Home'
 import ListProductByCategory from './views/ListProductByCategory/ListProductByCategory';
-import ProductDetail from './views/ProductDetail';
+import ProductDetail from './views/ProductDetail/ProductDetail';
 import Cart from './views/Cart/Cart';
 import Logout from './views/Logout';
 import FavoriteList from './views/FavoriteList/FavoriteList'
@@ -14,9 +14,9 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/category/:{categoryId}' component={ListProductByCategory} />
-        <Route path='/detail' component={ProductDetail} />
+        <Route path='/' exact component={Home} />
+        <Route path='/product' component={ListProductByCategory} />
+        <Route path='/detail/:productId' component={ProductDetail} />
         <Route path='/cart' component={Cart} />
         <Route path='/logout' component={Logout} />
         <Route path='/favorites' component={FavoriteList} />

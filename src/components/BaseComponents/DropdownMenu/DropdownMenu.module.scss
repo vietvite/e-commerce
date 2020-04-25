@@ -1,5 +1,5 @@
 .dropdownMenu {
-  animation: slideDown 0.5s none;
+  animation: slideDown 0.2s none;
   position: absolute;
   transform-origin: top;
   display: flex;
@@ -14,7 +14,7 @@
 
 @keyframes slideDown {
   from {
-    transform: scale(1, 0);
+    transform: scale(1, 0.9);
   }
   to {
     transform: scale(1, 1);

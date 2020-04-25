@@ -4,6 +4,7 @@ import Product from "../Product/Product";
 import { ChevronRight } from "react-feather";
 import UnderlineButton from "../../BaseComponents/UnderlineButton/UnderlineButton";
 import Container from "../Container/Container";
+import { NavLink } from "react-router-dom";
 
 class ProductSection extends React.Component {
   constructor(props) {
@@ -25,10 +26,13 @@ class ProductSection extends React.Component {
       <Container>
         <div className={style.sectionProduct}>
           <div className={style.type}>
-            <a href={`/product?categoryId=${this.props.list[0].category.id}`} className={style.left}>
+            <NavLink
+              to={`/product?categoryId=${this.props.list[0].category.id}`}
+              className={style.left}
+            >
               {this.props.list[0].category.name}
               <ChevronRight />
-            </a>
+            </NavLink>
             <div className={style.right}>
               <UnderlineButton>New Release</UnderlineButton>
               <UnderlineButton>Top Sales</UnderlineButton>
