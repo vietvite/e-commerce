@@ -1,0 +1,12 @@
+@import "../../scss/variable";
+
+.DashBoard {
+  margin: 0 0 1rem;
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+  min-height: 100vh;
+
+  & > div {
+    padding: 0 1rem 0 0;
+  }
+}

@@ -1,9 +1,16 @@
 import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
+<<<<<<< HEAD
 import config from "../../../config";
 import { addFavorite } from "../../../redux/favorite/action";
 import { connect } from "react-redux";
+=======
+import { addFavorite } from '../../../redux/favorite/action'
+import { connect } from 'react-redux'
+import config from '../../../config'
+import { NavLink } from "react-router-dom";
+>>>>>>> c1dd88bf4c39203a72cfbd2db93884054187021d
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -46,10 +53,9 @@ class Product extends React.Component {
 
     return (
       <div className={style.product}>
-        <a
-          href={`/product/${this.props.item.id}`}
-          className={style.productName}
-        >
+        <NavLink
+          to={`/detail/${this.props.item.id}`}
+          className={style.productName}>
           <img
             src={`${config.baseURL}${this.props.item.imageUrl}`}
             className={style.productImage}

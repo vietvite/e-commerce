@@ -41,7 +41,7 @@ export default class AccountButton extends React.Component {
   delayToggle() {
     setTimeout(() => {
       this.toggleDropdown()
-    }, 150);
+    }, 200);
   }
   render() {
     const { fullname } = this.props
