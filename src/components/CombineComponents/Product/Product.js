@@ -1,8 +1,9 @@
 import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
-import { addFavorite } from '../../../redux/favorite/action'
-import { connect } from 'react-redux'
+import config from "../../../config";
+import { addFavorite } from "../../../redux/favorite/action";
+import { connect } from "react-redux";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -41,7 +42,7 @@ class Product extends React.Component {
   formatNumber = (number) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   render() {
-    let { id, title, url, imageUrl, seller, price } = this.props.item
+    let { id, title, url, imageUrl, seller, price } = this.props.item;
 
     return (
       <div className={style.product}>
@@ -54,7 +55,9 @@ class Product extends React.Component {
             className={style.productImage}
             alt={this.props.item.title}
           />
-          {this.props.item.title}
+          {this.props.item.title.length < 40
+            ? this.props.item.title
+            : this.props.item.title.slice(0, 37) + "..."}
         </a>
         <div className={style.productMetaInfo}>
           <div className={style.review}>
@@ -71,7 +74,11 @@ class Product extends React.Component {
               <button>
                 <ShoppingCart size="15px" />
               </button>
-              <button onClick={() => this.props.addFav({ id, title, url, imageUrl, seller, price })}>
+              <button
+                onClick={() =>
+                  this.props.addFav({ id, title, url, imageUrl, seller, price })
+                }
+              >
                 <Heart size="15px" />
               </button>
             </div>
@@ -85,8 +92,8 @@ class Product extends React.Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addFav: (item) => {
-      dispatch(addFavorite(item))
-    }
-  }
-}
+      dispatch(addFavorite(item));
+    },
+  };
+};
 export default connect(null, mapDispatchToProps)(Product);
