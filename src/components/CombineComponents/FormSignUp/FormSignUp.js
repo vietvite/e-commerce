@@ -6,6 +6,7 @@ import { Mail, Key, Users, Phone } from "react-feather";
 import { connect } from "react-redux";
 import { signup } from "../../../redux/account/actionCreator";
 import { setError } from "../../../redux/account/action";
+import { PHONENUMBER_REGEX, EMAIL_REGEX, PASSWORD_REGEX, FULLNAME_REGEX } from "../../../commons";
 
 class FormSignUp extends React.Component {
   constructor() {
@@ -69,11 +70,6 @@ class FormSignUp extends React.Component {
     // })
   }
   validate() {
-    const PHONENUMBER_REGEX = /((09|03|07|08|05)+([0-9]{8})\b)/g
-    const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    const PASSWORD_REGEX = /^.{4,10}$/
-    const FULLNAME_REGEX = /^.{4,50}$/
-
     const error = {}
     if (!this.state.fullname) {
       error.fullname = 'Vui lòng nhập họ và tên'
@@ -106,8 +102,6 @@ class FormSignUp extends React.Component {
     return error
   }
   render() {
-    console.log(this.props.errors);
-
     return (
       <div className={style.formSignUp}>
         <h1>ĐĂNG KÝ</h1>

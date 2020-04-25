@@ -5,6 +5,7 @@ import ButtonBackground from "../../BaseComponents/ButtonBackground/ButtonBackgr
 import { Mail, Key } from "react-feather";
 import { connect } from "react-redux";
 import { login } from "../../../redux/account/actionCreator";
+import { PASSWORD_REGEX, EMAIL_REGEX } from "../../../commons";
 
 class FormLogin extends React.Component {
   constructor() {
@@ -45,9 +46,6 @@ class FormLogin extends React.Component {
     this.props.login(credentials)
   }
   validate() {
-    const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    const PASSWORD_REGEX = /^.{4,10}$/
-
     const error = {}
     if (!this.state.email) {
       error.email = 'Vui lòng nhập email'
