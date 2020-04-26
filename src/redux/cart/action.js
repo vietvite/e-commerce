@@ -4,6 +4,7 @@ import {
   ADD_FAVORITE,
   UPDATE_QUANTITY,
   CART_TO_ORDERLATER,
+  UPDATE_LIST_CART,
 } from "./constants";
 
 export const addCart = (product) => ({

@@ -12,6 +12,7 @@ import {
   removeCartRequest,
   changeQuantityCartRequest,
 } from "../../../redux/cart/actionCreator";
+import { cartToOrderLater } from "../../../redux/cart/action";
 
 class CartItem extends Component {
   render() {
