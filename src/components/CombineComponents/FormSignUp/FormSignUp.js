@@ -49,25 +49,8 @@ class FormSignUp extends React.Component {
       password: this.state.password,
       phoneNumber: this.state.phoneNumber,
     }
+    this.props.setError({})
     this.props.signup(credentials)
-    // The code below handle error response from server in case exist not valid field
-    // 
-    // .then(error => {
-    //   if (!error) {
-    //     return
-    //   }
-    //   if (error instanceof Array) {
-    //     this.pushErrorMessage(arrayToObj(error))
-    //     function arrayToObj(array = []) {
-    //       return array.reduce((rs, { field, message }) => ({
-    //         ...rs,
-    //         [field]: message
-    //       }), {})
-    //     }
-    //   } else {
-    //     this.pushErrorMessage(error)
-    //   }
-    // })
   }
   validate() {
     const error = {}
@@ -100,6 +83,9 @@ class FormSignUp extends React.Component {
     }
 
     return error
+  }
+  componentWillUnmount() {
+    this.props.setError({})
   }
   render() {
     return (

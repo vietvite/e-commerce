@@ -40,7 +40,7 @@ function resSuccessHandler(dispatch) {
 function resErrorHandler(dispatch) {
   return function (err) {
     dispatch(endRequest())
-
+    dispatch(setError({ email: err.response.data.message }))
     if (!err.response) {
       return dispatch(setError({ message: 'Không có kết nối' }))
     }
@@ -54,8 +54,8 @@ function resErrorHandler(dispatch) {
       ))
     }
     const message = err.response.data.message
-    if (message) {
-      return dispatch(setError({ email: message }))
+    if (message && err.response.status === 401) {
+      return dispatch(setError({ message: message }))
     }
   }
 }
