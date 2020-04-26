@@ -5,7 +5,6 @@ import {
   SORT_PRODUCT,
   SET_FILTER,
   GET_PRODUCT_DETAIL,
-  RECEIVE_PRODUCT_DETAIL,
 } from "./constants";
 
 export const sendingRequest = () => ({

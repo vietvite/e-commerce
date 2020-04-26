@@ -8,7 +8,7 @@ class StarFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0,
+      selectedIndex: this.props.filter.reviewStar,
     };
   }
   handleClick = (index) => {

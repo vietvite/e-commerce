@@ -3,7 +3,7 @@ import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
 import { addFavorite } from "../../../redux/favorite/action";
 import { connect } from "react-redux";
-// import config from "../../../config";
+import config from "../../../config";
 import { NavLink } from "react-router-dom";
 import { addCartRequest } from "../../../redux/cart/actionCreator";
 
@@ -53,7 +53,7 @@ class Product extends React.Component {
           className={style.productName}
         >
           <img
-            src={this.props.item.imageUrl}
+            src={`${config.baseURL}${this.props.item.imageUrl}`}
             className={style.productImage}
             alt={this.props.item.title}
           />
@@ -94,9 +94,10 @@ class Product extends React.Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addFav: (item) => {
-      dispatch(addFavorite(item))
+      dispatch(addFavorite(item));
     },
-    addCartRequest: (productId) => dispatch(addCartRequest(productId, ownProps))
-  }
-}
+    addCartRequest: (productId) =>
+      dispatch(addCartRequest(productId, ownProps)),
+  };
+};
 export default connect(null, mapDispatchToProps)(Product);

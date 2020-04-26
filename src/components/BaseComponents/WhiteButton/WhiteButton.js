@@ -5,11 +5,14 @@ import { getProduct } from "../../../redux/product/actionCreator";
 
 class WhiteButton extends React.Component {
   handleClick = () => {
-    this.props.onClick(this.props.index);
+    this.props.onClick(this.props.sortBy);
     let sortBy = this.props.sortBy;
     let sortCondition = this.props.sortCondition;
     sortCondition.sortBy = sortBy;
     sortCondition.sortDirection = "ascending";
+    if (sortBy === "createAt") {
+      sortCondition.sortDirection = "descending";
+    }
     this.props.sortProduct(this.props.filter, sortCondition);
   };
   render() {

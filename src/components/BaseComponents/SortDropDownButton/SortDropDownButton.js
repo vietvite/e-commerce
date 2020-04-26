@@ -5,7 +5,7 @@ import { getProduct } from "../../../redux/product/actionCreator";
 
 class SortDropDownButton extends React.Component {
   handleChange = (event) => {
-    this.props.onClick(this.props.index);
+    this.props.onClick(this.props.sortBy);
     let sortBy = this.props.sortBy;
     let sortDirection = event.target.value;
     let sortCondition = { sortBy, sortDirection };

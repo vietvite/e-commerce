@@ -2,21 +2,19 @@ import React from "react";
 import style from "./SortBar.module.scss";
 import WhiteButton from "../../BaseComponents/WhiteButton/WhiteButton";
 import SortDropDownButton from "../../BaseComponents/SortDropDownButton/SortDropDownButton";
+import { connect } from "react-redux";
 
 class SortBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeButton: 1,
+      sortBy: this.props.sortCondition.sortBy,
     };
   }
-
-  isActive = (index) => (index === this.state.activeButton ? true : false);
-
-  onClick = (index) => {
-    this.setState({ activeButton: index });
+  isActive = (sortBy) => (sortBy === this.state.sortBy ? true : false);
+  onClick = (sortBy) => {
+    this.setState({ sortBy: sortBy });
   };
-
   render() {
     return (
       <div className={style.sortBar}>
@@ -26,24 +24,21 @@ class SortBar extends React.Component {
         <div className={`${style.paddingLeft} ${style.buttonArea}`}>
           <WhiteButton
             onClick={this.onClick}
-            index={1}
-            status={this.isActive(1)}
+            status={this.isActive("title")}
             sortBy="title"
           >
             Tên
           </WhiteButton>
           <WhiteButton
             onClick={this.onClick}
-            index={2}
-            status={this.isActive(2)}
-            sortBy="date"
+            status={this.isActive("createAt")}
+            sortBy="createAt"
           >
             Mới nhất
           </WhiteButton>
           <SortDropDownButton
             onClick={this.onClick}
-            index={4}
-            status={this.isActive(4)}
+            status={this.isActive("price")}
             sortBy="price"
           />
         </div>
@@ -51,4 +46,10 @@ class SortBar extends React.Component {
     );
   }
 }
-export default SortBar;
+
+const mapStateToProps = (state) => {
+  return {
+    sortCondition: state.product.sortCondition,
+  };
+};
+export default connect(mapStateToProps)(SortBar);
