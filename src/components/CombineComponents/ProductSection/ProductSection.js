@@ -4,7 +4,9 @@ import Product from "../Product/Product";
 import { ChevronRight } from "react-feather";
 import UnderlineButton from "../../BaseComponents/UnderlineButton/UnderlineButton";
 import Container from "../Container/Container";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { setSortCondition } from "../../../redux/product/action";
+import { connect } from "react-redux";
 
 class ProductSection extends React.Component {
   constructor(props) {
@@ -34,9 +36,39 @@ class ProductSection extends React.Component {
               <ChevronRight />
             </NavLink>
             <div className={style.right}>
-              <UnderlineButton>New Release</UnderlineButton>
-              <UnderlineButton>Top Sales</UnderlineButton>
-              <button className={style.lastButton}>See All</button>
+              <Link
+                to={`/product?categoryId=${this.props.list[0].category.id}`}
+              >
+                <UnderlineButton
+                  setSortCondition={() =>
+                    this.props.setSortCondition({
+                      sortBy: "createAt",
+                      sortDirection: "descending",
+                    })
+                  }
+                >
+                  New Release
+                </UnderlineButton>
+              </Link>
+              <Link
+                to={`/product?categoryId=${this.props.list[0].category.id}`}
+              >
+                <UnderlineButton
+                  setSortCondition={() =>
+                    this.props.setSortCondition({
+                      sortBy: "price",
+                      sortDirection: "descending",
+                    })
+                  }
+                >
+                  Descending Price
+                </UnderlineButton>
+              </Link>
+              <NavLink
+                to={`/product?categoryId=${this.props.list[0].category.id}`}
+              >
+                <button className={style.lastButton}>See All</button>
+              </NavLink>
             </div>
           </div>
           <div className={style.listProduct}>{this.state.content}</div>
@@ -45,4 +77,13 @@ class ProductSection extends React.Component {
     );
   }
 }
-export default ProductSection;
+// export default ProductSection;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSortCondition: (sortCondition) => {
+      dispatch(setSortCondition(sortCondition));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(ProductSection);
