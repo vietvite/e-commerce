@@ -106,6 +106,7 @@ class ProductOfShop extends React.Component {
               <th>Trong kho</th>
               <th>Loại</th>
               <th>Số sao đánh giá</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -124,6 +125,9 @@ class ProductOfShop extends React.Component {
                   <td>{product.stock}</td>
                   <td>{product.category.name}</td>
                   <td>{product.avarageStar}</td>
+                  <td>
+                    <button>Xóa</button>
+                  </td>
                 </tr>
               );
             })}
