@@ -1,28 +1,39 @@
-import { ADD_CART, EDIT_CART, REMOVE_CART, ADD_FAVORITE, UPDATE_QUANTITY } from "./constants";
+import {
+  ADD_CART,
+  EDIT_CART,
+  REMOVE_CART,
+  ADD_FAVORITE,
+  UPDATE_QUANTITY,
+  CART_TO_ORDERLATER,
+} from "./constants";
 
-export const addCart = product => ({
+export const addCart = (product) => ({
   type: ADD_CART,
-  payload: product
-})
+  payload: product,
+});
 
-export const editCart = editedCart => ({
+export const editCart = (editedCart) => ({
   type: EDIT_CART,
-  payload: editedCart
-})
+  payload: editedCart,
+});
 
-export const removeCart = id => ({
+export const removeCart = (id) => ({
   type: REMOVE_CART,
-  id
-})
+  id,
+});
+
+export const cartToOrderLater = (id) => ({
+  type: CART_TO_ORDERLATER,
+  id,
+});
 
 export const updateQuantity = (productId, quantity) => ({
   type: UPDATE_QUANTITY,
   id: productId,
-  quantity
-})
+  quantity,
+});
 
 export const addFavorite = (product) => ({
   type: ADD_FAVORITE,
-  payload: product
-})
-
+  payload: product,
+});
