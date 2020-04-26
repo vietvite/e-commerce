@@ -25,13 +25,11 @@ class OrderLater extends Component {
                   {...product}
                   addCart={() => this.props.addCart(product.id, product)}>
                   <ButtonGraySm fullWidth={true} onClick={() => this.props.addCart(product.id, product)}>
-                    <ShoppingCart size='0.9rem' strokeWidth='1.5px'
-                      style={{ marginRight: '0.125rem' }} />
+                    <ShoppingCart />
                       Add cart
                   </ButtonGraySm>
                   <ButtonGraySm fullWidth={true} onClick={() => this.props.removeOrderLater(product.id)} >
-                    <Trash2 size='0.9rem' strokeWidth='1.5px'
-                      style={{ marginRight: '0.125rem' }} />
+                    <Trash2 />
                       Xóa
                   </ButtonGraySm>
                 </CartItem>)}

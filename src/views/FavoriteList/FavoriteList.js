@@ -5,7 +5,7 @@ import { fetchFavoriteIfNeeded, removeFavoriteRequest, addCartRequest } from '..
 import style from './FavoriteList.module.scss'
 import CartItem from '../../components/CombineComponents/CartItem/CartItem'
 import ButtonGraySm from '../../components/BaseComponents/ButtonGraySm/ButtonGraySm'
-import { Heart, Trash2 } from 'react-feather'
+import { Trash2, ShoppingCart } from 'react-feather'
 
 class FavoriteList extends Component {
     componentDidMount() {
@@ -21,13 +21,11 @@ class FavoriteList extends Component {
                         {...product}
                     >
                         <ButtonGraySm fullWidth={true} onClick={() => this.props.addCart(product.id, product)}>
-                            <Heart size='0.9rem' strokeWidth='1.5px'
-                                style={{ marginRight: '0.125rem' }} />
+                            <ShoppingCart />
                             Add cart
                         </ButtonGraySm>
                         <ButtonGraySm fullWidth={true} onClick={() => this.props.removeFav(product.id)} >
-                            <Trash2 size='0.9rem' strokeWidth='1.5px'
-                                style={{ marginRight: '0.125rem' }} />
+                            <Trash2 />
                             Xóa
                         </ButtonGraySm>
                     </CartItem>)}

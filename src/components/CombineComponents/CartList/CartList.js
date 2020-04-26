@@ -22,20 +22,17 @@ class CartList extends React.Component {
               <ButtonGraySm
                 fullWidth={true}
                 onClick={() => this.props.addFavorite(product.id, product)} >
-                <Heart size='0.9rem' strokeWidth='1.5px'
-                  style={{ marginRight: '0.125rem' }} />
+                <Heart />
                 Yêu thích
               </ButtonGraySm>
               <ButtonGraySm
                 fullWidth={true}
                 onClick={() => this.props.addOrderLater(product.id, product)}>
-                <ShoppingBag size='0.9rem' strokeWidth='1.5px'
-                  style={{ marginRight: '0.125rem' }} />
+                <ShoppingBag />
                 Mua sau
               </ButtonGraySm>
               <ButtonGraySm onClick={() => this.props.removeCart(product.id)} fullWidth={true} >
-                <Trash2 size='0.9rem' strokeWidth='1.5px'
-                  style={{ marginRight: '0.125rem' }} />
+                <Trash2 />
                 Xóa
               </ButtonGraySm>
             </CartItem>)

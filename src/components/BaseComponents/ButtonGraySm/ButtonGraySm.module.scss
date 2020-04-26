@@ -26,4 +26,11 @@
     background-color: $gray-4;
     cursor: pointer;
   }
+
+  & > svg {
+    margin-right: 0.5rem;
+    stroke-width: 1.5px;
+    height: 0.9rem;
+    width: 0.9rem;
+  }
 }
