@@ -5,6 +5,7 @@ import {
   UPDATE_QUANTITY,
   CART_TO_ORDERLATER,
   UPDATE_LIST_CART,
+  DESTROY_CART,
 } from "./constants";
 
 export const addCart = (product) => ({
@@ -36,4 +37,8 @@ export const addFavorite = (product) => ({
 export const fetchCart = (listProduct) => ({
   type: UPDATE_LIST_CART,
   payload: listProduct,
+});
+
+export const destroyCart = () => ({
+  type: DESTROY_CART,
 });

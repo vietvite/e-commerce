@@ -4,6 +4,7 @@ import {
   UPDATE_QUANTITY,
   UPDATE_LIST_CART,
   CART_TO_ORDERLATER,
+  DESTROY_CART,
 } from "./constants";
 
 const initState = {
@@ -56,6 +57,13 @@ export default (state = initState, action) => {
       return Object.assign({}, state, {
         list: action.payload,
       });
+
+    case DESTROY_CART:
+      return {
+        list: [],
+        favorites: [],
+        orderLater: [],
+      };
 
     default:
       return state;

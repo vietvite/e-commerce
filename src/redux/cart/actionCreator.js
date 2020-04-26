@@ -11,8 +11,6 @@ export const addCartRequest = (productId, product) =>
   dispatch =>
     CartService.addOneById(productId)
       .then(res => {
-
-        console.log(res.data);
         if (res.data.success) {
           return dispatch(addCart({ ...product, quantity: 1 }))
         }
@@ -40,9 +38,9 @@ export const changeQuantityCartRequest = (productId, quantity) =>
 
 export const fetchCartIfNeeded = () =>
   (dispatch, getStore) => {
-    shouldFetchCart(getStore()) && dispatch(getAllCartProduct())
+    shouldFetchCart(getStore().cart.list) && dispatch(getAllCartProduct())
   }
 
 function shouldFetchCart(store) {
-  return store.cart.list.length ? false : true
+  return store.length ? false : true
 }

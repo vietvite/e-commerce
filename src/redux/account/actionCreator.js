@@ -1,6 +1,7 @@
-import { requesting, setUser, endRequest, setError } from "./action"
+import { requesting, setUser, endRequest, setError, removeUser } from "./action"
 import { AuthService } from '../../api/auth'
 import { push } from 'connected-react-router'
+import { destroyCart } from "../cart/action"
 
 export const login = (credentials) =>
   dispatch => {
@@ -22,6 +23,15 @@ export const signup = ({
     .catch(resErrorHandler(dispatch))
 }
 
+export const logout = () =>
+  dispatch => {
+    dispatch(removeUser())
+    dispatch(destroyCart())
+
+    sessionStorage.removeItem('jwt')
+    sessionStorage.removeItem('cart')
+  }
+
 /**
  * Handle response function
  */
@@ -40,7 +50,7 @@ function resSuccessHandler(dispatch) {
 function resErrorHandler(dispatch) {
   return function (err) {
     dispatch(endRequest())
-
+    dispatch(setError({ email: err.response.data.message }))
     if (!err.response) {
       return dispatch(setError({ message: 'Không có kết nối' }))
     }
@@ -54,8 +64,8 @@ function resErrorHandler(dispatch) {
       ))
     }
     const message = err.response.data.message
-    if (message) {
-      return dispatch(setError({ email: message }))
+    if (message && err.response.status === 401) {
+      return dispatch(setError({ message: message }))
     }
   }
 }
