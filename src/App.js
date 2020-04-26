@@ -9,6 +9,7 @@ import Logout from './views/Logout';
 import FavoriteList from './views/FavoriteList/FavoriteList'
 import SellerDashBoard from './views/SellerDashboard/SellerDashBoard';
 import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound';
+import OrderLater from './views/OrderLater/OrderLater';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/logout' component={Logout} />
         <Route path='/favorites' component={FavoriteList} />
+        <Route path='/orderlater' component={OrderLater} />
         <Route path='/shop/:tab' component={SellerDashBoard} />
         <Route component={PageNotFound} />
       </Switch>

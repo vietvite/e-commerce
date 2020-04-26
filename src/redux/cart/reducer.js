@@ -1,4 +1,4 @@
-import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART } from "./constants";
+import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART, ADD_FAVORITE, REMOVE_FAVORITE, REPLACE_LIST_FAVORITE, REPLACE_LIST_ORDER_LATER, ADD_ORDER_LATER, ADD_BACKTO_CART, REMOVE_ORDER_LATER } from "./constants";
 
 const initState = {
   list: [],
@@ -8,6 +8,9 @@ const initState = {
 
 export default (state = initState, action) => {
   switch (action.type) {
+    /**
+     * CART
+     */
     case ADD_CART:
       return Object.assign({}, state, {
         list: [
@@ -41,6 +44,53 @@ export default (state = initState, action) => {
         favorites: [],
         orderLater: []
       }
+
+    /**
+     * FAVORITE
+     */
+    case ADD_FAVORITE:
+      return Object.assign({}, state, {
+        favorites: [
+          action.payload,
+          ...state.favorites
+        ]
+      })
+
+    case REMOVE_FAVORITE:
+      return Object.assign({}, state, {
+        favorites: state.favorites.filter(product => product.id !== action.id)
+      })
+
+    case REPLACE_LIST_FAVORITE:
+      return Object.assign({}, state, {
+        favorites: action.payload
+      })
+
+    /**
+     * ORDER LATER
+     */
+    case REPLACE_LIST_ORDER_LATER:
+      return Object.assign({}, state, {
+        orderLater: action.payload
+      })
+    case ADD_ORDER_LATER:
+      return Object.assign({}, state, {
+        list: state.list.filter(product => product.id !== action.product.id),
+        orderLater: [
+          action.product,
+          ...state.orderLater
+        ]
+      })
+    case ADD_BACKTO_CART:
+      return Object.assign({}, state, {
+        list: [action.product, ...state.list],
+        orderLater: state.orderLater.filter(product => product.id !== action.product.id)
+      })
+
+    case REMOVE_ORDER_LATER:
+      return Object.assign({}, state, {
+        orderLater: state.orderLater.filter(product => product.id !== action.id)
+      })
 
     default:
       return state

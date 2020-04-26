@@ -1,11 +1,10 @@
 import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
-import { addFavorite } from "../../../redux/favorite/action";
 import { connect } from "react-redux";
 import config from "../../../config";
 import { NavLink } from "react-router-dom";
-import { addCartRequest } from "../../../redux/cart/actionCreator";
+import { addCartRequest, addFavoriteRequest } from "../../../redux/cart/actionCreator";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -78,7 +77,7 @@ class Product extends React.Component {
               </button>
               <button
                 onClick={() =>
-                  this.props.addFav({ id, title, url, imageUrl, seller, price })
+                  this.props.addFavorite(id, { id, title, url, imageUrl, seller, price })
                 }
               >
                 <Heart size="15px" />
@@ -91,13 +90,8 @@ class Product extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    addFav: (item) => {
-      dispatch(addFavorite(item));
-    },
-    addCartRequest: (productId) =>
-      dispatch(addCartRequest(productId, ownProps)),
-  };
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  addCartRequest: (productId) => dispatch(addCartRequest(productId, ownProps.item)),
+  addFavorite: (id, product) => dispatch(addFavoriteRequest(id, product))
+})
 export default connect(null, mapDispatchToProps)(Product);
