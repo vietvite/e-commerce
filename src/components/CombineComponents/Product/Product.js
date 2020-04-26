@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import config from "../../../config";
 import { NavLink } from "react-router-dom";
 import { addCartRequest, addFavoriteRequest } from "../../../redux/cart/actionCreator";
+import { parseCurrency } from "../../../commons/utils";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -40,11 +41,9 @@ class Product extends React.Component {
     return stars;
   };
 
-  formatNumber = (number) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
   render() {
-    let { id, title, url, imageUrl, seller, price } = this.props.item;
-
+    let { id, title, url, imageUrl, seller, price, stock } = this.props.item;
+    const isInStock = stock > 0
     return (
       <div className={style.product}>
         <NavLink
@@ -69,12 +68,15 @@ class Product extends React.Component {
           </div>
           <div className={style.productInfo}>
             <div className={style.infoCol}>
-              {`${this.formatNumber(this.props.item.price.toString())}đ`}
+              {`${parseCurrency(this.props.item.price)}đ`}
             </div>
             <div className={style.action}>
-              <button onClick={() => this.props.addCartRequest(id)}>
-                <ShoppingCart size="15px" />
-              </button>
+              {
+                isInStock && <button
+                  onClick={() => this.props.addCartRequest(id, this.props.item)}>
+                  <ShoppingCart size="15px" />
+                </button>
+              }
               <button
                 onClick={() =>
                   this.props.addFavorite(id, { id, title, url, imageUrl, seller, price })
@@ -91,7 +93,7 @@ class Product extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  addCartRequest: (productId) => dispatch(addCartRequest(productId, ownProps.item)),
+  addCartRequest: (productId, product) => dispatch(addCartRequest(productId, product)),
   addFavorite: (id, product) => dispatch(addFavoriteRequest(id, product))
 })
 export default connect(null, mapDispatchToProps)(Product);
