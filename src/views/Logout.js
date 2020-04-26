@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { removeUser } from '../redux/account/action';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
+import { logout } from '../redux/account/actionCreator';
 
 class Logout extends Component {
   componentWillMount() {
@@ -10,15 +10,13 @@ class Logout extends Component {
   }
   render() {
     return (
-      <div>
-
-      </div>
+      <div></div>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(removeUser()),
+  logout: () => dispatch(logout()),
   redirectHome: () => dispatch(push('/'))
 })
 

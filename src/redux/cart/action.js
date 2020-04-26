@@ -1,4 +1,4 @@
-import { ADD_CART, REMOVE_CART, ADD_FAVORITE, UPDATE_QUANTITY, UPDATE_LIST_CART } from "./constants";
+import { ADD_CART, REMOVE_CART, ADD_FAVORITE, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART } from "./constants";
 
 export const addCart = product => ({
   type: ADD_CART,
@@ -24,4 +24,8 @@ export const addFavorite = (product) => ({
 export const fetchCart = (listProduct) => ({
   type: UPDATE_LIST_CART,
   payload: listProduct
+})
+
+export const destroyCart = () => ({
+  type: DESTROY_CART,
 })

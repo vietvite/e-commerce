@@ -1,4 +1,4 @@
-import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART } from "./constants";
+import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART } from "./constants";
 
 const initState = {
   list: [],
@@ -34,6 +34,13 @@ export default (state = initState, action) => {
       return Object.assign({}, state, {
         list: action.payload
       })
+
+    case DESTROY_CART:
+      return {
+        list: [],
+        favorites: [],
+        orderLater: []
+      }
 
     default:
       return state

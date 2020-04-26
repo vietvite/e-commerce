@@ -1,15 +1,15 @@
-export const saveState = state => {
+export const saveState = (name, state) => {
   try {
     const serializedState = JSON.stringify(state)
-    sessionStorage.setItem('state', serializedState)
+    sessionStorage.setItem(name, serializedState)
   } catch (err) {
     console.log('Failed to save state')
   }
 }
 
-export const loadState = () => {
+export const loadState = (name) => {
   try {
-    const serializedState = sessionStorage.getItem('state')
+    const serializedState = sessionStorage.getItem(name)
     return serializedState === null
       ? undefined
       : JSON.parse(serializedState)

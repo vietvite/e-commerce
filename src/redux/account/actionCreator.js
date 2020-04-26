@@ -1,6 +1,7 @@
-import { requesting, setUser, endRequest, setError } from "./action"
+import { requesting, setUser, endRequest, setError, removeUser } from "./action"
 import { AuthService } from '../../api/auth'
 import { push } from 'connected-react-router'
+import { destroyCart } from "../cart/action"
 
 export const login = (credentials) =>
   dispatch => {
@@ -21,6 +22,15 @@ export const signup = ({
     .then(resSuccessHandler(dispatch))
     .catch(resErrorHandler(dispatch))
 }
+
+export const logout = () =>
+  dispatch => {
+    dispatch(removeUser())
+    dispatch(destroyCart())
+
+    sessionStorage.removeItem('jwt')
+    sessionStorage.removeItem('cart')
+  }
 
 /**
  * Handle response function

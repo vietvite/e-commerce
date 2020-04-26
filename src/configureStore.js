@@ -24,7 +24,12 @@ export default function configureStore() {
         routerMiddleware(history),
       )
 
-  const preloadState = loadState()
+  const preloadState = Object.assign({},
+    { cart: loadState('cart') },
+    { account: loadState('account') },
+    { product: loadState('product') },
+    { banner: loadState('banner') },
+  )
 
   const store = createStore(
     createRootReducer(history),
@@ -33,7 +38,10 @@ export default function configureStore() {
   )
 
   store.subscribe(() => {
-    saveState(store.getState())
+    saveState('cart', store.getState().cart)
+    saveState('account', store.getState().account)
+    saveState('product', store.getState().product)
+    saveState('banner', store.getState().banner)
   })
 
   return store
