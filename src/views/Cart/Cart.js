@@ -5,12 +5,8 @@ import CartTotal from "../../components/CombineComponents/CartTotal/CartTotal";
 import { cartBody } from "./CartBody.module.scss";
 import { connect } from "react-redux";
 import { calcCostProductList, countProductList } from "../../commons";
-import { fetchCartIfNeeded } from "../../redux/cart/actionCreator";
 
 class Cart extends Component {
-  componentDidMount() {
-    this.props.fetchCartIfNeeded()
-  }
   render() {
     const totalPrice = calcCostProductList(this.props.cart);
     const cartCount = countProductList(this.props.cart);
@@ -35,8 +31,4 @@ const mapStateToProps = (state) => ({
   cart: state.cart.list,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCartIfNeeded: () => dispatch(fetchCartIfNeeded())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps)(Cart);

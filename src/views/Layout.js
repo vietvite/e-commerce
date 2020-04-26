@@ -6,6 +6,7 @@ import AuthGroupButton from "../components/CombineComponents/AuthGroupButton/Aut
 import AccountButton from "../components/CombineComponents/AccountButton/AccountButton";
 import Modal from "../components/CombineComponents/Modal/Modal";
 import { connect } from "react-redux";
+import { fetchCartIfNeeded } from "../redux/cart/actionCreator";
 
 class Layout extends React.Component {
   constructor(props) {
@@ -21,6 +22,11 @@ class Layout extends React.Component {
   };
 
   render() {
+    if (this.props.user) {
+      setTimeout(() => {
+        this.props.fetchCartIfNeeded()
+      }, 500);
+    }
     const authenticatedMenu = <AccountButton {...this.props.user} />;
     const unAuthenticatedMenu = (
       <AuthGroupButton toggleFormModal={this.toggleFormModal} />
@@ -52,5 +58,7 @@ class Layout extends React.Component {
 const mapStateToProps = (state) => ({
   user: state.account.user,
 })
-
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = (dispatch) => ({
+  fetchCartIfNeeded: () => dispatch(fetchCartIfNeeded())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
