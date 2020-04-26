@@ -1,32 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  getProductByCategory,
-  getLoadMoreProductByCategory,
-  loadMore,
+  getProduct,
   loadMoreCreator,
 } from "../../../redux/product/actionCreator";
 import Product from "../Product/Product";
 import style from "./ProductPageContent.module.scss";
 
 class ProductPageContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      content: [],
-    };
-  }
   componentDidMount() {
-    this.props.getProduct();
+    this.props.getProduct(this.props.filter, this.props.sortCondition);
   }
 
   loadMore = () => {
-    let location = window.location;
-    let url = new URL(location.href);
-    let categoryId = url.searchParams.get("categoryId");
     let page = Math.ceil(this.props.listProduct.length / 15);
     page++;
-    this.props.loadMore(categoryId, page);
+    this.props.loadMore(this.props.filter, this.props.sortCondition, page);
   };
 
   loadContent = () => {
@@ -51,16 +40,20 @@ class ProductPageContent extends React.Component {
 const mapStateToProps = (state) => {
   return {
     listProduct: state.product.list,
-    fetching: state.product.fetching,
+    sortCondition: state.product.sortCondition,
+    filter: state.product.filter,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProduct: () => {
+    getProduct: (filter, sortCondition) => {
       let url = new URL(window.location.href);
-      dispatch(getProductByCategory(url.searchParams.get("categoryId")));
+      let categoryId = url.searchParams.get("categoryId");
+      // dispatch(setFilter({ ...filter, categoryId }));
+      dispatch(getProduct({ ...filter, categoryId }, sortCondition));
     },
-    loadMore: (categoryId, page) => dispatch(loadMoreCreator(categoryId, page)),
+    loadMore: (filter, sortCondition, page) =>
+      dispatch(loadMoreCreator(filter, sortCondition, page)),
   };
 };
 

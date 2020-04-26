@@ -1,0 +1,50 @@
+@import "../../../scss/variable";
+
+.bill {
+  width: 100%;
+  margin-bottom: 30px;
+  thead,
+  tbody {
+    tr {
+      th {
+        border: 1px solid $gray-5;
+        font-weight: $medium;
+        height: 30px;
+        vertical-align: middle;
+      }
+      td {
+        border: 1px solid $gray-5;
+        height: 100px;
+        vertical-align: middle;
+        text-align: center;
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+  .total {
+    border: 1px solid $gray-5;
+    vertical-align: middle;
+    font-weight: $medium;
+    height: 40px;
+    text-align: right;
+    span {
+      margin-right: 10px;
+    }
+    button {
+      margin-left: 20px;
+      margin-right: 10px;
+      border: none;
+      height: 30px;
+      width: 90px;
+      border-radius: 3px;
+      cursor: pointer;
+      background-color: $red-7;
+      color: $white;
+      &:hover {
+        background-color: $red-8;
+      }
+    }
+  }
+}

@@ -1,11 +1,31 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from "./constants";
+import { AUTH_SUCCESS, LOGOUT_SUCCESS, REQUESTING_AUTH, END_REQUEST, SET_ERROR } from "./constants";
 
 export const setUser = (user) => ({
-  type: LOGIN_SUCCESS,
-  user
+  type: AUTH_SUCCESS,
+  payload: {
+    user,
+    requesting: false
+  }
 })
 
 export const removeUser = () => ({
   type: LOGOUT_SUCCESS,
-  user: null
+  payload: {
+    user: null
+  }
+})
+
+export const requesting = () => ({
+  type: REQUESTING_AUTH,
+  requesting: true
+})
+
+export const endRequest = () => ({
+  type: END_REQUEST,
+  requesting: false
+})
+
+export const setError = (error) => ({
+  type: SET_ERROR,
+  payload: error
 })

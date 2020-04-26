@@ -39,7 +39,7 @@ class CategoryMenu extends React.Component {
   delayCloseDropdown() {
     setTimeout(() => {
       this.toggleDropdown()
-    }, 150);
+    }, 200);
   }
 
   render() {

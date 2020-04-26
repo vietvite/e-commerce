@@ -5,12 +5,14 @@
   border-bottom: 1px solid $gray-5;
   .type {
     height: 30px;
+    margin-bottom: 20px;
     .left {
       display: flex;
       float: left;
       font-size: 23px;
       font-weight: $medium;
       cursor: pointer;
+      text-decoration: none;
     }
     .right {
       float: right;

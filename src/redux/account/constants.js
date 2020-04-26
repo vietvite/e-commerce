@@ -1,2 +1,5 @@
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const REQUESTING_AUTH = 'REQUESTING_AUTH'
+export const END_REQUEST = 'END_REQUEST'
+export const SET_ERROR = 'SET_ERROR'

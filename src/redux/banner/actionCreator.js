@@ -5,3 +5,11 @@ export const getBanner = () =>
   dispatch =>
     BannerService.all()
       .then(res => dispatch(updateListBanner([...res.data])))
+
+export const fetchBannerIfNeeded = () =>
+  (dispatch, getState) =>
+    shouldFetchBanner(getState()) && dispatch(getBanner())
+
+function shouldFetchBanner(state) {
+  return state.banner.length ? false : true
+}

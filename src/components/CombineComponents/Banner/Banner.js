@@ -1,12 +1,9 @@
 import React from "react";
-import banner1 from "./img/banner1.jpg";
-import banner2 from "./img/banner2.jpg";
-import banner3 from "./img/banner3.jpg";
 import { ArrowLeftCircle, ArrowRightCircle } from "react-feather";
 import styles from "./Banner.module.scss";
 import config from '../../../config'
 import { connect } from "react-redux";
-import { getBanner } from '../../../redux/banner/actionCreator'
+import { fetchBannerIfNeeded } from '../../../redux/banner/actionCreator'
 
 let chuyen = 0;
 
@@ -33,7 +30,7 @@ class Banner extends React.Component {
         this.setState({ interval: setIn })
 
         // Call middleware fetch list banner
-        this.props.getBanner()
+        this.props.shoundFetchBanner()
     }
     componentWillUnmount() {
         clearInterval(this.state.interval)
@@ -72,7 +69,7 @@ class Banner extends React.Component {
     loadImage = () => {
         const list = this.props.listBanner || []
         return list.map((banner, index) => {
-            return <div key={index} className="slide"><img src={`${config.baseURL}/${banner.img}`} alt="banner" /></div>;
+            return <div key={index} className="slide"><img src={`${config.baseURL}${banner.img}`} alt="banner" /></div>;
         })
     }
     render() {
@@ -97,7 +94,7 @@ class Banner extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getBanner: () => dispatch(getBanner())
+    shoundFetchBanner: () => dispatch(fetchBannerIfNeeded())
 })
 
 const mapStateToProps = state => ({

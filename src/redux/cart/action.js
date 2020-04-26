@@ -1,6 +1,5 @@
 import {
   ADD_CART,
-  EDIT_CART,
   REMOVE_CART,
   ADD_FAVORITE,
   UPDATE_QUANTITY,
@@ -10,11 +9,6 @@ import {
 export const addCart = (product) => ({
   type: ADD_CART,
   payload: product,
-});
-
-export const editCart = (editedCart) => ({
-  type: EDIT_CART,
-  payload: editedCart,
 });
 
 export const removeCart = (id) => ({
@@ -36,4 +30,9 @@ export const updateQuantity = (productId, quantity) => ({
 export const addFavorite = (product) => ({
   type: ADD_FAVORITE,
   payload: product,
+});
+
+export const fetchCart = (listProduct) => ({
+  type: UPDATE_LIST_CART,
+  payload: listProduct,
 });

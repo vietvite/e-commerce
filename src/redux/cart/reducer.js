@@ -2,39 +2,12 @@ import {
   ADD_CART,
   REMOVE_CART,
   UPDATE_QUANTITY,
+  UPDATE_LIST_CART,
   CART_TO_ORDERLATER,
 } from "./constants";
 
-const initCart = [
-  {
-    id: "01",
-    title: "Sáu Người Đi Khắp Thế Gian (Tập 2) - Tái Bản",
-    url: "/product/id",
-    imageUrl:
-      "https://salt.tikicdn.com/cache/175x175/media/catalog/product/s/a/sau_nguoi_di_khap_the_gian_1.u2487.d20161213.t111359.194106.jpg",
-    price: 5190000,
-    seller: {
-      username: "shopusername",
-      fullname: "Shop name",
-    },
-    quantity: 1,
-  },
-  {
-    id: "02",
-    title: "Sáu Người Đi Khắp Thế Gian (Tập 1) - Tái Bản",
-    url: "/product/id",
-    imageUrl:
-      "https://salt.tikicdn.com/cache/175x175/media/catalog/product/s/a/sau_nguoi_di_khap_the_gian_1.u2487.d20161213.t111359.194106.jpg",
-    price: 5190000,
-    seller: {
-      username: "shopusername",
-      fullname: "Shop name",
-    },
-    quantity: 3,
-  },
-];
 const initState = {
-  list: initCart,
+  list: [],
   favorites: [],
   orderLater: [],
 };
@@ -77,6 +50,11 @@ export default (state = initState, action) => {
       return Object.assign({}, state, {
         list: [...newstate.list],
         orderLater: [...newstate.orderLater],
+      });
+
+    case UPDATE_LIST_CART:
+      return Object.assign({}, state, {
+        list: action.payload,
       });
 
     default:

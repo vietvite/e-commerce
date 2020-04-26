@@ -15,8 +15,9 @@
     }
     .productImage {
       display: block;
+      margin: 0 auto;
       height: 80%;
-      width: 100%;
+      // width: 100%;
     }
   }
   .productMetaInfo {
@@ -42,7 +43,7 @@
       .infoCol {
         display: flex;
         align-items: center;
-        width: 60%;
+        width: 55%;
         height: 100%;
         color: $orange-5;
         font-weight: $bold;
@@ -50,7 +51,7 @@
       .action {
         display: flex;
         justify-content: space-around;
-        width: 40%;
+        width: 45%;
         height: 100%;
         align-items: center;
         button {
@@ -58,8 +59,11 @@
           width: 34px;
           height: 34px;
           border: none;
-          background-color: $gray-3;
+          background-color: #e2e8f0;
           border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           &:hover {
             background-color: $gray-5;
           }

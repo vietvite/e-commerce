@@ -1,12 +1,12 @@
 import ProductService from "../../api/product";
-import { receiveListProduct, sendingRequest, loadMore } from "./action";
-
-export const searchProduct = (title) => (dispatch) => {
-  dispatch(sendingRequest());
-  return ProductService.findByTitle(title).then((res) =>
-    dispatch(receiveListProduct([...res.data]))
-  );
-};
+import {
+  receiveListProduct,
+  sendingRequest,
+  loadMore,
+  setSortCondition,
+  setFilter,
+  receiveProductDetail,
+} from "./action";
 
 export const getHomeProductSection = () => (dispatch) => {
   dispatch(sendingRequest());
@@ -15,16 +15,25 @@ export const getHomeProductSection = () => (dispatch) => {
   });
 };
 
-export const getProductByCategory = (categoryId) => (dispatch) => {
+export const loadMoreCreator = (filter, sortCondition, page) => (dispatch) => {
   dispatch(sendingRequest());
-  return ProductService.getProductByCategory(categoryId).then((res) => {
+  return ProductService.getProduct(filter, sortCondition, page).then((res) => {
+    dispatch(loadMore([...res.data]));
+  });
+};
+
+export const getProduct = (filter, sortCondition, page = 1) => (dispatch) => {
+  dispatch(sendingRequest());
+  dispatch(setSortCondition(sortCondition));
+  dispatch(setFilter(filter));
+  return ProductService.getProduct(filter, sortCondition, page).then((res) => {
     dispatch(receiveListProduct([...res.data]));
   });
 };
 
-export const loadMoreCreator = (categoryId, page) => (dispatch) => {
+export const getProductDetail = (productId) => (dispatch) => {
   dispatch(sendingRequest());
-  return ProductService.loadMore(categoryId, page).then((res) => {
-    dispatch(loadMore([...res.data]));
+  return ProductService.findById(productId).then((res) => {
+    dispatch(receiveProductDetail(res.data));
   });
 };

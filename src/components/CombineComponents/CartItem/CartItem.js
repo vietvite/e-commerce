@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import styles from "./CartItem.module.scss";
 import { NavLink, Link } from "react-router-dom";
 import QuantityForm from "../../BaseComponents/QuantityForm/QuantityForm";
-import { Heart, Trash2, ShoppingBag, List } from "react-feather";
-import ButtonLink from "../../BaseComponents/ButtonLink/ButtonLink";
+import { Heart, Trash2, ShoppingBag } from "react-feather";
 import { parseCurrency } from "../../../commons";
 import { connect } from "react-redux";
-import {
-  updateQuantity,
-  removeCart,
-  cartToOrderLater,
-} from "../../../redux/cart/action";
+import { addFavorite } from "../../../redux/favorite/action";
 import ButtonGraySm from "../../BaseComponents/ButtonGraySm/ButtonGraySm";
+import config from "../../../config";
+import {
+  removeCartRequest,
+  changeQuantityCartRequest,
+} from "../../../redux/cart/actionCreator";
 
 class CartItem extends Component {
   render() {
@@ -20,10 +20,10 @@ class CartItem extends Component {
     return (
       <div className={styles.cartItem}>
         <div className={styles.detail}>
-          <img alt="thumbnail" src={imageUrl} />
+          <img alt="thumbnail" src={`${config.baseURL}${imageUrl}`} />
           <div>
             <p>
-              <NavLink className={styles.navLink} to={url}>
+              <NavLink className={styles.navLink} to={`/product/${id}`}>
                 {title}
               </NavLink>
             </p>
@@ -43,14 +43,25 @@ class CartItem extends Component {
             updateQuantity={this.props.updateQuantity(id)}
           />
 
-          <ButtonLink to={`/favorite/`} fullWidth={true}>
+          <ButtonGraySm
+            onClick={() =>
+              this.props.addFavorite({
+                id,
+                title,
+                url,
+                imageUrl,
+                seller,
+                price,
+              })
+            }
+          >
             <Heart
               size="0.9rem"
               strokeWidth="1.5px"
               style={{ marginRight: "0.125rem" }}
             />
             Yêu thích
-          </ButtonLink>
+          </ButtonGraySm>
           <ButtonGraySm
             to={`/orderlater/${id}`}
             fullWidth={true}
@@ -64,7 +75,7 @@ class CartItem extends Component {
             Mua sau
           </ButtonGraySm>
           <ButtonGraySm
-            onClick={() => this.props.removeProduct(id)}
+            onClick={() => this.props.removeCart(id)}
             fullWidth={true}
           >
             <Trash2
@@ -81,8 +92,10 @@ class CartItem extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateQuantity: (id) => (quantity) => dispatch(updateQuantity(id, quantity)),
-  removeProduct: (id) => dispatch(removeCart(id)),
+  updateQuantity: (id) => (quantity) =>
+    dispatch(changeQuantityCartRequest(id, quantity)),
+  addFavorite: (item) => dispatch(addFavorite(item)),
+  removeCart: (id) => dispatch(removeCartRequest(id)),
   moveCartToOrderLater: (id) => dispatch(cartToOrderLater(id)),
 });
 

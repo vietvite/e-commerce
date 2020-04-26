@@ -1,20 +1,13 @@
 import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
+import { addFavorite } from "../../../redux/favorite/action";
+import { connect } from "react-redux";
+// import config from "../../../config";
+import { NavLink } from "react-router-dom";
+import { addCartRequest } from "../../../redux/cart/actionCreator";
 
 class Product extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     totalStars: 0,
-  //     totalReviews: 0,
-  //   };
-  // }
-
-  componentDidMount() {
-    console.log(this.props.item);
-  }
-
   getTotalStars = () => {
     let reviewStar = this.props.item.reviewStar;
     let totalStars =
@@ -51,10 +44,12 @@ class Product extends React.Component {
   formatNumber = (number) => number.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   render() {
+    let { id, title, url, imageUrl, seller, price } = this.props.item;
+
     return (
       <div className={style.product}>
-        <a
-          href={`/product/${this.props.item.id}`}
+        <NavLink
+          to={`/detail/${this.props.item.id}`}
           className={style.productName}
         >
           <img
@@ -62,8 +57,10 @@ class Product extends React.Component {
             className={style.productImage}
             alt={this.props.item.title}
           />
-          {this.props.item.title}
-        </a>
+          {this.props.item.title.length < 40
+            ? this.props.item.title
+            : this.props.item.title.slice(0, 37) + "..."}
+        </NavLink>
         <div className={style.productMetaInfo}>
           <div className={style.review}>
             {this.loadReviewStar()}
@@ -76,10 +73,14 @@ class Product extends React.Component {
               {`${this.formatNumber(this.props.item.price.toString())}đ`}
             </div>
             <div className={style.action}>
-              <button>
+              <button onClick={() => this.props.addCartRequest(id)}>
                 <ShoppingCart size="15px" />
               </button>
-              <button>
+              <button
+                onClick={() =>
+                  this.props.addFav({ id, title, url, imageUrl, seller, price })
+                }
+              >
                 <Heart size="15px" />
               </button>
             </div>
@@ -89,4 +90,13 @@ class Product extends React.Component {
     );
   }
 }
-export default Product;
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addFav: (item) => {
+      dispatch(addFavorite(item))
+    },
+    addCartRequest: (productId) => dispatch(addCartRequest(productId, ownProps))
+  }
+}
+export default connect(null, mapDispatchToProps)(Product);
