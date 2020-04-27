@@ -3,7 +3,6 @@ import account from './account/reducer'
 import product from './product/reducer'
 import cart from './cart/reducer'
 import banner from './banner/reducer'
-import favorite from './favorite/reducer'
 import category from './category/reducer'
 import { connectRouter } from 'connected-react-router'
 
@@ -12,7 +11,6 @@ const createRootReducer = history => combineReducers({
   account,
   product,
   cart,
-  favorite,
   banner,
   category,
 })
