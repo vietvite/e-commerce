@@ -3,6 +3,7 @@ import style from "./SortBar.module.scss";
 import WhiteButton from "../../BaseComponents/WhiteButton/WhiteButton";
 import SortDropDownButton from "../../BaseComponents/SortDropDownButton/SortDropDownButton";
 import { connect } from "react-redux";
+import { getCategoryRequest } from "../../../redux/category/actionCreator";
 
 class SortBar extends React.Component {
   constructor(props) {
@@ -15,14 +16,27 @@ class SortBar extends React.Component {
   onClick = (sortBy) => {
     this.setState({ sortBy: sortBy });
   };
+
+  getTitle = () => {
+    let url = new URL(window.location.href);
+    if (!!url.searchParams.get("title")) {
+      return "Kết quả tìm kiếm";
+    } else {
+      let categoryId = url.searchParams.get("categoryId");
+      let category = this.props.categoryList.find(
+        (category) => category.id === categoryId
+      );
+      return !!category ? category.name : "";
+    }
+  };
+
   render() {
+    if (this.props.categoryList.length === 0) {
+      this.props.getCategory();
+    }
     return (
       <div className={style.sortBar}>
-        <div className={style.left}>
-          {!!this.props.listProduct
-            ? this.props.listProduct[0].category.name
-            : ""}
-        </div>
+        <div className={style.left}>{this.getTitle()}</div>
         <div className={style.right}>
           <span className={style.title}>Sắp xếp theo</span>
           <div className={style.buttonArea}>
@@ -54,8 +68,18 @@ class SortBar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    filter: state.product.filter,
+    categoryList: state.category,
     sortCondition: state.product.sortCondition,
     listProduct: state.product.list,
   };
 };
-export default connect(mapStateToProps)(SortBar);
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getCategory: () => {
+      dispatch(getCategoryRequest());
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SortBar);

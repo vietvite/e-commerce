@@ -48,8 +48,20 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getProduct: (filter, sortCondition) => {
       let url = new URL(window.location.href);
-      let categoryId = url.searchParams.get("categoryId");
-      dispatch(getProduct({ ...filter, categoryId }, sortCondition));
+      let title = url.searchParams.get("title");
+      if (!!title) {
+        dispatch(
+          getProduct({ ...filter, title, categoryId: "" }, sortCondition)
+        );
+      } else {
+        let categoryId = url.searchParams.get("categoryId");
+        dispatch(
+          getProduct(
+            { ...filter, categoryId: categoryId, title: "" },
+            sortCondition
+          )
+        );
+      }
     },
     loadMore: (filter, sortCondition, page) =>
       dispatch(loadMoreCreator(filter, sortCondition, page)),
