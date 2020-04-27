@@ -97,8 +97,8 @@ class ProductDetail extends React.Component {
                 Giá:{" "}
                 {!!this.props.product
                   ? `${parseCurrency(this.props.product.price)}đ`
-                  : ""}
-                {this.props.product.stock} trong kho
+                  : ""}{" "}
+                |{this.props.product.stock} trong kho
               </div>
               <div className={style.quantity}>
                 <button onClick={() => this.handleClick("-")}>-</button>

@@ -7,6 +7,7 @@ import {
   GET_PRODUCT_DETAIL,
   ADD_PRODUCT,
   GET_PRODUCT_OF_SHOP,
+  DELETE_PRODUCT,
 } from "./constants";
 
 export const sendingRequest = () => ({
@@ -67,5 +68,14 @@ export const addProduct = (listProduct) => {
 export const getProductOfShop = () => {
   return {
     type: GET_PRODUCT_OF_SHOP,
+  };
+};
+
+export const deleteProduct = (productId) => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: {
+      productId,
+    },
   };
 };

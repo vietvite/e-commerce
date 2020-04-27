@@ -40,12 +40,21 @@ export const getProductDetail = (productId) => (dispatch) => {
 };
 
 export const addNewProduct = (listProduct) => (dispatch) => {
-  return dispatch(addProduct(listProduct));
+  return ProductService.addProduct(listProduct).then((res) => {
+    dispatch(receiveListProduct([...res.data]));
+  });
 };
 
 export const getProductOfShop = () => (dispatch) => {
   dispatch(sendingRequest());
   return ProductService.getProductOfShop().then((res) => {
+    dispatch(receiveListProduct([...res.data]));
+  });
+};
+
+export const deleteProduct = (productId) => (dispatch) => {
+  dispatch(sendingRequest());
+  return ProductService.deleteById(productId).then((res) => {
     dispatch(receiveListProduct([...res.data]));
   });
 };

@@ -2,6 +2,10 @@ import React from "react";
 import style from "./ProductForm.module.scss";
 import { getCategoryList } from "../../../redux/category/actionCreator";
 import { connect } from "react-redux";
+import {
+  addNewProduct,
+  getProductOfShop,
+} from "../../../redux/product/actionCreator";
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -10,7 +14,9 @@ class ProductForm extends React.Component {
       title: this.props.product.title || "",
       price: this.props.product.price || "",
       stock: this.props.product.stock || "",
-      category: this.props.product.category || "",
+      categoryId: !!this.props.product.category
+        ? this.props.product.category.id
+        : "",
       description: this.props.product.description || "",
     };
   }
@@ -28,17 +34,32 @@ class ProductForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // if (this.validateInfo()) {
-    //   document
-    //     .getElementById("productErr")
-    //     .innerText("Thông tin sản phẩm không hợp lệ");
-    // } else {
-    //   let button = event.target.innerText;
-    //   if (button === "Thêm mới") {
-
-    //   }
-
-    // }
+    if (this.validateInfo()) {
+      document.getElementById("productErr").innerText =
+        "Thông tin sản phẩm không hợp lệ";
+    } else {
+      let button = event.target.innerText;
+      if (button === "Tạo mới") {
+        let category;
+        for (let i = 0, n = this.props.categoryList.length; i < n; i++) {
+          if (this.state.categoryId === this.props.categoryList[i].id) {
+            category = this.props.categoryList[i];
+            break;
+          }
+        }
+        let product = {
+          title: this.state.title,
+          price: this.state.price,
+          stock: this.state.stock,
+          category: category,
+          description: this.state.description,
+          imageUrl: "",
+          createAt: new Date(),
+        };
+        this.props.addProduct([product]);
+        this.props.toggleForm();
+      }
+    }
   };
 
   handleClick = (event) => {
@@ -55,16 +76,10 @@ class ProductForm extends React.Component {
 
   loadCategory = () => {
     let categoryList = this.props.categoryList;
-    let product = this.props.product;
-    let categoryId = !!product ? product.category.id : null;
     let content = [];
     content = categoryList.map((category, index) => {
       return (
-        <option
-          key={index}
-          selected={category.id === categoryId}
-          value={categoryId}
-        >
+        <option key={index} value={category.id}>
           {category.name}
         </option>
       );
@@ -81,11 +96,11 @@ class ProductForm extends React.Component {
         id="productModal"
       >
         <form className={style.table}>
-          <span id="productErr"></span>
           <h3>Thông tin sản phẩm</h3>
           {!!this.props.product && (
             <label>ID: {this.props.product.id || ""}</label>
           )}
+          <span id="productErr" className={style.err}></span>
           <label>
             Tên sản phẩm: <br />
             <input
@@ -115,7 +130,12 @@ class ProductForm extends React.Component {
           </label>
           <label>
             Loại: <br />
-            <select name="category" type="text" onChange={this.handleChange}>
+            <select
+              name="categoryId"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.categoryId}
+            >
               {this.loadCategory()}
             </select>
           </label>
@@ -129,7 +149,7 @@ class ProductForm extends React.Component {
             />
           </label>
           <div className={style.tableFooter}>
-            <button type="submit" onClick={this.handleSubmit}>
+            <button onClick={this.handleSubmit}>
               {!!this.props.product ? "Thay đổi" : "Tạo mới"}
             </button>
             <button onClick={this.props.toggleForm}>Hủy bỏ</button>
@@ -140,16 +160,20 @@ class ProductForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     categoryList: state.category.categoryList,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getCategory: () => {
       dispatch(getCategoryList());
+    },
+    addProduct: (product) => {
+      dispatch(addNewProduct(product));
+      dispatch(getProductOfShop());
     },
   };
 };
