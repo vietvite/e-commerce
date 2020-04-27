@@ -1,7 +1,13 @@
 import React from "react";
 import style from "./ProductOfShop.module.scss";
 import { parseCurrency } from "../../../commons";
+import { Delete, X } from "react-feather";
 import ProductForm from "../ProductForm/ProductForm";
+import {
+  addNewProduct,
+  getProductOfShop,
+} from "../../../redux/product/actionCreator";
+import { connect } from "react-redux";
 
 const data = [
   {
@@ -13,9 +19,9 @@ const data = [
     stock: 12,
     imageUrl: "/assets/productImage/product10.jpg",
     category: {
-      id: "5e9d7037f7535b6ab8c4475f",
-      name: "sach",
-      url: "url1",
+      id: "5ea560e77d0d4f053d12493d",
+      name: "Điện thoại",
+      url: "/category/smartphone",
       children: null,
     },
     seller: null,
@@ -39,9 +45,9 @@ const data = [
     stock: 12,
     imageUrl: "/assets/productImage/product10.jpg",
     category: {
-      id: "5e9d7037f7535b6ab8c4475f",
-      name: "sach",
-      url: "url1",
+      id: "5ea560e77d0d4f053d12493e",
+      name: "Máy tính",
+      url: "/category/laptop",
       children: null,
     },
     seller: null,
@@ -64,6 +70,10 @@ class ProductOfShop extends React.Component {
       showForm: false,
       product: "",
     };
+  }
+
+  componentDidMount() {
+    this.props.getProductOfShop();
   }
 
   toggleForm = () => {
@@ -98,19 +108,24 @@ class ProductOfShop extends React.Component {
           <button onClick={this.handleClick}>Thêm mới sản phẩm</button>
         </div>
         <table className={style.content}>
+          <colgroup>
+            <col width="40%" />
+            <col width="30%" />
+            <col width="15%" />
+            <col width="10%"/>
+            <col width="5%"/>
+          </colgroup>
           <thead>
             <tr>
-              <th>Mã sản phẩm</th>
               <th>Tên sản phẩm</th>
+              <th>Loại</th>
               <th>Giá</th>
               <th>Trong kho</th>
-              <th>Loại</th>
-              <th>Số sao đánh giá</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {data.map((product, index) => {
+            {this.props.listProduct.map((product, index) => {
               return (
                 <tr
                   onDoubleClick={() => this.handleDoubleClick(product)}
@@ -119,14 +134,12 @@ class ProductOfShop extends React.Component {
                     index % 2 === 0 ? style.grayBackground2 : ""
                   }`}
                 >
-                  <td>{product.id}</td>
-                  <td>{product.title}</td>
-                  <td>{parseCurrency(product.price)}</td>
+                  <td className={style.leftAlign}>{product.title}</td>
+                  <td className={style.leftAlign}>{product.category.name}</td>
+                  <td>{parseCurrency(product.price)}đ</td>
                   <td>{product.stock}</td>
-                  <td>{product.category.name}</td>
-                  <td>{product.avarageStar}</td>
                   <td>
-                    <button>Xóa</button>
+                    <X className={style.red} />
                   </td>
                 </tr>
               );
@@ -143,4 +156,22 @@ class ProductOfShop extends React.Component {
     );
   }
 }
-export default ProductOfShop;
+
+const mapStateToProps = (state) => {
+  return {
+    listProduct: state.product.list,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProductOfShop: () => {
+      dispatch(getProductOfShop());
+    },
+    addNewProduct: (listProduct) => {
+      dispatch(addNewProduct(listProduct));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductOfShop);

@@ -30,7 +30,10 @@ export default (state = initState, action) => {
     case FETCHING:
       return Object.assign({}, state, action.payload);
     case UPDATE_LIST_PRODUCT:
-      return Object.assign({}, state, action.payload);
+      return Object.assign({}, state, {
+        list: action.payload.list,
+        fetching: action.payload.fetching,
+      });
     case LOAD_MORE:
       let list = action.payload.list;
       if (list.length === 0 || typeof list === undefined) {

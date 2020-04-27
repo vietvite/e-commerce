@@ -3,6 +3,7 @@
 .productDetail {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 40px;
   .productImage {
     width: 30%;
     height: 450px;
@@ -26,6 +27,8 @@
         align-items: center;
         svg {
           color: $orange-5;
+        }
+        .fill {
           fill: $orange-5;
         }
       }
@@ -76,6 +79,9 @@
           }
         }
       }
+    }
+    .description {
+      line-height: 25px;
     }
   }
 }

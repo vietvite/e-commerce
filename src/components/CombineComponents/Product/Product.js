@@ -33,10 +33,15 @@ class Product extends React.Component {
   loadReviewStar = () => {
     let totalStars = this.getTotalStars();
     let totalReviews = this.getTotalReviews();
-    let starCount = Math.round(totalStars / totalReviews);
+    let starCount = Math.round(totalStars / totalReviews) || 0;
     let stars = [];
     for (let i = 0; i < starCount; i++) {
-      stars.push(<Star key={i} className={style.reviewStar} />);
+      stars.push(
+        <Star key={i} className={`${style.reviewStar}  ${style.fill}`} />
+      );
+    }
+    for (let i = 0; i < 5 - starCount; i++) {
+      stars.push(<Star key={i + starCount} className={style.reviewStar} />);
     }
     return stars;
   };
@@ -51,6 +56,7 @@ class Product extends React.Component {
         <NavLink
           to={`/detail/${this.props.item.id}`}
           className={style.productName}
+          title={this.props.item.title}
         >
           <img
             src={`${config.baseURL}${this.props.item.imageUrl}`}
