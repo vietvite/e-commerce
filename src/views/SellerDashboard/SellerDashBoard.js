@@ -3,7 +3,6 @@ import DashboardSidebar from "../../components/CombineComponents/DashboardSideba
 import { DashBoard } from "./SellerDashBoard.module.scss";
 import Container from "../../components/CombineComponents/Container/Container";
 import ListPendingOrder from "../../components/CombineComponents/ListPendingOrder/ListPendingOrder";
-import ListBills from "../../components/CombineComponents/ListBills/ListBills";
 import ProductOfShop from "../../components/CombineComponents/ProductOfShop/ProductOfShop";
 import BillManagement from "../../components/CombineComponents/BillManagement/BillManagement";
 

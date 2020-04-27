@@ -11,7 +11,7 @@ class Modal extends React.Component {
     this.showLogin = this.showLogin.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let form = this.props.form;
     form === 1
       ? this.setState({ showLogin: true })

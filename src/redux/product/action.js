@@ -5,8 +5,8 @@ import {
   SORT_PRODUCT,
   SET_FILTER,
   GET_PRODUCT_DETAIL,
-  ADD_PRODUCT,
   GET_PRODUCT_OF_SHOP,
+  DELETE_PRODUCT,
 } from "./constants";
 
 export const sendingRequest = () => ({
@@ -55,17 +55,17 @@ export const receiveProductDetail = (product) => {
   };
 };
 
-export const addProduct = (listProduct) => {
-  return {
-    type: ADD_PRODUCT,
-    payload: {
-      listProduct,
-    },
-  };
-};
-
 export const getProductOfShop = () => {
   return {
     type: GET_PRODUCT_OF_SHOP,
+  };
+};
+
+export const deleteProduct = (productId) => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: {
+      productId,
+    },
   };
 };

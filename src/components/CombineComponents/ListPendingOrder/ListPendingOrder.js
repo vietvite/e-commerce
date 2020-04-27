@@ -180,8 +180,8 @@ export default class ListPendingOrder extends Component {
   render() {
     return (
       <div className={style.listBill}>
-        {data.map((bill) => (
-          <Bill bill={bill} />
+        {data.map((bill, index) => (
+          <Bill key={index} bill={bill} />
         ))}
       </div>
     );

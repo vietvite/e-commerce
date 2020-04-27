@@ -18,29 +18,34 @@ class SortBar extends React.Component {
   render() {
     return (
       <div className={style.sortBar}>
-        <span className={`${style.paddingLeft} ${style.title}`}>
-          Sắp xếp theo
-        </span>
-        <div className={`${style.paddingLeft} ${style.buttonArea}`}>
-          <WhiteButton
-            onClick={this.onClick}
-            status={this.isActive("title")}
-            sortBy="title"
-          >
-            Tên
-          </WhiteButton>
-          <WhiteButton
-            onClick={this.onClick}
-            status={this.isActive("createAt")}
-            sortBy="createAt"
-          >
-            Mới nhất
-          </WhiteButton>
-          <SortDropDownButton
-            onClick={this.onClick}
-            status={this.isActive("price")}
-            sortBy="price"
-          />
+        <div className={style.left}>
+          {!!this.props.listProduct
+            ? this.props.listProduct[0].category.name
+            : ""}
+        </div>
+        <div className={style.right}>
+          <span className={style.title}>Sắp xếp theo</span>
+          <div className={style.buttonArea}>
+            <WhiteButton
+              onClick={this.onClick}
+              status={this.isActive("title")}
+              sortBy="title"
+            >
+              Tên
+            </WhiteButton>
+            <WhiteButton
+              onClick={this.onClick}
+              status={this.isActive("createAt")}
+              sortBy="createAt"
+            >
+              Mới nhất
+            </WhiteButton>
+            <SortDropDownButton
+              onClick={this.onClick}
+              status={this.isActive("price")}
+              sortBy="price"
+            />
+          </div>
         </div>
       </div>
     );
@@ -50,6 +55,7 @@ class SortBar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     sortCondition: state.product.sortCondition,
+    listProduct: state.product.list,
   };
 };
 export default connect(mapStateToProps)(SortBar);
