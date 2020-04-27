@@ -4,7 +4,6 @@ import { getCategoryList } from "../../../redux/category/actionCreator";
 import { connect } from "react-redux";
 import {
   addNewProduct,
-  getProductOfShop,
   editProduct,
 } from "../../../redux/product/actionCreator";
 

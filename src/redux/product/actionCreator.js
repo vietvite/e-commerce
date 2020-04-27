@@ -6,7 +6,6 @@ import {
   setSortCondition,
   setFilter,
   receiveProductDetail,
-  addProduct,
 } from "./action";
 
 export const getHomeProductSection = () => (dispatch) => {

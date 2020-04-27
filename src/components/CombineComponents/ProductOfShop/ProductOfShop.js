@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./ProductOfShop.module.scss";
 import { parseCurrency } from "../../../commons";
-import { Delete, X } from "react-feather";
+import { X } from "react-feather";
 import ProductForm from "../ProductForm/ProductForm";
 import {
   addNewProduct,

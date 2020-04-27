@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./BillManagement.module.scss";
 import ListBills from "../ListBills/ListBills";
 import Bill from "../Bill/Bill";
 
