@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import DashboardSidebar from "../../components/CombineComponents/DashboardSidebar/DashboardSidebar";
 import { DashBoard } from "./SellerDashBoard.module.scss";
 import Container from "../../components/CombineComponents/Container/Container";
-import ProductPageContent from "../../components/CombineComponents/ProductPageContent/ProductPageContent";
 import ListPendingOrder from "../../components/CombineComponents/ListPendingOrder/ListPendingOrder";
 import ListBills from "../../components/CombineComponents/ListBills/ListBills";
 import ProductOfShop from "../../components/CombineComponents/ProductOfShop/ProductOfShop";
+import BillManagement from "../../components/CombineComponents/BillManagement/BillManagement";
 
 class SellerDashBoard extends Component {
   render() {
@@ -20,14 +20,14 @@ class SellerDashBoard extends Component {
     const switchTab = (tab) => {
       switch (tab) {
         case "product":
-          // return <ProductPageContent />
           return <ProductOfShop />;
         case "order":
           return <ListPendingOrder />;
         case "bills":
-          return <ListBills />;
+          // return <ListBills />;
+          return <BillManagement />;
         default:
-          return <ProductPageContent />;
+          return <ProductOfShop />;
       }
     };
     return (

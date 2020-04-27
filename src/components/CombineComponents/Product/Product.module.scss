@@ -28,6 +28,9 @@
       display: flex;
       align-items: center;
       height: 30%;
+      .fill {
+        fill: $orange-5;
+      }
       .reviewStar {
         width: 12px;
         color: $orange-5;

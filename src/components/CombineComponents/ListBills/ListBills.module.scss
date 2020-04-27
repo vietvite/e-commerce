@@ -1,0 +1,26 @@
+@import "../../../scss/variable";
+
+.listBill {
+  tr {
+    line-height: 25px;
+  }
+  th,
+  td {
+    vertical-align: middle;
+  }
+  th {
+    font-weight: $medium;
+  }
+  .grayBackground {
+    background-color: $gray-3;
+  }
+  .grayBackground2 {
+    background-color: $gray-5;
+  }
+  .alignLeft {
+    text-align: left;
+  }
+  .alignCenter {
+    text-align: center;
+  }
+}

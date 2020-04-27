@@ -6,6 +6,7 @@ import {
   setSortCondition,
   setFilter,
   receiveProductDetail,
+  addProduct,
 } from "./action";
 
 export const getHomeProductSection = () => (dispatch) => {
@@ -35,5 +36,16 @@ export const getProductDetail = (productId) => (dispatch) => {
   dispatch(sendingRequest());
   return ProductService.findById(productId).then((res) => {
     dispatch(receiveProductDetail(res.data));
+  });
+};
+
+export const addNewProduct = (listProduct) => (dispatch) => {
+  return dispatch(addProduct(listProduct));
+};
+
+export const getProductOfShop = () => (dispatch) => {
+  dispatch(sendingRequest());
+  return ProductService.getProductOfShop().then((res) => {
+    dispatch(receiveListProduct([...res.data]));
   });
 };

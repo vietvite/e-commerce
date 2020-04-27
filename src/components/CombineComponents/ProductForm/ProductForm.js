@@ -1,5 +1,7 @@
 import React from "react";
 import style from "./ProductForm.module.scss";
+import { getCategoryRequest } from "../../../redux/category/actionCreator";
+import { connect } from "react-redux";
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -12,6 +14,33 @@ class ProductForm extends React.Component {
       description: this.props.product.description || "",
     };
   }
+
+  componentDidMount() {
+    this.props.getCategory();
+  }
+
+  validateInfo = () => {
+    let { title, price, stock, category, description } = this.state;
+    return !!title || !!price || !!stock || !!category || !!description
+      ? false
+      : true;
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    // if (this.validateInfo()) {
+    //   document
+    //     .getElementById("productErr")
+    //     .innerText("Thông tin sản phẩm không hợp lệ");
+    // } else {
+    //   let button = event.target.innerText;
+    //   if (button === "Thêm mới") {
+
+    //   }
+
+    // }
+  };
+
   handleClick = (event) => {
     let target = event.target;
     let container = document.getElementById("productModal");
@@ -23,9 +52,27 @@ class ProductForm extends React.Component {
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleSubmit = (event) => {
-    event.preventDefault();
+
+  loadCategory = () => {
+    let categoryList = this.props.categoryList;
+    let product = this.props.product;
+    let categoryId = !!product ? product.category.id : null;
+    let content = [];
+    content = categoryList.map((category, index) => {
+      return (
+        <option
+          key={index}
+          selected={category.id === categoryId}
+          value={categoryId}
+        >
+          {category.name}
+        </option>
+      );
+    });
+
+    return content;
   };
+
   render() {
     return (
       <div
@@ -33,9 +80,12 @@ class ProductForm extends React.Component {
         onClick={this.handleClick}
         id="productModal"
       >
-        <form className={style.table} onSubmit={this.handleSubmit}>
+        <form className={style.table}>
+          <span id="productErr"></span>
           <h3>Thông tin sản phẩm</h3>
-          <label>ID: {this.props.product.id || ""}</label>
+          {!!this.props.product && (
+            <label>ID: {this.props.product.id || ""}</label>
+          )}
           <label>
             Tên sản phẩm: <br />
             <input
@@ -65,14 +115,10 @@ class ProductForm extends React.Component {
           </label>
           <label>
             Loại: <br />
-            <input
-              name="category"
-              type="text"
-              value={this.state.category.name}
-              onChange={this.handleChange}
-            />
+            <select name="category" type="text" onChange={this.handleChange}>
+              {this.loadCategory()}
+            </select>
           </label>
-          <label>Số sao đánh giá: {this.props.product.avarageStar || ""}</label>
           <label>
             Mô tả: <br />
             <textarea
@@ -83,7 +129,9 @@ class ProductForm extends React.Component {
             />
           </label>
           <div className={style.tableFooter}>
-            <button type="submit">Thay đổi</button>
+            <button type="submit" onClick={this.handleSubmit}>
+              {!!this.props.product ? "Thay đổi" : "Tạo mới"}
+            </button>
             <button onClick={this.props.toggleForm}>Hủy bỏ</button>
           </div>
         </form>
@@ -91,4 +139,19 @@ class ProductForm extends React.Component {
     );
   }
 }
-export default ProductForm;
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    categoryList: state.category.categoryList,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getCategory: () => {
+      dispatch(getCategoryRequest());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductForm);

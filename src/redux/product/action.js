@@ -5,6 +5,8 @@ import {
   SORT_PRODUCT,
   SET_FILTER,
   GET_PRODUCT_DETAIL,
+  ADD_PRODUCT,
+  GET_PRODUCT_OF_SHOP,
 } from "./constants";
 
 export const sendingRequest = () => ({
@@ -50,5 +52,20 @@ export const receiveProductDetail = (product) => {
       product,
       fetching: false,
     },
+  };
+};
+
+export const addProduct = (listProduct) => {
+  return {
+    type: ADD_PRODUCT,
+    payload: {
+      listProduct,
+    },
+  };
+};
+
+export const getProductOfShop = () => {
+  return {
+    type: GET_PRODUCT_OF_SHOP,
   };
 };

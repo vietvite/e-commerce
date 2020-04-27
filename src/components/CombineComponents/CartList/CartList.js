@@ -38,7 +38,7 @@ class CartList extends React.Component {
             </CartItem>)
         }
       </div>
-    )
+    );
   }
 }
 

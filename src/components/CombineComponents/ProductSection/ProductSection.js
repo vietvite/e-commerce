@@ -47,7 +47,7 @@ class ProductSection extends React.Component {
                     })
                   }
                 >
-                  New Release
+                  Mới nhất
                 </UnderlineButton>
               </Link>
               <Link
@@ -61,7 +61,7 @@ class ProductSection extends React.Component {
                     })
                   }
                 >
-                  Descending Price
+                  Giá giảm dần
                 </UnderlineButton>
               </Link>
               <NavLink

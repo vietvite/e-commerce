@@ -3,13 +3,14 @@ import style from "./ListPendingOrder.module.scss";
 import Bill from "../Bill/Bill";
 const data = [
   {
-    id: "1",
+    id: "13457468567945456",
     sellerId: "sellerID",
     customerId: "customerID",
     list: [
       {
         id: "5ea3c6ffb8bb2e1d65401811",
-        title: "product 3",
+        title:
+          "product 3 product 3 product 3 product 3 product 3product 3product 3 product 3",
         price: 112313,
         description: "abcabc",
         stock: 12,
@@ -83,12 +84,13 @@ const data = [
         avarageStar: 0,
       },
     ],
+    createDate: "26/04/2020",
     listQuantity: [1, 5, 2],
     totalPrice: 123123,
     isAccept: false,
   },
   {
-    id: "1",
+    id: "1456457475467",
     sellerId: "sellerID",
     customerId: "customerID",
     list: [
@@ -168,6 +170,7 @@ const data = [
         avarageStar: 0,
       },
     ],
+    createDate: "26/04/2020",
     listQuantity: [1, 1, 5],
     totalPrice: 123123,
     isAccept: false,

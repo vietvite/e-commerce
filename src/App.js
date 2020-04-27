@@ -26,7 +26,7 @@ function App() {
         <Route component={PageNotFound} />
       </Switch>
     </Layout>
-  )
+  );
 }
 
 export default App;

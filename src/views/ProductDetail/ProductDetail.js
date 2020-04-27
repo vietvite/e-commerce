@@ -5,7 +5,7 @@ import { getProductDetail } from "../../redux/product/actionCreator";
 import Container from "../../components/CombineComponents/Container/Container";
 import { Star } from "react-feather";
 import { parseCurrency } from "../../commons";
-import QuantityForm from "../../components/BaseComponents/QuantityForm/QuantityForm";
+import config from "../../config";
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class ProductDetail extends React.Component {
       quantity: 0,
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     let productId = this.props.match.params.productId;
     this.props.getProductDetail(productId);
   }
@@ -38,34 +38,40 @@ class ProductDetail extends React.Component {
   starsCount = () => {
     let product = this.props.product;
     let reviewStar = product.reviewStar;
-    let starsCount =
-      reviewStar._1star * 1 +
-      reviewStar._2star * 2 +
-      reviewStar._3star * 3 +
-      reviewStar._4star * 4 +
-      reviewStar._5star * 5;
+    let starsCount = !!reviewStar
+      ? reviewStar._1star * 1 +
+        reviewStar._2star * 2 +
+        reviewStar._3star * 3 +
+        reviewStar._4star * 4 +
+        reviewStar._5star * 5
+      : 0;
     return starsCount;
   };
 
   reviewsCount = () => {
     let product = this.props.product;
     let reviewStar = product.reviewStar;
-    let n =
-      reviewStar._1star +
-      reviewStar._2star +
-      reviewStar._3star +
-      reviewStar._4star +
-      reviewStar._5star;
-    n = n <= 0 ? 0 : n;
+    let n = !!reviewStar
+      ? reviewStar._1star +
+        reviewStar._2star +
+        reviewStar._3star +
+        reviewStar._4star +
+        reviewStar._5star
+      : 0;
     return n;
   };
   loadReviewStar = () => {
-    let starsCount = this.starsCount();
-    let reviewsCount = this.reviewsCount();
-    let n = Math.round(starsCount / reviewsCount) || 0;
+    let totalStars = this.starsCount();
+    let totalReviews = this.reviewsCount();
+    let starCount = Math.round(totalStars / totalReviews) || 0;
     let stars = [];
-    for (let i = 0; i < n; i++) {
-      stars.push(<Star key={i} />);
+    for (let i = 0; i < starCount; i++) {
+      stars.push(
+        <Star key={i} className={`${style.reviewStar}  ${style.fill}`} />
+      );
+    }
+    for (let i = 0; i < 5 - starCount; i++) {
+      stars.push(<Star key={i + starCount} className={style.reviewStar} />);
     }
     return stars;
   };
@@ -75,7 +81,7 @@ class ProductDetail extends React.Component {
         <div className={style.productDetail}>
           <div className={style.productImage}>
             <img
-              src={this.props.product.imageUrl}
+              src={`${config.baseURL}${this.props.product.imageUrl}`}
               alt={this.props.product.title}
             />
           </div>
@@ -88,7 +94,10 @@ class ProductDetail extends React.Component {
                 {this.loadReviewStar()} | {this.reviewsCount()} đánh giá
               </div>
               <div className={style.price}>
-                Giá: {parseCurrency(this.props.product.price)}đ |{" "}
+                Giá:{" "}
+                {!!this.props.product
+                  ? `${parseCurrency(this.props.product.price)}đ`
+                  : ""}
                 {this.props.product.stock} trong kho
               </div>
               <div className={style.quantity}>

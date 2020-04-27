@@ -3,8 +3,8 @@ import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART,
 const initState = {
   list: [],
   favorites: [],
-  orderLater: []
-}
+  orderLater: [],
+};
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -13,37 +13,34 @@ export default (state = initState, action) => {
      */
     case ADD_CART:
       return Object.assign({}, state, {
-        list: [
-          action.payload,
-          ...state.list
-        ]
-      })
+        list: [action.payload, ...state.list],
+      });
 
     case UPDATE_QUANTITY:
       return Object.assign({}, state, {
-        list: state.list.map(
-          product =>
-            product.id === action.id
-              ? { ...product, quantity: action.quantity }
-              : product)
-      })
+        list: state.list.map((product) =>
+          product.id === action.id
+            ? { ...product, quantity: action.quantity }
+            : product
+        ),
+      });
 
     case REMOVE_CART:
       return Object.assign({}, state, {
-        list: state.list.filter(product => product.id !== action.id)
-      })
+        list: state.list.filter((product) => product.id !== action.id),
+      });
 
     case UPDATE_LIST_CART:
       return Object.assign({}, state, {
-        list: action.payload
-      })
+        list: action.payload,
+      });
 
     case DESTROY_CART:
       return {
         list: [],
         favorites: [],
-        orderLater: []
-      }
+        orderLater: [],
+      };
 
     /**
      * FAVORITE
@@ -93,6 +90,6 @@ export default (state = initState, action) => {
       })
 
     default:
-      return state
+      return state;
   }
-}
+};
