@@ -4,9 +4,10 @@ import { infinityNumber } from "../commons";
 const ProductService = {
   getProductOfShop: () => http().get("/product/shop"),
   findById: (id) => http().get(`/product/${id}`),
-  deleteById: (productId) => http().post(`/product/delete`, productId),
+  deleteById: (productId) => http().post(`/product/delete/${productId}`),
   getHomeProductSection: () => http().get("/product/home"),
-  addProduct: (listProduct) => http().post("/product", listProduct),
+  addProduct: (product) => http().post("/product", product),
+  editProduct: (product) => http().post("/product/edit", product),
   getProduct: (
     {
       title = "",

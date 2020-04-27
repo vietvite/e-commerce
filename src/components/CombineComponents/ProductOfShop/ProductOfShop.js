@@ -33,9 +33,6 @@ class ProductOfShop extends React.Component {
   handleClick = () => {
     this.setState({ product: "" }, this.toggleForm());
   };
-  handleDelete = (productId) => {
-    this.props.deleteProduct(productId);
-  };
   render() {
     return (
       <div className={style.productOfShop}>
@@ -76,7 +73,7 @@ class ProductOfShop extends React.Component {
                   <td>
                     <X
                       className={style.red}
-                      onClick={() => this.handleDelete(product.id)}
+                      onClick={() => this.props.deleteProduct(product.id)}
                     />
                   </td>
                 </tr>

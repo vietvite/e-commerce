@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import {
   addNewProduct,
   getProductOfShop,
+  editProduct,
 } from "../../../redux/product/actionCreator";
 
 class ProductForm extends React.Component {
@@ -38,15 +39,15 @@ class ProductForm extends React.Component {
       document.getElementById("productErr").innerText =
         "Thông tin sản phẩm không hợp lệ";
     } else {
+      let category;
+      for (let i = 0, n = this.props.categoryList.length; i < n; i++) {
+        if (this.state.categoryId === this.props.categoryList[i].id) {
+          category = this.props.categoryList[i];
+          break;
+        }
+      }
       let button = event.target.innerText;
       if (button === "Tạo mới") {
-        let category;
-        for (let i = 0, n = this.props.categoryList.length; i < n; i++) {
-          if (this.state.categoryId === this.props.categoryList[i].id) {
-            category = this.props.categoryList[i];
-            break;
-          }
-        }
         let product = {
           title: this.state.title,
           price: this.state.price,
@@ -56,9 +57,21 @@ class ProductForm extends React.Component {
           imageUrl: "",
           createAt: new Date(),
         };
-        this.props.addProduct([product]);
-        this.props.toggleForm();
+        this.props.addProduct(product);
+      } else {
+        let product = {
+          ...this.props.product,
+          title: this.state.title,
+          price: this.state.price,
+          stock: this.state.stock,
+          category: category,
+          description: this.state.description,
+          imageUrl: this.props.product.imageUrl,
+          updateAt: new Date(),
+        };
+        this.props.editProduct(product);
       }
+      this.props.toggleForm();
     }
   };
 
@@ -173,7 +186,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addProduct: (product) => {
       dispatch(addNewProduct(product));
-      dispatch(getProductOfShop());
+    },
+    editProduct: (product) => {
+      dispatch(editProduct(product));
     },
   };
 };

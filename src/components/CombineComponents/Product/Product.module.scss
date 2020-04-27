@@ -4,12 +4,14 @@
   width: calc(100% / 5);
   height: 250px;
   padding: 0 10px 0 10px;
+  margin-bottom: 1rem;
 
   .productName {
     display: block;
     height: 75%;
     text-decoration: none;
     color: $black;
+    overflow-wrap: break-word;
     &:hover {
       color: $blue-7;
     }
@@ -17,7 +19,7 @@
       display: block;
       margin: 0 auto;
       height: 80%;
-      // width: 100%;
+      margin-bottom: 5px;
     }
   }
   .productMetaInfo {

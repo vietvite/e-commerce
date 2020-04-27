@@ -49,7 +49,6 @@ const mapDispatchToProps = (dispatch) => {
     getProduct: (filter, sortCondition) => {
       let url = new URL(window.location.href);
       let categoryId = url.searchParams.get("categoryId");
-      // dispatch(setFilter({ ...filter, categoryId }));
       dispatch(getProduct({ ...filter, categoryId }, sortCondition));
     },
     loadMore: (filter, sortCondition, page) =>

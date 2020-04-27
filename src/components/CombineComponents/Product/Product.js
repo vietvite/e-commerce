@@ -63,9 +63,9 @@ class Product extends React.Component {
             className={style.productImage}
             alt={this.props.item.title}
           />
-          {this.props.item.title.length < 40
+          {this.props.item.title.length < 35
             ? this.props.item.title
-            : this.props.item.title.slice(0, 37) + "..."}
+            : this.props.item.title.slice(0, 34) + "..."}
         </NavLink>
         <div className={style.productMetaInfo}>
           <div className={style.review}>

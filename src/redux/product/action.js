@@ -5,7 +5,6 @@ import {
   SORT_PRODUCT,
   SET_FILTER,
   GET_PRODUCT_DETAIL,
-  ADD_PRODUCT,
   GET_PRODUCT_OF_SHOP,
   DELETE_PRODUCT,
 } from "./constants";
@@ -52,15 +51,6 @@ export const receiveProductDetail = (product) => {
     payload: {
       product,
       fetching: false,
-    },
-  };
-};
-
-export const addProduct = (listProduct) => {
-  return {
-    type: ADD_PRODUCT,
-    payload: {
-      listProduct,
     },
   };
 };

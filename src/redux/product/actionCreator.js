@@ -39,8 +39,14 @@ export const getProductDetail = (productId) => (dispatch) => {
   });
 };
 
-export const addNewProduct = (listProduct) => (dispatch) => {
-  return ProductService.addProduct(listProduct).then((res) => {
+export const addNewProduct = (product) => (dispatch) => {
+  return ProductService.addProduct(product).then((res) => {
+    dispatch(receiveListProduct([...res.data]));
+  });
+};
+
+export const editProduct = (product) => (dispatch) => {
+  return ProductService.editProduct(product).then((res) => {
     dispatch(receiveListProduct([...res.data]));
   });
 };
