@@ -50,6 +50,10 @@ class FormSignUp extends React.Component {
       phoneNumber: this.state.phoneNumber,
     }
     this.props.setError({})
+    // true: signup for seller, false: signup for customer
+    if (this.props.type === 2) {
+      credentials.role = 'ROLE_SELLER';
+    }
     this.props.signup(credentials)
   }
   validate() {
@@ -90,7 +94,7 @@ class FormSignUp extends React.Component {
   render() {
     return (
       <div className={style.formSignUp}>
-        <h1>ĐĂNG KÝ</h1>
+        <h1>{this.props.type === 1? "ĐĂNG KÝ" : "ĐĂNG KÝ MỞ SHOP"}</h1>
         <span>{this.props.errors.message}</span>
         <form>
           <div className={style.formGroupBody}>
