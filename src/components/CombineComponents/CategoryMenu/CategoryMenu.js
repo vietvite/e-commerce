@@ -19,14 +19,14 @@ const headPhoneIcon = <span className={styles.icon}><Headphones className={style
 const cameraIcon = <span className={styles.icon}><Camera className={styles.indigo} strokeWidth='1.3px' size='1.3rem' /></span>
 
 const listIconMapping = {
-  '/category/books': bookIcon,
-  '/category/smartphone': phoneIcon,
-  '/category/homeelectric': tvIcon,
-  '/category/fashion': fashionIcon,
-  '/category/health-beauty': heart,
-  '/category/laptop': laptop,
-  '/category/smartdigitals': smartDevice,
-  '/category/fashion-accessories': fashionAccessories,
+  'Sách': bookIcon,
+  'Điện thoại': phoneIcon,
+  'Điện gia dụng': tvIcon,
+  'Thời trang': fashionIcon,
+  'Sức khỏe, làm đẹp': heart,
+  'Máy tính': laptop,
+  'Thiết bị thông minh': smartDevice,
+  'Phụ kiện thời trang': fashionAccessories,
 
   '/digitalaccessories': headPhoneIcon,
   '/camera': cameraIcon,
@@ -49,8 +49,14 @@ class CategoryMenu extends React.Component {
   mapIcon() {
     return this.props.listCategory.map(category => ({
       ...category,
-      icon: listIconMapping[category.url]
+      icon: listIconMapping[category.name]
     }))
+  }
+
+  mapUrl(list = []) {
+    return list.reduce((newList, category) =>
+      ([...newList, { ...category, url: `/product?categoryId=${category.id}` }]),
+      [])
   }
 
   toggleDropdown() {
@@ -75,7 +81,7 @@ class CategoryMenu extends React.Component {
 
         {this.state.showSideBar && (
           <OutsideAlerter clickInsideCallback={this.delayCloseDropdown} clickOutsideCallback={this.toggleDropdown}>
-            <DropdownMenu listMenu={this.mapIcon()} />
+            <DropdownMenu listMenu={this.mapUrl(this.mapIcon())} />
           </OutsideAlerter>
         )}
       </>
