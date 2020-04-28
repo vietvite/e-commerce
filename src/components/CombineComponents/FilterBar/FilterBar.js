@@ -31,7 +31,7 @@ class FilterBar extends React.Component {
     );
   }
 }
-// export default FilterBar;
+
 const mapStateToProps = (state) => {
   return {
     filter: state.product.filter,

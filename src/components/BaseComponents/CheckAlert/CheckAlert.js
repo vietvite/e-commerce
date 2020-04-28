@@ -2,7 +2,7 @@ import React from "react";
 import style from "./CheckAlert.module.scss";
 import { hideCheckAlert } from "../../../redux/cart/action";
 import { connect } from "react-redux";
-// import config from "../../../config";
+import config from "../../../config";
 
 class CheckAlert extends React.Component {
   componentDidMount() {
@@ -12,7 +12,10 @@ class CheckAlert extends React.Component {
   render() {
     return (
       <div className={style.checkAlert} id="checkAlert">
-        <img src={"assets/check.png"} alt="check" />
+        <img
+          src={`${config.baseURL}/img/check.png`}
+          alt="check"
+        />
       </div>
     );
   }

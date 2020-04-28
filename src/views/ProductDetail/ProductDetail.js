@@ -6,6 +6,8 @@ import Container from "../../components/CombineComponents/Container/Container";
 import { Star } from "react-feather";
 import { parseCurrency } from "../../commons";
 import config from "../../config";
+import { addCartRequest } from "../../redux/cart/actionCreator";
+import { push } from "connected-react-router";
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -25,7 +27,9 @@ class ProductDetail extends React.Component {
       quantity--;
       quantity = quantity < 0 ? 0 : quantity;
     } else {
-      quantity++;
+      if (quantity < this.props.product.stock) {
+        quantity++;
+      }
     }
     this.setState({ quantity: quantity });
   };
@@ -33,7 +37,9 @@ class ProductDetail extends React.Component {
   handleChange = (event) => {
     let quantity = event.target.value;
     quantity = parseInt(quantity) || 0;
-    this.setState({ quantity: quantity });
+    if (quantity <= this.props.product.stock) {
+      this.setState({ quantity: quantity });
+    }
   };
   starsCount = () => {
     let product = this.props.product;
@@ -109,8 +115,30 @@ class ProductDetail extends React.Component {
                 <button onClick={() => this.handleClick("+")}>+</button>
               </div>
               <div className={style.action}>
-                <button>Thêm vào giỏ hàng</button>
-                <button>Mua ngay</button>
+                <button
+                  disabled={this.state.quantity === 0}
+                  onClick={() =>
+                    this.props.addCartRequest(
+                      this.props.product.id,
+                      this.props.product,
+                      this.state.quantity
+                    )
+                  }
+                >
+                  Thêm vào giỏ hàng
+                </button>
+                <button
+                  disabled={this.state.quantity === 0}
+                  onClick={() =>
+                    this.props.buyNow(
+                      this.props.product.id,
+                      this.props.product,
+                      this.state.quantity
+                    )
+                  }
+                >
+                  Mua ngay
+                </button>
               </div>
             </div>
             <div className={style.description}>
@@ -131,6 +159,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getProductDetail: (productId) => {
       dispatch(getProductDetail(productId));
+    },
+    addCartRequest: (productId, product, quantity) =>
+      dispatch(addCartRequest(productId, product, quantity)),
+    buyNow: (productId, product, quantity) => {
+      dispatch(addCartRequest(productId, product, quantity));
+      dispatch(push("/cart"));
     },
   };
 };
