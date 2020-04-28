@@ -87,6 +87,7 @@ export const addOrderLaterRequest = (productId, product) =>
     OrderLaterService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
+          dispatch(showCheckAlert())
           return dispatch(addOrderLater(product))
         } else if (res.data.code === -1) {
           return dispatch(removeCart(productId))
