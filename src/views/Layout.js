@@ -12,11 +12,11 @@ import { toggleForm } from "../redux/form/action";
 
 class Layout extends React.Component {
   render() {
-    // if (this.props.user) {
-    //   setTimeout(() => {
-    //     this.props.fetchCartIfNeeded()
-    //   }, 500);
-    // }
+    if (this.props.user && this.props.user.role === "ROLE_CUSTOMER") {
+      setTimeout(() => {
+        this.props.fetchCartIfNeeded()
+      }, 500);
+    }
     const authenticatedMenu = <AccountButton {...this.props.user} />;
     const unAuthenticatedMenu = (
       <AuthGroupButton toggleFormModal={this.toggleFormModal} />

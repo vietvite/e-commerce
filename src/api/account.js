@@ -5,5 +5,6 @@ export const AccountService = {
   getAccountDetail: address => http().get(`/account`),
   updateAccount: account => http().post(`/account`, { ...account }),
   updateAddress: address => http().post(`/account/address`, { ...address }),
-  addBill: bill => http().post(`/bill`, { ...bill }),
+  addCustomerBill: bill => http().post(`/bill`),
+  addSellerBill: (sellerId, bill) => http().post(`/shop/pending/${sellerId}`, { ...bill }),
 }

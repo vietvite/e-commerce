@@ -12,6 +12,7 @@ import PageNotFound from "./components/CombineComponents/PageNotFound/PageNotFou
 import OrderLater from "./views/OrderLater/OrderLater";
 import CheckAlert from "./components/BaseComponents/CheckAlert/CheckAlert";
 import { connect } from "react-redux";
+import Payment from './views/Payment/Payment'
 
 class App extends React.Component {
   render() {
@@ -27,6 +28,7 @@ class App extends React.Component {
           <Route path="/favorites" component={FavoriteList} />
           <Route path="/orderlater" component={OrderLater} />
           <Route path="/shop/:tab" component={SellerDashBoard} />
+          <Route path="/payment" component={Payment} />
           <Route component={PageNotFound} />
         </Switch>
       </Layout>
