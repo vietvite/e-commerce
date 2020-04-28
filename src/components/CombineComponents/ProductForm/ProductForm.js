@@ -12,11 +12,11 @@ class ProductForm extends React.Component {
     super(props);
     this.state = {
       title: this.props.product.title || "",
-      price: this.props.product.price || "",
-      stock: this.props.product.stock || "",
+      price: this.props.product.price || 0,
+      stock: this.props.product.stock || 0,
       categoryId: !!this.props.product.category
         ? this.props.product.category.id
-        : "",
+        : this.props.categoryList[0].id,
       description: this.props.product.description || "",
     };
   }
@@ -26,8 +26,8 @@ class ProductForm extends React.Component {
   }
 
   validateInfo = () => {
-    let { title, price, stock, category, description } = this.state;
-    return !!title || !!price || !!stock || !!category || !!description
+    let { title, price, stock, categoryId, description } = this.state;
+    return !!title && !!price && !!stock && !!categoryId && !!description
       ? false
       : true;
   };
@@ -82,8 +82,21 @@ class ProductForm extends React.Component {
     }
   };
 
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleTextChange = (event) => {
+    let value = event.target.value;
+    this.setState({ [event.target.name]: value });
+  };
+
+  handleNumberChange = (event) => {
+    let value = event.target.value;
+    if (!!value === false) {
+      this.setState({ [event.target.name]: 0 });
+    } else {
+      let number = parseInt(value);
+      if (!!number) {
+        this.setState({ [event.target.name]: number });
+      }
+    }
   };
 
   loadCategory = () => {
@@ -109,43 +122,39 @@ class ProductForm extends React.Component {
       >
         <form className={style.table}>
           <h3>Thông tin sản phẩm</h3>
+          <span id="productErr" className={style.err}></span>
           {!!this.props.product && (
             <label>ID: {this.props.product.id || ""}</label>
           )}
-          <span id="productErr" className={style.err}></span>
           <label>
             Tên sản phẩm: <br />
             <input
               name="title"
-              type="text"
               value={this.state.title}
-              onChange={this.handleChange}
+              onChange={this.handleTextChange}
             />
           </label>
           <label>
             Giá: <br />
             <input
               name="price"
-              type="text"
               value={this.state.price}
-              onChange={this.handleChange}
+              onChange={this.handleNumberChange}
             />
           </label>
           <label>
             Trong kho: <br />
             <input
               name="stock"
-              type="text"
               value={this.state.stock}
-              onChange={this.handleChange}
+              onChange={this.handleNumberChange}
             />
           </label>
           <label>
             Loại: <br />
             <select
               name="categoryId"
-              type="text"
-              onChange={this.handleChange}
+              onChange={this.handleTextChange}
               value={this.state.categoryId}
             >
               {this.loadCategory()}
@@ -155,9 +164,8 @@ class ProductForm extends React.Component {
             Mô tả: <br />
             <textarea
               name="description"
-              type="text"
               value={this.state.description}
-              onChange={this.handleChange}
+              onChange={this.handleTextChange}
             />
           </label>
           <div className={style.tableFooter}>
@@ -174,7 +182,7 @@ class ProductForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    categoryList: state.category.categoryList,
+    categoryList: state.category,
   };
 };
 
