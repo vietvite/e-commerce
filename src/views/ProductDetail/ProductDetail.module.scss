@@ -5,15 +5,17 @@
   flex-wrap: wrap;
   margin-bottom: 40px;
   .productImage {
-    width: 30%;
+    width: 35%;
     height: 450px;
+    padding-right: 20px;
     img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
     }
   }
   .productInfo {
-    width: 70%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     .general {

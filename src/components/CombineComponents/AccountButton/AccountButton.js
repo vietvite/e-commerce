@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChevronDown, FileText, Heart, Box, LogOut } from 'react-feather'
+import { ChevronDown, FileText, Heart, Box, LogOut, Archive, Clipboard } from 'react-feather'
 import ButtonTransparent from '../../BaseComponents/ButtonTransparent/ButtonTransparent'
 import styles from './AccountButton.module.scss'
 import DropdownMenu from '../../BaseComponents/DropdownMenu/DropdownMenu'
@@ -10,11 +10,22 @@ const favListIcon = <span className={styles.favListIcon}><Heart color='white' st
 const orderLaterIcon = <span className={styles.orderLaterIcon}><Box color='white' strokeWidth='1px' size='1.2rem' /></span>
 const logOutIcon = <span className={styles.logOutIcon}><LogOut color='white' strokeWidth='1px' size='1.2rem' /></span>
 
-const listMenu = [
+const listCustomerMenu = [
   { icon: orderListIcon, name: 'Đơn hàng', url: '/bills', },
   { icon: favListIcon, name: 'Danh sách yêu thích', url: '/favorites' },
   { icon: orderLaterIcon, name: 'Danh sách mua sau', url: '/orderlater' },
   { icon: logOutIcon, name: 'Đăng xuất', url: '/logout' },
+]
+
+const productIcon = <span className={styles.productIcon}><Archive color='white' strokeWidth='1px' size='1.2rem' /></span>
+const pendingOrderIcon = <span className={styles.pendingOrderIcon}><FileText color='white' strokeWidth='1px' size='1.2rem' /></span>
+const billIcon = <span className={styles.billIcon}><Clipboard color='white' strokeWidth='1px' size='1.2rem' /></span>
+
+const listSellerMenu = [
+  { icon: productIcon, name: 'Sản phẩm đang bán', url: '/shop/product' },
+  { icon: pendingOrderIcon, name: 'Đơn hàng đang chờ', url: '/shop/order' },
+  { icon: billIcon, name: 'Đơn hàng đã giao', url: '/shop/bills' },
+  { icon: logOutIcon, name: 'Đăng xuất', url: '/logout' }
 ]
 
 export default class AccountButton extends React.Component {
@@ -35,7 +46,7 @@ export default class AccountButton extends React.Component {
 
   /**
    * Delay dropdown closing, after click route be executed.
-   * Use this because dropdown menu is using OutsideAlerter 
+   * Use this because dropdown menu is using OutsideAlerter
    * which is immediately execute callback when click inside it.
    */
   delayToggle() {
@@ -44,7 +55,7 @@ export default class AccountButton extends React.Component {
     }, 200);
   }
   render() {
-    const { fullname } = this.props
+    const { fullname, role } = this.props
     return (
       <div className={styles.account}>
         <div onMouseDown={this.toggleDropdown} >
@@ -57,7 +68,7 @@ export default class AccountButton extends React.Component {
         {this.state.dropdownOpen && (
           <OutsideAlerter clickOutsideCallback={this.toggleDropdown} clickInsideCallback={this.delayToggle} >
             <div className={styles.dropdownWrapper}>
-              <DropdownMenu listMenu={listMenu} />
+              <DropdownMenu listMenu={role === 'ROLE_CUSTOMER'? listCustomerMenu: listSellerMenu} />
             </div>
           </OutsideAlerter>
         )}

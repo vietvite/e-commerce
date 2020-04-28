@@ -15,10 +15,11 @@ export const signup = ({
   email,
   fullname,
   password,
-  phoneNumber
+  phoneNumber,
+  role
 }) => dispatch => {
   dispatch(requesting())
-  return AuthService.signup({ email, fullname, password, phoneNumber })
+  return AuthService.signup({ email, fullname, password, phoneNumber, role })
     .then(resSuccessHandler(dispatch))
     .catch(resErrorHandler(dispatch))
 }
@@ -41,7 +42,11 @@ function resSuccessHandler(dispatch) {
     if (res.status === 200) {
       dispatch(setUser(res.data))
       window.sessionStorage.setItem('jwt', res.data.token)
-      dispatch(push('/'))
+      if (res.data.role === 'ROLE_SELLER') {
+        dispatch(push('/shop/product'));
+      } else {
+        dispatch(push('/'))
+      }
       dispatch(setError({}))
     }
   }

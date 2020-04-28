@@ -87,7 +87,8 @@ class Product extends React.Component {
                     this.props.addCartRequest(
                       id,
                       this.props.item,
-                      this.props.user
+                      this.props.user,
+                      this.props.cart
                     )
                   }
                 >
@@ -123,19 +124,16 @@ class Product extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.account.user,
+    cart: state.cart.list,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addCartRequest: (productId, product, user) => {
-
+  addCartRequest: (productId, product, user, cart) => {
     if (user === null) {
-
       dispatch(showFormLogin());
       dispatch(toggleForm());
     } else if (user.role === "ROLE_CUSTOMER") {
-      console.log('asdfasdfasdf');
-
       dispatch(addCartRequest(productId, product));
     }
   },

@@ -7,4 +7,8 @@ export const AccountService = {
   updateAddress: address => http().post(`/account/address`, { ...address }),
   addCustomerBill: bill => http().post(`/bill`),
   addSellerBill: (sellerId, bill) => http().post(`/shop/pending/${sellerId}`, { ...bill }),
+  getPendingBill: () => http().get('/shop/pending'),
+  acceptPendingBill: (billId) => http().post(`/shop/bill/${billId}`),
+  getPaidBill: () => http().get().get('/shop/history'),
+  denyPendingBill: (billId) => http().delete(`/shop/bill/${billId}`)
 }

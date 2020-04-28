@@ -2,6 +2,8 @@ import React from "react";
 import style from "./Footer.module.scss";
 import { PhoneCall } from "react-feather";
 import Container from "../Container/Container";
+import { toggleForm, showFormSeller } from "../../../redux/form/action";
+import { connect } from "react-redux";
 
 class Footer extends React.Component {
   render() {
@@ -158,7 +160,7 @@ class Footer extends React.Component {
                     id="register-mail-form"
                     className={style.footerRegisterForm}
                   >
-                    <button type="submit" name="">
+                    <button type="submit" name="" onClick={this.props.toggleModal}>
                       Mở shop ngay
                     </button>
                   </form>
@@ -234,4 +236,13 @@ class Footer extends React.Component {
     );
   }
 }
-export default Footer;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    toggleModal: (event) => {
+      event.preventDefault();
+      dispatch(showFormSeller());
+      dispatch(toggleForm());
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(Footer);

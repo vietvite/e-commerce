@@ -4,16 +4,22 @@ import { FavoriteService } from "../../api/favorite";
 import { OrderLaterService } from "../../api/orderlater";
 
 export const getAllCartProduct = () =>
-  dispatch =>
+  dispatch => {
     CartService.getAll()
-      .then(res => {
-        console.log({ DATA: [...res.data] });
+      .then(res =>
+        dispatch(fetchCart([...res.data])))
+  }
 
-        dispatch(fetchCart([...res.data]))
-      })
-
-export const addCartRequest = (productId, product) =>
-  dispatch =>
+export const addCartRequest = (productId, product) => (dispatch, getState) => {
+  const [productExisted] = getState().cart.list.filter(product => product.id === productId)
+  if (productExisted) {
+    CartService.updateQuantityById(productExisted.id, productExisted.quantity + 1).then(res => {
+      if (res.data.code === 1) {
+        dispatch(showCheckAlert())
+        dispatch(updateQuantity(productId, productExisted.quantity + 1))
+      }
+    })
+  } else {
     CartService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
@@ -21,6 +27,8 @@ export const addCartRequest = (productId, product) =>
           return dispatch(addCart({ ...product, quantity: 1 }))
         }
       })
+  }
+}
 
 export const removeCartRequest = (productId) =>
   dispatch =>
@@ -105,6 +113,7 @@ export const addBackToCartRequest = (productId, product) =>
       return CartService.updateQuantityById(productId, productExisted.quantity + 1)
         .then(res => {
           if (res.data.code === 1) {
+            dispatch(showCheckAlert())
             dispatch(updateQuantity(productId, productExisted.quantity + 1))
             dispatch(removeOrderLater(productId))
           }

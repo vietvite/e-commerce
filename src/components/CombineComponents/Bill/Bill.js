@@ -2,6 +2,11 @@ import React from "react";
 import style from "./Bill.module.scss";
 import { parseCurrency } from "../../../commons/index";
 import { X, Check } from "react-feather";
+import {
+  acceptPendingBill,
+  denyPendingBill,
+} from "../../../redux/payment/actionCreator";
+import { connect } from "react-redux";
 class Bill extends React.Component {
   render() {
     return (
@@ -16,8 +21,11 @@ class Bill extends React.Component {
           </colgroup>
           <thead>
             <tr>
-              <th colSpan="2">ID: {this.props.bill.id}</th>
-              <th colSpan="3">Ngày tạo: {this.props.bill.createDate}</th>
+              <th colSpan="1">ID: {this.props.bill.id}</th>
+              <th colSpan="2">Ngày tạo: {this.props.bill.createDate}</th>
+              <th colSpan="2">
+                Ngày giao hàng: {this.props.bill.deliveryDate}
+              </th>
             </tr>
             <tr className={style.grayBackground2}>
               <th>Tên sản phẩm</th>
@@ -58,8 +66,18 @@ class Bill extends React.Component {
                 </span>
                 {!this.props.bill.isAccept && (
                   <>
-                    <X className={style.x} />
-                    <Check className={style.check} />
+                    <X
+                      className={style.x}
+                      onClick={() =>
+                        this.props.denyPendingBill(this.props.bill.id)
+                      }
+                    />
+                    <Check
+                      className={style.check}
+                      onClick={() =>
+                        this.props.acceptPendingBill(this.props.bill.id)
+                      }
+                    />
                   </>
                 )}
               </td>
@@ -70,4 +88,16 @@ class Bill extends React.Component {
     );
   }
 }
-export default Bill;
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    acceptPendingBill: (billId) => {
+      dispatch(acceptPendingBill(billId));
+    },
+    denyPendingBill: (billId) => {
+      dispatch(denyPendingBill(billId));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Bill);

@@ -1,13 +1,17 @@
 import moment from 'moment'
 import 'moment/locale/vi'
-import { SET_ADDRESS, SET_ACCOUNT_DETAIL, SET_DELIVERY_INFO } from "./constants";
+import { SET_ADDRESS, SET_ACCOUNT_DETAIL, SET_DELIVERY_INFO, SET_PENDING_BILL, SET_PAID_BILL } from "./constants";
 
 const initState = {
   freeShippingThreshold: 250000,
   shippingFee: 20000,
   deliveryInfo: {
     deliveryDate: moment().add(3, 'days').format('L')
-  }
+  },
+  address: {},
+  account: {},
+  pendingBill: [],
+  bill: []
 }
 
 export default (state = initState, action) => {
@@ -34,6 +38,10 @@ export default (state = initState, action) => {
         }
       })
 
+    case SET_PENDING_BILL:
+      return Object.assign({}, state, { pendingBill: action.payload.pendingBill })
+    case SET_PAID_BILL:
+      return Object.assign({}, state, { bill: action.payload.paidBill })
     default:
       return state
   }
