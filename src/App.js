@@ -10,24 +10,34 @@ import FavoriteList from "./views/FavoriteList/FavoriteList";
 import SellerDashBoard from "./views/SellerDashboard/SellerDashBoard";
 import PageNotFound from "./components/CombineComponents/PageNotFound/PageNotFound";
 import OrderLater from "./views/OrderLater/OrderLater";
-import Payment from './views/Payment/Payment';
+import CheckAlert from "./components/BaseComponents/CheckAlert/CheckAlert";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <Layout>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/product" component={ListProductByCategory} />
-        <Route path="/detail/:productId" component={ProductDetail} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/favorites" component={FavoriteList} />
-        <Route path="/orderlater" component={OrderLater} />
-        <Route path="/shop/:tab" component={SellerDashBoard} />
-        <Route path='/payment' component={Payment} />
-        <Route component={PageNotFound} />
-      </Switch>
-    </Layout>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <Layout>
+        {this.props.checkAlert && <CheckAlert />}
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/product" component={ListProductByCategory} />
+          <Route path="/detail/:productId" component={ProductDetail} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/favorites" component={FavoriteList} />
+          <Route path="/orderlater" component={OrderLater} />
+          <Route path="/shop/:tab" component={SellerDashBoard} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </Layout>
+    );
+  }
 }
-export default App;
+// export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    checkAlert: state.cart.checkAlert,
+  };
+};
+
+export default connect(mapStateToProps)(App);

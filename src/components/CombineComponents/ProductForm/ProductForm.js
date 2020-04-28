@@ -6,6 +6,8 @@ import {
   addNewProduct,
   editProduct,
 } from "../../../redux/product/actionCreator";
+import http from "../../../api/http";
+import FormInput from "../../BaseComponents/FormInput/FormInput";
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class ProductForm extends React.Component {
         ? this.props.product.category.id
         : this.props.categoryList[0].id,
       description: this.props.product.description || "",
+      selectedFile: "",
     };
   }
 
@@ -26,8 +29,20 @@ class ProductForm extends React.Component {
   }
 
   validateInfo = () => {
-    let { title, price, stock, categoryId, description } = this.state;
-    return !!title && !!price && !!stock && !!categoryId && !!description
+    let {
+      title,
+      price,
+      stock,
+      categoryId,
+      description,
+      selectedFile,
+    } = this.state;
+    return !!title &&
+      !!price &&
+      !!stock &&
+      !!categoryId &&
+      !!description &&
+      !!selectedFile
       ? false
       : true;
   };
@@ -51,9 +66,9 @@ class ProductForm extends React.Component {
           title: this.state.title,
           price: this.state.price,
           stock: this.state.stock,
+          imageUrl: "/img/product/" + this.state.selectedFile,
           category: category,
           description: this.state.description,
-          imageUrl: "",
           createAt: new Date(),
         };
         this.props.addProduct(product);
@@ -113,6 +128,30 @@ class ProductForm extends React.Component {
     return content;
   };
 
+  handleFileChange = (event) => {
+    event.preventDefault();
+    this.setState(
+      {
+        selectedFile: event.target.files[0],
+      },
+      () => this.uploadImage()
+    );
+  };
+
+  uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", this.state.selectedFile);
+    //Append the rest data then send
+    http()
+      .post("/product/image", formData)
+      .then((res) => {
+        this.setState({ selectedFile: res.data });
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  };
+
   render() {
     return (
       <div
@@ -128,26 +167,32 @@ class ProductForm extends React.Component {
           )}
           <label>
             Tên sản phẩm: <br />
-            <input
+            <FormInput
+              type="text"
               name="title"
               value={this.state.title}
-              onChange={this.handleTextChange}
+              textChangeHandler={this.handleTextChange}
             />
+          </label>
+          <label>
+            Hình ảnh: <input type="file" onChange={this.handleFileChange} />
           </label>
           <label>
             Giá: <br />
-            <input
+            <FormInput
+              type="number"
               name="price"
               value={this.state.price}
-              onChange={this.handleNumberChange}
+              textChangeHandler={this.handleNumberChange}
             />
           </label>
           <label>
-            Trong kho: <br />
-            <input
+            Số lượng hàng: <br />
+            <FormInput
+              type="number"
               name="stock"
               value={this.state.stock}
-              onChange={this.handleNumberChange}
+              textChangeHandler={this.handleNumberChange}
             />
           </label>
           <label>

@@ -8,26 +8,15 @@ import Modal from "../components/CombineComponents/Modal/Modal";
 import { connect } from "react-redux";
 import { fetchCartIfNeeded } from "../redux/cart/actionCreator";
 import CheckAlert from "../components/BaseComponents/CheckAlert/CheckAlert";
+import { toggleForm } from "../redux/form/action";
 
 class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showForm: false,
-      form: 1,
-    };
-  }
-  toggleFormModal = (form) => {
-    this.setState({ showForm: !this.state.showForm });
-    this.setState({ form: form });
-  };
-
   render() {
-    if (this.props.user) {
-      setTimeout(() => {
-        this.props.fetchCartIfNeeded()
-      }, 500);
-    }
+    // if (this.props.user) {
+    //   setTimeout(() => {
+    //     this.props.fetchCartIfNeeded()
+    //   }, 500);
+    // }
     const authenticatedMenu = <AccountButton {...this.props.user} />;
     const unAuthenticatedMenu = (
       <AuthGroupButton toggleFormModal={this.toggleFormModal} />
@@ -43,10 +32,10 @@ class Layout extends React.Component {
 
         <Footer />
 
-        {this.state.showForm && !this.props.user ? (
+        {this.props.form.showModal && !this.props.user ? (
           <Modal
-            form={this.state.form}
-            toggleFormModal={this.toggleFormModal}
+            form={this.props.form.form}
+            toggleFormModal={this.props.toggleModal}
           />
         ) : (
             ""
@@ -60,8 +49,10 @@ class Layout extends React.Component {
 const mapStateToProps = (state) => ({
   user: state.account.user,
   checkAlert: state.cart.checkAlert,
+  form: state.form
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetchCartIfNeeded: () => dispatch(fetchCartIfNeeded())
+  fetchCartIfNeeded: () => dispatch(fetchCartIfNeeded()),
+  toggleModal: () => dispatch(toggleForm())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

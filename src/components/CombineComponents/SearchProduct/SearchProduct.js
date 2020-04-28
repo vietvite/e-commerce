@@ -3,10 +3,8 @@ import styles from "./SearchProduct.module.scss";
 import { Search } from "react-feather";
 import { connect } from "react-redux";
 import {
-  searchProduct,
   getProduct,
 } from "../../../redux/product/actionCreator";
-import { Redirect } from "react-router-dom";
 import { push } from "connected-react-router";
 
 class SearchProduct extends Component {
