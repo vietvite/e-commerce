@@ -4,8 +4,12 @@ import { Star, ShoppingCart, Heart } from "react-feather";
 import { connect } from "react-redux";
 import config from "../../../config";
 import { NavLink } from "react-router-dom";
-import { addCartRequest, addFavoriteRequest } from "../../../redux/cart/actionCreator";
+import {
+  addCartRequest,
+  addFavoriteRequest,
+} from "../../../redux/cart/actionCreator";
 import { parseCurrency } from "../../../commons/utils";
+import { showFormLogin, toggleForm } from "../../../redux/form/action";
 
 class Product extends React.Component {
   getTotalStars = () => {
@@ -48,7 +52,7 @@ class Product extends React.Component {
 
   render() {
     let { id, title, url, imageUrl, seller, price, stock } = this.props.item;
-    const isInStock = stock > 0
+    const isInStock = stock > 0;
     return (
       <div className={style.product}>
         <NavLink
@@ -77,15 +81,33 @@ class Product extends React.Component {
               {`${parseCurrency(this.props.item.price)}đ`}
             </div>
             <div className={style.action}>
-              {
-                isInStock && <button
-                  onClick={() => this.props.addCartRequest(id, this.props.item)}>
+              {isInStock && (
+                <button
+                  onClick={() =>
+                    this.props.addCartRequest(
+                      id,
+                      this.props.item,
+                      this.props.user
+                    )
+                  }
+                >
                   <ShoppingCart size="15px" />
                 </button>
-              }
+              )}
               <button
                 onClick={() =>
-                  this.props.addFavorite(id, { id, title, url, imageUrl, seller, price })
+                  this.props.addFavorite(
+                    id,
+                    {
+                      id,
+                      title,
+                      url,
+                      imageUrl,
+                      seller,
+                      price,
+                    },
+                    this.props.user
+                  )
                 }
               >
                 <Heart size="15px" />
@@ -98,8 +120,32 @@ class Product extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  addCartRequest: (productId, product) => dispatch(addCartRequest(productId, product)),
-  addFavorite: (id, product) => dispatch(addFavoriteRequest(id, product))
-})
-export default connect(null, mapDispatchToProps)(Product);
+const mapStateToProps = (state) => {
+  return {
+    user: state.account.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  addCartRequest: (productId, product, user) => {
+
+    if (user === null) {
+
+      dispatch(showFormLogin());
+      dispatch(toggleForm());
+    } else if (user.role === "ROLE_CUSTOMER") {
+      console.log('asdfasdfasdf');
+
+      dispatch(addCartRequest(productId, product));
+    }
+  },
+  addFavorite: (id, product, user) => {
+    if (user === null) {
+      dispatch(showFormLogin());
+      dispatch(toggleForm());
+    } else if (user.role === "ROLE_CUSTOMER") {
+      dispatch(addFavoriteRequest(id, product));
+    }
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

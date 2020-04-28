@@ -8,39 +8,40 @@ import { parseCurrency } from "../../commons";
 import config from "../../config";
 import { addCartRequest } from "../../redux/cart/actionCreator";
 import { push } from "connected-react-router";
+import { showFormLogin, toggleForm } from "../../redux/form/action";
 
 class ProductDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 0,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     quantity: 0,
+  //   };
+  // }
   componentDidMount() {
     let productId = this.props.match.params.productId;
     this.props.getProductDetail(productId);
   }
 
-  handleClick = (operator) => {
-    let quantity = this.state.quantity;
-    if (operator === "-") {
-      quantity--;
-      quantity = quantity < 0 ? 0 : quantity;
-    } else {
-      if (quantity < this.props.product.stock) {
-        quantity++;
-      }
-    }
-    this.setState({ quantity: quantity });
-  };
+  // handleClick = (operator) => {
+  //   let quantity = this.state.quantity;
+  //   if (operator === "-") {
+  //     quantity--;
+  //     quantity = quantity < 0 ? 0 : quantity;
+  //   } else {
+  //     if (quantity < this.props.product.stock) {
+  //       quantity++;
+  //     }
+  //   }
+  //   this.setState({ quantity: quantity });
+  // };
 
-  handleChange = (event) => {
-    let quantity = event.target.value;
-    quantity = parseInt(quantity) || 0;
-    if (quantity <= this.props.product.stock) {
-      this.setState({ quantity: quantity });
-    }
-  };
+  // handleChange = (event) => {
+  //   let quantity = event.target.value;
+  //   quantity = parseInt(quantity) || 0;
+  //   if (quantity <= this.props.product.stock) {
+  //     this.setState({ quantity: quantity });
+  //   }
+  // };
   starsCount = () => {
     let product = this.props.product;
     let reviewStar = product.reviewStar;
@@ -106,34 +107,34 @@ class ProductDetail extends React.Component {
                   : ""}{" "}
                 |{this.props.product.stock} trong kho
               </div>
-              <div className={style.quantity}>
+              {/* <div className={style.quantity}>
                 <button onClick={() => this.handleClick("-")}>-</button>
                 <input
                   value={this.state.quantity}
                   onChange={this.handleChange}
                 />
                 <button onClick={() => this.handleClick("+")}>+</button>
-              </div>
+              </div> */}
               <div className={style.action}>
                 <button
-                  disabled={this.state.quantity === 0}
+                  disabled={this.props.product.stock <= 0}
                   onClick={() =>
                     this.props.addCartRequest(
                       this.props.product.id,
                       this.props.product,
-                      this.state.quantity
+                      this.props.user
                     )
                   }
                 >
                   Thêm vào giỏ hàng
                 </button>
                 <button
-                  disabled={this.state.quantity === 0}
+                  disabled={this.props.product.stock <= 0}
                   onClick={() =>
                     this.props.buyNow(
                       this.props.product.id,
                       this.props.product,
-                      this.state.quantity
+                      this.props.user
                     )
                   }
                 >
@@ -153,6 +154,7 @@ class ProductDetail extends React.Component {
 const mapStateToProps = (state) => {
   return {
     product: state.product.product,
+    user: state.account.user,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -160,11 +162,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getProductDetail: (productId) => {
       dispatch(getProductDetail(productId));
     },
-    addCartRequest: (productId, product, quantity) =>
-      dispatch(addCartRequest(productId, product, quantity)),
-    buyNow: (productId, product, quantity) => {
-      dispatch(addCartRequest(productId, product, quantity));
-      dispatch(push("/cart"));
+    addCartRequest: (productId, product, user) => {
+      if (user === null) {
+        dispatch(showFormLogin());
+        dispatch(toggleForm());
+      } else if (user.role === "ROLE_CUSTOMER") {
+        dispatch(addCartRequest(productId, product));
+      }
+    },
+    buyNow: (productId, product, user) => {
+      if (user === null) {
+        dispatch(showFormLogin());
+        dispatch(toggleForm());
+      } else if (user.role === "ROLE_CUSTOMER") {
+        dispatch(addCartRequest(productId, product));
+        dispatch(push("/cart"));
+      }
     },
   };
 };
