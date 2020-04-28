@@ -112,8 +112,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setSortCondition(sortCondition));
     },
     setFilter: (categoryId, filter) => {
-      console.log({ ...filter, categoryId, title: "" });
-
       dispatch(setFilter({ ...filter, categoryId, title: "" }));
     },
   };
