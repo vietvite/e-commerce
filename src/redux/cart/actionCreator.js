@@ -1,5 +1,5 @@
 import { CartService } from "../../api/cart";
-import { fetchCart, addCart, removeCart, updateQuantity, addFavorite, replaceListFavorite, removeFavorite, replaceListOrderLater, addOrderLater, addBackToCart, removeOrderLater } from "./action";
+import { fetchCart, addCart, removeCart, updateQuantity, addFavorite, replaceListFavorite, removeFavorite, replaceListOrderLater, addOrderLater, addBackToCart, removeOrderLater, showCheckAlert } from "./action";
 import { FavoriteService } from "../../api/favorite";
 import { OrderLaterService } from "../../api/orderlater";
 
@@ -14,6 +14,7 @@ export const addCartRequest = (productId, product) =>
     CartService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
+          dispatch(showCheckAlert())
           return dispatch(addCart({ ...product, quantity: 1 }))
         }
       })
@@ -54,6 +55,7 @@ export const addFavoriteRequest = (productId, product) =>
     FavoriteService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
+          dispatch(showCheckAlert())
           return dispatch(addFavorite(product))
         }
       })

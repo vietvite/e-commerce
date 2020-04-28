@@ -1,4 +1,4 @@
-import { ADD_CART, REMOVE_CART, ADD_FAVORITE, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART, REMOVE_FAVORITE, REPLACE_LIST_FAVORITE, REPLACE_LIST_ORDER_LATER, ADD_ORDER_LATER, ADD_BACKTO_CART, REMOVE_ORDER_LATER } from "./constants";
+import { ADD_CART, REMOVE_CART, ADD_FAVORITE, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART, REMOVE_FAVORITE, REPLACE_LIST_FAVORITE, REPLACE_LIST_ORDER_LATER, ADD_ORDER_LATER, ADD_BACKTO_CART, REMOVE_ORDER_LATER, SHOW_CHECKALERT, HIDE_CHECKALERT } from "./constants";
 
 export const addCart = (product) => ({
   type: ADD_CART,
@@ -58,4 +58,12 @@ export const addBackToCart = product => ({
 export const removeOrderLater = id => ({
   type: REMOVE_ORDER_LATER,
   id
+})
+
+export const showCheckAlert = () => ({
+  type: SHOW_CHECKALERT
+})
+
+export const hideCheckAlert = () => ({
+  type: HIDE_CHECKALERT
 })
