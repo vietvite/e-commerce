@@ -5,16 +5,26 @@ import styles from "./MenuItem.module.scss";
 import { setFilter } from "../../../redux/product/action";
 import { connect } from "react-redux";
 import { getProduct } from "../../../redux/product/actionCreator";
+import { push } from "connected-react-router";
 
 class MenuItem extends React.Component {
   onClick = () => {
-    // this.props.setFilter(this.props.id, this.props.filter);
-    this.props.getProduct({ ...this.props.filter , categoryId: this.props.id}, this.props.sortCondition);
+    if (!!this.props.id) {
+      this.props.getProduct(
+        { ...this.props.filter, categoryId: this.props.id },
+        this.props.sortCondition
+      );
+      this.props.redirect(`/product?categoryId=${this.props.id}`);
+    }
   };
   render() {
     return (
       <NavLink
-        to={`/product?categoryId=${this.props.id}`}
+        to={
+          !!this.props.id
+            ? `/product?categoryId=${this.props.id}`
+            : this.props.url
+        }
         className={styles.menuItem}
         onClick={this.onClick}
       >
@@ -54,6 +64,7 @@ const mapDispatchToProps = (dispatch) => {
         );
       }
     },
+    redirect: (url) => dispatch(push(url)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MenuItem);

@@ -9,13 +9,13 @@ export const getAllCartProduct = () =>
       .then(res =>
         dispatch(fetchCart([...res.data])))
 
-export const addCartRequest = (productId, product) =>
+export const addCartRequest = (productId, product, quantity = 1) =>
   dispatch =>
     CartService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
           dispatch(showCheckAlert())
-          return dispatch(addCart({ ...product, quantity: 1 }))
+          return dispatch(addCart({ ...product, quantity: quantity }))
         }
       })
 
