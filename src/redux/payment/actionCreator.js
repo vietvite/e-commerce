@@ -57,8 +57,8 @@ export const getPaidBill = () => dispatch => {
   })
 }
 
-export const denyPendingBill = () => dispatch => {
-  return PaymentService.denyPendingBill().then(res => {
+export const denyPendingBill = (billId) => dispatch => {
+  return PaymentService.denyPendingBill(billId).then(res => {
     dispatch(getPendingBill());
   })
 }

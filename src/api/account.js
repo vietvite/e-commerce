@@ -7,7 +7,7 @@ export const PaymentService = {
   updateAddress: address => http().post(`/account/address`, { ...address }),
 
   getPendingBill: () => http().get('/shop/pending'),
-  acceptPendingBill: () => http().post('/shop/bill/{billId}'),
+  acceptPendingBill: (billId) => http().post(`/shop/bill/${billId}`),
   getPaidBill: () => http().get().get('/shop/history'),
-  denyPendingBill: () => http().delete('/shop/bill/{billId}')
+  denyPendingBill: (billId) => http().delete(`/shop/bill/${billId}`)
 }

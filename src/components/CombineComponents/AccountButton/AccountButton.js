@@ -22,7 +22,7 @@ const pendingOrderIcon = <span className={styles.pendingOrderIcon}><FileText col
 const billIcon = <span className={styles.billIcon}><Clipboard color='white' strokeWidth='1px' size='1.2rem' /></span>
 
 const listSellerMenu = [
-  { icon: productIcon, name: 'Sản phẩm', url: '/shop/product' },
+  { icon: productIcon, name: 'Sản phẩm đang bán', url: '/shop/product' },
   { icon: pendingOrderIcon, name: 'Đơn hàng đang chờ', url: '/shop/order' },
   { icon: billIcon, name: 'Đơn hàng đã giao', url: '/shop/bills' },
   { icon: logOutIcon, name: 'Đăng xuất', url: '/logout' }
