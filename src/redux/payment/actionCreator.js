@@ -2,7 +2,6 @@ import { AccountService } from "../../api/account";
 import { setAddress, setAccountDetail, setPendingBill, setPaidBill } from "./action";
 import { push } from "connected-react-router";
 import { fetchCart } from "../cart/action";
-import { PaymentService } from "../../api/account";
 
 export const getAddressRequest = () =>
   dispatch =>
@@ -101,25 +100,25 @@ export const addBillRequest = () =>
   }
 
 export const getPendingBill = () => dispatch => {
-  return PaymentService.getPendingBill().then(res => {
+  return AccountService.getPendingBill().then(res => {
     dispatch(setPendingBill(res.data));
   })
 }
 
 export const acceptPendingBill = (billId) => dispatch => {
-  return PaymentService.acceptPendingBill(billId).then(res => {
+  return AccountService.acceptPendingBill(billId).then(res => {
     dispatch(getPendingBill());
   })
 }
 
 export const getPaidBill = () => dispatch => {
-  return PaymentService.getPaidBill().then(res => {
+  return AccountService.getPaidBill().then(res => {
     dispatch(setPaidBill(res.data));
   })
 }
 
 export const denyPendingBill = (billId) => dispatch => {
-  return PaymentService.denyPendingBill(billId).then(res => {
+  return AccountService.denyPendingBill(billId).then(res => {
     dispatch(getPendingBill());
   })
 }
