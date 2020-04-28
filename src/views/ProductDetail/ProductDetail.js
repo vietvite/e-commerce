@@ -6,7 +6,9 @@ import Container from "../../components/CombineComponents/Container/Container";
 import { Star } from "react-feather";
 import { parseCurrency } from "../../commons";
 import config from "../../config";
-import { addCartRequest } from "../../redux/cart/actionCreator";
+import {
+  addCartRequest,
+} from "../../redux/cart/actionCreator";
 import { push } from "connected-react-router";
 import { showFormLogin, toggleForm } from "../../redux/form/action";
 
@@ -122,7 +124,8 @@ class ProductDetail extends React.Component {
                     this.props.addCartRequest(
                       this.props.product.id,
                       this.props.product,
-                      this.props.user
+                      this.props.user,
+                      this.props.cart
                     )
                   }
                 >
@@ -134,7 +137,8 @@ class ProductDetail extends React.Component {
                     this.props.buyNow(
                       this.props.product.id,
                       this.props.product,
-                      this.props.user
+                      this.props.user,
+                      this.props.cart
                     )
                   }
                 >
@@ -155,6 +159,7 @@ const mapStateToProps = (state) => {
   return {
     product: state.product.product,
     user: state.account.user,
+    cart: state.cart.list,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -162,7 +167,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getProductDetail: (productId) => {
       dispatch(getProductDetail(productId));
     },
-    addCartRequest: (productId, product, user) => {
+    addCartRequest: (productId, product, user, cart) => {
       if (user === null) {
         dispatch(showFormLogin());
         dispatch(toggleForm());
@@ -170,7 +175,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(addCartRequest(productId, product));
       }
     },
-    buyNow: (productId, product, user) => {
+    buyNow: (productId, product, user, cart) => {
       if (user === null) {
         dispatch(showFormLogin());
         dispatch(toggleForm());
