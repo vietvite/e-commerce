@@ -6,6 +6,8 @@ import {
   addNewProduct,
   editProduct,
 } from "../../../redux/product/actionCreator";
+import Axios from "axios";
+import http from "../../../api/http";
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class ProductForm extends React.Component {
         ? this.props.product.category.id
         : this.props.categoryList[0].id,
       description: this.props.product.description || "",
+      selectedFile: "",
     };
   }
 
@@ -51,9 +54,9 @@ class ProductForm extends React.Component {
           title: this.state.title,
           price: this.state.price,
           stock: this.state.stock,
+          imageUrl: "/img/product/" + this.state.selectedFile,
           category: category,
           description: this.state.description,
-          imageUrl: "",
           createAt: new Date(),
         };
         this.props.addProduct(product);
@@ -113,6 +116,30 @@ class ProductForm extends React.Component {
     return content;
   };
 
+  handleFileChange = (event) => {
+    event.preventDefault();
+    this.setState(
+      {
+        selectedFile: event.target.files[0],
+      },
+      () => this.uploadImage()
+    );
+  };
+
+  uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", this.state.selectedFile);
+    //Append the rest data then send
+    http()
+      .post("/product/image", formData)
+      .then((res) => {
+        this.setState({ selectedFile: res.data });
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  };
+
   render() {
     return (
       <div
@@ -133,6 +160,10 @@ class ProductForm extends React.Component {
               value={this.state.title}
               onChange={this.handleTextChange}
             />
+          </label>
+          <label>
+            Hình ảnh: <br />
+            <input type="file" onChange={this.handleFileChange} />
           </label>
           <label>
             Giá: <br />
