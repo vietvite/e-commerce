@@ -1,5 +1,5 @@
 import { PaymentService } from "../../api/account";
-import { setAddress, setAccountDetail } from "./action";
+import { setAddress, setAccountDetail, setPendingBill, setPaidBill } from "./action";
 
 export const getAddressRequest = () =>
   dispatch =>
@@ -39,3 +39,26 @@ export const accountDetailRequest = () =>
         dispatch(setAccountDetail(res.data))
       })
 
+export const getPendingBill = () => dispatch => {
+  return PaymentService.getPendingBill().then(res => {
+    dispatch(setPendingBill(res.data));
+  })
+}
+
+export const acceptPendingBill = (billId) => dispatch => {
+  return PaymentService.acceptPendingBill(billId).then(res => {
+    dispatch(getPendingBill());
+  })
+}
+
+export const getPaidBill = () => dispatch => {
+  return PaymentService.getPaidBill().then(res => {
+    dispatch(setPaidBill(res.data));
+  })
+}
+
+export const denyPendingBill = () => dispatch => {
+  return PaymentService.denyPendingBill().then(res => {
+    dispatch(getPendingBill());
+  })
+}

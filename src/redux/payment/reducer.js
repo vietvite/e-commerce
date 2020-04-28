@@ -1,10 +1,12 @@
-import { SET_ADDRESS, SET_ACCOUNT_DETAIL } from "./constants";
+import { SET_ADDRESS, SET_ACCOUNT_DETAIL, SET_PENDING_BILL, SET_PAID_BILL } from "./constants";
 
 const initState = {
   freeShippingThreshold: 250000,
   shippingFee: 20000,
   address: {},
-  account: {}
+  account: {},
+  pendingBill: [],
+  bill: []
 }
 
 export default (state = initState, action) => {
@@ -18,6 +20,10 @@ export default (state = initState, action) => {
         account: action.account
       })
 
+    case SET_PENDING_BILL:
+      return Object.assign({}, state, { pendingBill: action.payload.pendingBill })
+    case SET_PAID_BILL:
+      return Object.assign({}, state, {bill: action.payload.paidBill})
     default:
       return state
   }
