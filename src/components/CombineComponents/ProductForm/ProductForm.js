@@ -6,7 +6,6 @@ import {
   addNewProduct,
   editProduct,
 } from "../../../redux/product/actionCreator";
-import Axios from "axios";
 import http from "../../../api/http";
 
 class ProductForm extends React.Component {
@@ -29,8 +28,20 @@ class ProductForm extends React.Component {
   }
 
   validateInfo = () => {
-    let { title, price, stock, categoryId, description } = this.state;
-    return !!title && !!price && !!stock && !!categoryId && !!description
+    let {
+      title,
+      price,
+      stock,
+      categoryId,
+      description,
+      selectedFile,
+    } = this.state;
+    return !!title &&
+      !!price &&
+      !!stock &&
+      !!categoryId &&
+      !!description &&
+      !!selectedFile
       ? false
       : true;
   };
