@@ -10,9 +10,10 @@ import config from '../../config'
 class Cart extends Component {
   showCart() {
     if (this.props.cart.length) {
-      const totalPrice = calcCostProductList(this.props.cart);
       const cartCount = countProductList(this.props.cart);
-      const shippingFee = 21000;
+
+      const { shippingFee, totalPrice, freeShippingThreshold } = this.props
+      const shipping = totalPrice > freeShippingThreshold ? 0 : shippingFee
 
       return (
         <div className={cartBody}>
@@ -21,7 +22,7 @@ class Cart extends Component {
           </h2>
           <div>
             <CartList listProduct={this.props.cart} />
-            <CartTotal {...{ totalPrice, shippingFee }} />
+            <CartTotal {...{ totalPrice, shipping }} />
           </div>
         </div>
       )
@@ -39,6 +40,14 @@ class Cart extends Component {
 }
 const mapStateToProps = (state) => ({
   cart: state.cart.list,
+  shippingFee: state.payment.shippingFee,
+  freeShippingThreshold: state.payment.freeShippingThreshold,
+  totalPrice: ((state) => {
+    const total = calcCostProductList(state.cart.list)
+    return total > state.payment.freeShippingThreshold
+      ? total :
+      total + state.payment.shippingFee
+  })(state),
 });
 
 export default connect(mapStateToProps)(Cart);
