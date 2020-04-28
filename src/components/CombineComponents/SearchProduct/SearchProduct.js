@@ -6,6 +6,8 @@ import {
   searchProduct,
   getProduct,
 } from "../../../redux/product/actionCreator";
+import { Redirect } from "react-router-dom";
+import { push } from "connected-react-router";
 
 class SearchProduct extends Component {
   constructor() {
@@ -25,7 +27,13 @@ class SearchProduct extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.doSearch(this.state.text);
+    console.log(this.props.filter);
+    !!this.state.text &&
+      this.props.doSearch(
+        this.state.text,
+        this.props.filter,
+        this.props.sortCondition
+      );
   }
 
   render() {
@@ -56,7 +64,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     doSearch: (title, filter, sortCondition) => {
-      dispatch(getProduct({ ...filter, title }, sortCondition));
+      console.log({ ...filter, title, categoryId: "" });
+      dispatch(push(`/product?title=${title}`));
+      dispatch(getProduct({ ...filter, title, categoryId: "" }, sortCondition));
     },
   };
 };
