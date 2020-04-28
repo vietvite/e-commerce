@@ -2,40 +2,56 @@ import React from 'react'
 import FormInput from '../../BaseComponents/FormInput/FormInput'
 import styles from './AddressForm.module.scss'
 import RedButtonLg from '../../BaseComponents/RedButtonLg/RedButtonLg'
-import { PHONENUMBER_REGEX } from '../../../commons'
+import { PHONENUMBER_REGEX, FULLNAME_REGEX } from '../../../commons'
 
 class AddressForm extends React.Component {
   constructor() {
     super()
-    this.state = {
-      fullname: '',
-      phoneNumber: '',
-      email: '',
-      provinceOrCity: '',
-      districtOrTown: '',
-      subDistrictOrVillage: '',
-      detailAddress: '',
-    }
     this.textChangeHandler = this.textChangeHandler.bind(this)
     this.formSubmit = this.formSubmit.bind(this)
   }
 
   textChangeHandler({ target: { name, value } }) {
-    this.setState({
+    this.props.setDeliveryInfo({
       [name]: value
     })
   }
+  validate(field, regex) {
 
-  formSubmit() {
-    if (!PHONENUMBER_REGEX.test(this.state.phoneNumber)) {
-      return this.props.setError({ phoneNumber: 'Số điện thoại không đúng.' })
-    }
-    this.props.onSubmit(this.state)
-    this.props.setError({})
   }
 
-  componentDidMount() {
-    this.setState(Object.assign({}, this.state, this.props))
+  formSubmit() {
+    if (!this.props.fullname) {
+      return this.props.setError({ fullname: 'Chưa nhập họ và tên.' })
+    }
+    if (!FULLNAME_REGEX.test(this.props.fullname)) {
+      return this.props.setError({ fullname: 'Họ và tên phải có ít nhất 5 ký tự.' })
+    }
+    if (!this.props.phoneNumber) {
+      return this.props.setError({ phoneNumber: 'Chưa nhập số điện thoại.' })
+    }
+    if (!PHONENUMBER_REGEX.test(this.props.phoneNumber)) {
+      console.log({ phoneNumber: this.props.phoneNumber });
+      console.log(!PHONENUMBER_REGEX.test(this.props.phoneNumber));
+
+
+      return this.props.setError({ phoneNumber: 'Số điện thoại không đúng.' })
+    }
+    if (!this.props.provinceOrCity) {
+      return this.props.setError({ provinceOrCity: 'Chưa nhập tỉnh / thành phố.' })
+    }
+    if (!this.props.districtOrTown) {
+      return this.props.setError({ districtOrTown: 'Chưa nhập quận / huyện.' })
+    }
+    if (!this.props.subDistrictOrVillage) {
+      return this.props.setError({ subDistrictOrVillage: 'Chưa nhập phường / xã.' })
+    }
+    if (!this.props.detailAddress) {
+      return this.props.setError({ detailAddress: 'Chưa nhập địa chỉ chi tiết.' })
+    }
+    this.props.onSubmit()
+    this.props.setError({})
+    this.props.close()
   }
 
   render() {
@@ -47,12 +63,12 @@ class AddressForm extends React.Component {
       districtOrTown,
       subDistrictOrVillage,
       detailAddress,
-    } = this.state
+    } = this.props
 
     const { error = {} } = this.props
 
     return (
-      <form className={styles.addressForm} onSubmit={this.formSubmit}>
+      <form className={styles.addressForm} onSubmit={() => this.formSubmit}>
         <div className={styles.formGroup}>
           <div className={styles.label}>Họ và tên: <span>*</span> </div>
           <FormInput

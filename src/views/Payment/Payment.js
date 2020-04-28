@@ -6,15 +6,19 @@ import AddressForm from '../../components/CombineComponents/AddressForm/AddressF
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { parseCurrency, calcCostProductList } from '../../commons'
-import { getAddressRequest, accountDetailRequest, updateDeliveryInfoRequest } from '../../redux/payment/actionCreator'
+import { getAddressRequest, accountDetailRequest, updateDeliveryInfoRequest, addBillRequest } from '../../redux/payment/actionCreator'
 import { setError } from '../../redux/account/action'
+import { setDeliveryInfo } from '../../redux/payment/action'
+
 class Payment extends Component {
   constructor() {
     super()
     this.state = {
-      payments: 'cash'
+      payments: 'cash',
+      showAddressForm: true
     }
     this.radioChangeHandler = this.radioChangeHandler.bind(this)
+    this.showAddressForm = this.showAddressForm.bind(this)
   }
   radioChangeHandler({ target: { name } }) {
     this.setState({
@@ -22,11 +26,18 @@ class Payment extends Component {
     })
   }
   componentDidMount() {
-    Object.keys(this.props.account).length === 0
-      && this.props.requestDetailAccount()
-    Object.keys(this.props.address).length === 0
-      && this.props.requestAddress()
+    this.props.requestDetailAccount()
+    this.props.requestAddress()
+
   }
+  showAddressForm(bool) {
+    if (this.state.showAddressForm !== bool) {
+      this.setState({
+        showAddressForm: bool
+      })
+    }
+  }
+
 
   render() {
     const DeliveryDate = () => (
@@ -66,31 +77,12 @@ class Payment extends Component {
     )
 
     const {
-      deliveryDate = '22/05/2020',
-      address,
       cart,
       totalPrice,
       shippingFee,
-      freeShippingThreshold
+      freeShippingThreshold,
+      deliveryDate
     } = this.props
-
-
-    const { email, phoneNumber, fullname } = this.props.account
-
-    const deliveryInfo = Object.assign({}, { email, phoneNumber, fullname, ...address })
-
-
-    // console.log({ deliveryInfo });
-
-
-    const [blankString] = Object.values(deliveryInfo).filter(notBlankString => !notBlankString)
-
-    console.log({ blankString });
-    console.log({ blankString: !!blankString });
-    console.log({ blankString: !blankString });
-
-
-
 
     const totalCost = totalPrice > freeShippingThreshold
       ? totalPrice
@@ -99,25 +91,27 @@ class Payment extends Component {
 
     return (
       <Container>
-        <h1 className={style.title}>{blankString ? 'Thanh toán đơn hàng' : 'Xác nhận thông tin giao hàng'}</h1>
+        <h1 className={style.title}>{this.state.showAddressForm ? 'Xác nhận thông tin giao hàng' : 'Thanh toán đơn hàng'}</h1>
         <div className={style.payment}>
           <div className={style.method}>
-            {blankString ? (
+            {this.state.showAddressForm ? (
               <>
-                <h2>2. Thanh toán & đặt mua</h2>
-                <DeliveryDate />
-                <PaymentMethod />
-
-                <RedButtonLg>Đặt hàng</RedButtonLg>
+                <h2>1. Thông tin mua hàng</h2>
+                <AddressForm
+                  close={() => this.showAddressForm(false)}
+                  onSubmit={this.props.updateDeliveryInfo}
+                  error={this.props.error}
+                  setError={this.props.setError}
+                  setDeliveryInfo={this.props.setDeliveryInfo}
+                  {...this.props.deliveryInfo} />
               </>
             ) : (
                 <>
-                  <h2>1. Thông tin mua hàng</h2>
-                  <AddressForm
-                    onSubmit={this.props.updateDeliveryInfo}
-                    error={this.props.error}
-                    setError={this.props.setError}
-                    {...deliveryInfo} />
+                  <h2>2. Thanh toán & đặt mua</h2>
+                  <DeliveryDate />
+                  <PaymentMethod />
+
+                  <RedButtonLg onClick={this.props.addBillRequest}>Đặt hàng</RedButtonLg>
                 </>
               )}
           </div>
@@ -146,14 +140,14 @@ class Payment extends Component {
 
 const mapStateToProps = (state) => ({
   cart: state.cart.list,
-  address: state.payment.address,
+  deliveryInfo: state.payment.deliveryInfo,
   shippingFee: state.payment.shippingFee,
+  deliveryDate: state.payment.deliveryInfo.deliveryDate,
   totalPrice: ((state) => {
     const total = calcCostProductList(state.cart.list)
     const { shippingFee, freeShippingThreshold } = state.payment
     return total > freeShippingThreshold ? total : total + shippingFee
   })(state),
-  account: state.payment.account,
   error: state.account.errors
 })
 
@@ -162,5 +156,7 @@ const mapDispatchToProps = dispatch => ({
   requestDetailAccount: () => dispatch(accountDetailRequest()),
   updateDeliveryInfo: deliveryInfo => dispatch(updateDeliveryInfoRequest(deliveryInfo)),
   setError: error => dispatch(setError(error)),
+  setDeliveryInfo: info => dispatch(setDeliveryInfo(info)),
+  addBillRequest: () => dispatch(addBillRequest()),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Payment)

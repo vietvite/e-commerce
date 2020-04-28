@@ -18,7 +18,7 @@ export const updateQuantity = (productId, quantity) => ({
 
 export const fetchCart = listProduct => ({
   type: UPDATE_LIST_CART,
-  payload: listProduct
+  payload: listProduct || []
 })
 
 export const destroyCart = () => ({

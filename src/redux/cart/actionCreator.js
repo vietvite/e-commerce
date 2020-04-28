@@ -6,8 +6,11 @@ import { OrderLaterService } from "../../api/orderlater";
 export const getAllCartProduct = () =>
   dispatch =>
     CartService.getAll()
-      .then(res =>
-        dispatch(fetchCart([...res.data])))
+      .then(res => {
+        console.log({ DATA: [...res.data] });
+
+        dispatch(fetchCart([...res.data]))
+      })
 
 export const addCartRequest = (productId, product, quantity = 1) =>
   dispatch =>
