@@ -7,6 +7,7 @@ import {
   editProduct,
 } from "../../../redux/product/actionCreator";
 import http from "../../../api/http";
+import FormInput from "../../BaseComponents/FormInput/FormInput";
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -166,30 +167,32 @@ class ProductForm extends React.Component {
           )}
           <label>
             Tên sản phẩm: <br />
-            <input
+            <FormInput
+              type="text"
               name="title"
               value={this.state.title}
-              onChange={this.handleTextChange}
+              textChangeHandler={this.handleTextChange}
             />
           </label>
           <label>
-            Hình ảnh: <br />
-            <input type="file" onChange={this.handleFileChange} />
+            Hình ảnh: <input type="file" onChange={this.handleFileChange} />
           </label>
           <label>
             Giá: <br />
-            <input
+            <FormInput
+              type="number"
               name="price"
               value={this.state.price}
-              onChange={this.handleNumberChange}
+              textChangeHandler={this.handleNumberChange}
             />
           </label>
           <label>
-            Trong kho: <br />
-            <input
+            Số lượng hàng: <br />
+            <FormInput
+              type="number"
               name="stock"
               value={this.state.stock}
-              onChange={this.handleNumberChange}
+              textChangeHandler={this.handleNumberChange}
             />
           </label>
           <label>
