@@ -10,6 +10,7 @@ import FavoriteList from './views/FavoriteList/FavoriteList'
 import SellerDashBoard from './views/SellerDashboard/SellerDashBoard';
 import PageNotFound from './components/CombineComponents/PageNotFound/PageNotFound';
 import OrderLater from './views/OrderLater/OrderLater';
+import Payment from './views/Payment/Payment';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/favorites' component={FavoriteList} />
         <Route path='/orderlater' component={OrderLater} />
         <Route path='/shop/:tab' component={SellerDashBoard} />
+        <Route path='/payment' component={Payment} />
         <Route component={PageNotFound} />
       </Switch>
     </Layout>

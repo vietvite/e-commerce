@@ -10,9 +10,16 @@
     height: 40px;
     background: $white;
     color: $gray-8;
-    font-size: 0.9rem;
+    font-size: 1rem;
+
+    &::placeholder {
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    
     &:focus {
       outline: 0;
+      box-shadow: 0 0 3px 1px $blue-3;
     }
   }
   & > div {

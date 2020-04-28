@@ -21,6 +21,7 @@ class FormInput extends React.Component {
           value={this.props.value}
           onChange={this.props.textChangeHandler}
           placeholder={this.props.placeholder}
+          disabled={this.props.disabled}
         />
       </div>
     );
