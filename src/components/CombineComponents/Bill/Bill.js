@@ -89,6 +89,10 @@ class Bill extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  bill: state.
+})
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     acceptPendingBill: (billId) => {
