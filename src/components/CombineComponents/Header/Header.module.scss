@@ -1,0 +1,14 @@
+@import "../../../scss/variable";
+
+header {
+  width: 100%;
+  min-width: 1200px;
+  background-color: $blue-9;
+
+  .container {
+    width: $width-lg;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+}

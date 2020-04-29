@@ -1,0 +1,33 @@
+@import "../../../scss/variable";
+
+.cartTotal {
+  // width: 20%;
+  margin-left: 1rem;
+
+  & > div {
+    margin-bottom: 1.5rem;
+
+    hr {
+      margin-bottom: 1rem;
+    }
+
+    & > p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      & > span {
+        font-weight: bold;
+        color: $blue-7;
+      }
+
+      .totalCost {
+        color: $red-5;
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
+    }
+  }
+}

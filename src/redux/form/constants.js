@@ -1,0 +1,5 @@
+export const TOGGLE_FORM = "TOGGLE_FORM";
+export const SHOW_FORM_LOGIN = "SHOW_FORM_LOGIN";
+export const SHOW_FORM_SIGNUP = "SHOW_FORM_SIGNUP";
+export const SHOW_FORM_SELLER = "SHOW_FORM_SELLER";
+export const HIDE_FORM_SELLER = "HIDE_FORM_SELLER";

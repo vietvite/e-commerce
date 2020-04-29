@@ -1,0 +1,22 @@
+@import "../../../scss/variable";
+
+.cartBtn {
+  position: relative;
+
+  .cartBackground {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    background-color: $orange-5;
+    border-radius: 13px;
+  
+    .cartCount {
+      font-size: 0.9rem;
+      vertical-align: bottom;
+      text-align: center;
+      color: white;
+    }
+  }
+}

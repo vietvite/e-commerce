@@ -1,0 +1,29 @@
+@import "../../../scss/variable";
+
+.style {
+  display: flex;
+  align-items: center;
+  background-color: $gray-2;
+  border: 1px solid $gray-4;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: $black;
+
+  &:focus {
+    outline: none;
+  }
+
+  
+  &:hover {
+    background-color: $gray-3;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $gray-4;
+    cursor: pointer;
+  }
+}

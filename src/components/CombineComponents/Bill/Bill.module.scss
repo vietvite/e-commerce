@@ -1,0 +1,55 @@
+@import "../../../scss/variable";
+
+@import "../../../scss/variable";
+
+.bill {
+  margin-bottom: 20px;
+  table {
+    width: 100%;
+    tr {
+      line-height: 25px;
+    }
+    th,
+    td {
+      vertical-align: middle;
+    }
+    th {
+      font-weight: $medium;
+    }
+    tfoot tr td {
+      vertical-align: middle;
+      span {
+        font-weight: $medium;
+      }
+      .x {
+        color: $red-6;
+        cursor: pointer;
+        &:hover {
+          color: $red-8;
+        }
+      }
+      .check {
+        cursor: pointer;
+        color: $green-5;
+        &:hover{
+          color: $green-7;
+        }
+      }
+    }
+    .alignLeft {
+      text-align: left;
+    }
+    .alignCenter {
+      text-align: center;
+    }
+    .alignRight {
+      text-align: right;
+    }
+    .grayBackground {
+      background-color: $gray-3;
+    }
+    .grayBackground2 {
+      background-color: $gray-5;
+    }
+  }
+}

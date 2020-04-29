@@ -1,0 +1,48 @@
+.Banner {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto 2rem;
+
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  .main {
+    width: 999999px;
+    transition: all 0.5s;
+    height: 500px;
+    .slide {
+      float: left;
+    }
+  }
+  img {
+    width: 1200px;
+    height: 500px;
+    float: left;
+    // transition: transform 0.6s ease-in-out;
+  }
+  .arrowLeft {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+  }
+  .arrowRight {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+  }
+  .box {
+    width: 1200px;
+    overflow: hidden;
+  } ////
+}

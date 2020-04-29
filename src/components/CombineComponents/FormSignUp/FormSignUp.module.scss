@@ -1,0 +1,50 @@
+@import "../../../scss/variable";
+
+.formSignUp {
+  width: 100%;
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  margin: auto;
+  background-color: $white;
+  h1 {
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 20px;
+    font-weight: $medium;
+  }
+  & > span {
+    display: block;
+    text-align: center;
+    color: $red-5;
+    font-size: 1rem;
+    padding-top: .3rem;
+  }
+  .formGroupBody {
+    padding: 30px;
+    .formGroup {
+      margin-bottom: 15px;
+      display: flex;
+      .formGroupItem {
+        flex: 0 0 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        line-height: 26px;
+        color: $gray-5;
+        padding-top: 10px;
+
+      }
+      .formGroupInfo {
+        flex: 1 1;
+      }
+      ::placeholder {
+        font-style: italic;
+      }
+    }
+    .btnSubmitWrap {
+      text-align: center;
+    }
+  }
+}

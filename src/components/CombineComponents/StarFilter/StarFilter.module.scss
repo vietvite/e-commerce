@@ -1,0 +1,28 @@
+@import "../../../scss/variable";
+
+.starFilter {
+  margin-top: 15px;
+  .title {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  button {
+    width: 80px;
+    height: 30px;
+    border: 1px solid $gray-4;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: $white;
+  }
+  button:hover {
+    background-color: $orange-7;
+    color: $black;
+  }
+  .selected {
+    color: $white;
+    border: none;
+    background-color: $orange-5;
+  }
+}

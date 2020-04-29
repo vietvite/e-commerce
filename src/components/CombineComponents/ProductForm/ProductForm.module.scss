@@ -1,0 +1,65 @@
+@import "../../../scss/variable";
+
+.productForm {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  background-color: $gray-8-transparent;
+  .table {
+    margin: auto;
+    width: 40%;
+    background-color: $gray-2;
+    height: 600px;
+    border-radius: 5px;
+    line-height: 30px;
+    .err {
+      margin-left: 50px;
+    }
+    h3 {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: $medium;
+    }
+    label {
+      display: block;
+      padding: 0 50px 0 50px;
+      color: $gray-8;
+      select {
+        color: $gray-8;
+        width: 100%;
+        border-radius: 3px;
+        height: 30px;
+        border: 1px solid $gray-5;
+      }
+      textarea {
+        color: $gray-8;
+        border: 1px solid $gray-5;
+        width: 100%;
+        border-radius: 3px;
+        height: 100px;
+        resize: none;
+        margin-bottom: 10px;
+      }
+    }
+    .tableFooter {
+      margin: 0 50px 0 50px;
+      text-align: right;
+      button {
+        border: none;
+        background-color: $red-7;
+        cursor: pointer;
+        color: $white;
+        height: 40px;
+        margin-right: 10px;
+        width: 90px;
+        border-radius: 3px;
+      }
+    }
+  }
+}

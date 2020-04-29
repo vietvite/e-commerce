@@ -1,0 +1,41 @@
+@import "../../../scss/variable";
+
+.searchForm {
+  width: 100%;
+
+  form {
+    width: 60%;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 0 0 0 1rem;
+      font-size: 1.2rem;
+      border-radius: 2rem;
+      border: none;
+      height: 2.5rem;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 1px 3px $blue-5;
+      }
+    }
+
+    button {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      right: 5px;
+      top: 0;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+
+      svg {
+        color: $blue-5;
+      }
+    }
+  }
+}

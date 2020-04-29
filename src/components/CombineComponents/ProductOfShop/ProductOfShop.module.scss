@@ -1,0 +1,75 @@
+@import "../../../scss/variable";
+
+.productOfShop {
+  .header {
+    width: 100%;
+    margin-bottom: 20px;
+    button {
+      border: none;
+      background-color: $blue-6;
+      color: $white;
+      height: 40px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: $blue-7;
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    margin-bottom: 30px;
+    thead,
+    tbody,
+    tfoot {
+      tr {
+        height: 30px;
+        line-height: 25px;
+        background-color: $gray-5;
+        th {
+          font-weight: $medium;
+          vertical-align: middle;
+        }
+        .leftAlign {
+          text-align: left;
+        }
+        td {
+          vertical-align: middle;
+          text-align: center;
+          .red {
+            color: $red-6;
+            &:hover {
+              color: $red-8;
+            }
+          }
+          span {
+            margin-right: 10px;
+          }
+          button {
+            margin-right: 10px;
+            border: none;
+            height: 30px;
+            width: 90px;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: $red-7;
+            color: $white;
+            &:hover {
+              background-color: $red-8;
+            }
+          }
+        }
+      }
+    }
+    .grayBackground {
+      background-color: $gray-3;
+    }
+    .grayBackground2 {
+      background-color: $gray-2;
+    }
+    .row {
+      cursor: pointer;
+      height: 35px;
+    }
+  }
+}

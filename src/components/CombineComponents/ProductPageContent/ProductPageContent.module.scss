@@ -1,0 +1,25 @@
+@import "../../../scss/variable";
+
+.productPageContent {
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;;
+  }
+  .loadMore {
+    text-align: center;
+    margin-bottom: 50px;
+    button {
+      cursor: pointer;
+      background-color: $blue-7;
+      border: none;
+      height: 40px;
+      width: 100px;
+      color: $white;
+      border-radius: 5px;
+      &:hover {
+        background-color: $blue-5;
+      }
+    }
+  }
+}
