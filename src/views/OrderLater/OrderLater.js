@@ -6,6 +6,7 @@ import { fetchOrderLaterIfNeeded, addBackToCartRequest, removeOrderLaterRequest 
 import CartItem from '../../components/CombineComponents/CartItem/CartItem'
 import ButtonGraySm from '../../components/BaseComponents/ButtonGraySm/ButtonGraySm'
 import { ShoppingCart, Trash2 } from 'react-feather'
+import config from '../../config'
 
 class OrderLater extends Component {
   componentDidMount() {
@@ -34,7 +35,7 @@ class OrderLater extends Component {
                   </ButtonGraySm>
                 </CartItem>)}
             </div>
-          ) : (<div></div>)
+          ) : (<img style={{ display: 'block', margin: '0 auto' }} src={`${config.baseURL}/img/empty-cart.png`} alt='emptycart' />)
         }
       </Container>
     )

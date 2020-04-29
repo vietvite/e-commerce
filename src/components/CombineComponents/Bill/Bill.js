@@ -36,7 +36,7 @@ class Bill extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.bill.list.map((item, index) => (
+            {this.props.bill.listProduct.map((item, index) => (
               <tr
                 key={index}
                 className={index % 2 === 0 ? style.grayBackground : ""}
@@ -47,7 +47,7 @@ class Bill extends React.Component {
                   {parseCurrency(item.price)}đ
                 </td>
                 <td className={style.alignCenter}>
-                  {this.props.bill.listQuantity[index]}
+                  {item.quantity}
                 </td>
                 <td className={style.alignCenter}>
                   {parseCurrency(
@@ -88,10 +88,6 @@ class Bill extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  // bill: state.
-})
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

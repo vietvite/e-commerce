@@ -10,6 +10,10 @@ class Bill extends React.Component {
   componentDidMount() {
     this.props.fetchBill()
   }
+  getDate(date) {
+    const day = new Date(date);
+    return `${day.getDate()}/${day.getMonth() + 1}/${day.getFullYear()}`
+  }
   render() {
     const { listBill } = this.props
     return (
@@ -30,7 +34,7 @@ class Bill extends React.Component {
                   listBill.map(bill => (
                     <tr>
                       <td>{bill.id}</td>
-                      <td>{(bill.orderDate)}</td>
+                      <td>{this.getDate(bill.orderDate)}</td>
                       <td className={style.left}>{bill.listProduct.map(product => (
                         <span>{product.title}</span>
                       ))}</td>
