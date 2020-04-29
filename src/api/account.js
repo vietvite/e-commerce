@@ -6,6 +6,7 @@ export const AccountService = {
   updateAccount: account => http().post(`/account`, { ...account }),
   updateAddress: address => http().post(`/account/address`, { ...address }),
   addCustomerBill: bill => http().post(`/bill`),
+  getCustomerBill: () => http().get(`/bill`),
   addSellerBill: (sellerId, bill) => http().post(`/shop/pending/${sellerId}`, { ...bill }),
   getPendingBill: () => http().get('/shop/pending'),
   acceptPendingBill: (billId) => http().post(`/shop/bill/${billId}`),

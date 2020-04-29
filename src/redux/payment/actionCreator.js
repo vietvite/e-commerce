@@ -67,7 +67,7 @@ export const addBillRequest = () =>
 
     Promise.all([customerBillRequest, ...sellerBillRequests])
       .then(([customerBillRequest, ...sellerBillRequests]) => {
-        dispatch(push('/'))
+        dispatch(push('/bills'))
         dispatch(fetchCart())
       })
 

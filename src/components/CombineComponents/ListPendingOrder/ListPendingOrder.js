@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import style from "./ListPendingOrder.module.scss";
 import Bill from "../Bill/Bill";
+import { connect } from "react-redux";
+import { getPendingBill } from "../../../redux/payment/actionCreator";
+import config from '../../../config'
 const data = [
   {
     id: "13457468567945456",
@@ -178,14 +181,31 @@ const data = [
     isAccept: false,
   },
 ];
-export default class ListPendingOrder extends Component {
+class ListPendingOrder extends Component {
+  componentDidMount() {
+    this.props.getPendingBill()
+  }
   render() {
     return (
       <div className={style.listBill}>
-        {data.map((bill, index) => (
-          <Bill key={index} bill={bill} />
-        ))}
+        {this.props.listPending.length !== 0 ?
+          (this.props.listPending.map((bill, index) => (
+            <Bill key={index} bill={bill} />
+          )))
+          : (
+            <img style={{ display: 'block', margin: '0 auto' }} src={`${config.baseURL}/img/empty-cart.png`} alt='emptycart' />
+          )}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  listPending: state.payment.pendingBill
+})
+
+const mapDispatchToProps = dispatch => ({
+  getPendingBill: () => dispatch(getPendingBill())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListPendingOrder)
