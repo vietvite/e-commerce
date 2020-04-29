@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import style from "./ListBills.module.scss";
 import { NavLink } from "react-router-dom";
-import { parseCurrency } from "../../../commons";
+import { parseCurrency, calcCostProductList } from "../../../commons";
+import { connect } from "react-redux";
+import { getPaidBill } from "../../../redux/payment/actionCreator";
 
-export default class ListBills extends Component {
+class ListBills extends Component {
+  componentDidMount() {
+    this.props.getPaidBill();
+  }
+  getDate = (date) => {
+    let now = new Date(date);
+    return `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`
+  }
   render() {
     return (
       <div className={style.listBill}>
@@ -25,29 +34,24 @@ export default class ListBills extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.bills.map((bill, index) => {
+            {this.props.listBill.map((bill, index) => {
               return (
                 <tr
                   key={index}
                   className={index % 2 === 0 ? style.grayBackground : ""}
                 >
+                  <td className={style.alignLeft}>{bill.id}</td>
+                  <td className={style.alignCenter}>{this.getDate(bill.orderDate)}</td>
                   <td className={style.alignLeft}>
-                    <NavLink
-                      to={`/shop/bills/detail?id=${bill.id}&index=${index}`}
-                    >
-                      {bill.id}
-                    </NavLink>
-                  </td>
-                  <td className={style.alignCenter}>{bill.createDate}</td>
-                  <td className={style.alignLeft}>
-                    {bill.list.length === 1
-                      ? bill.list[0].title
-                      : `${bill.list[0].title} và ${
-                          bill.list.length - 1
+                    {bill.listProduct.length === 1
+                      ? bill.listProduct[0].title
+                      : `${bill.listProduct[0].title} và ${
+                          bill.listProduct.length - 1
                         } sản phẩm`}
                   </td>
                   <td className={style.alignCenter}>
-                    {parseCurrency(bill.totalPrice)}đ
+                    {parseCurrency(calcCostProductList(bill.listProduct || []))}
+                    đ
                   </td>
                   <td className={style.alignCenter}>
                     {bill.isAccept ? "Đã giao hàng" : "Chưa giao hàng"}
@@ -61,3 +65,18 @@ export default class ListBills extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    listBill: state.payment.bill,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getPaidBill: () => {
+      dispatch(getPaidBill());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListBills);

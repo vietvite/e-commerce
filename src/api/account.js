@@ -10,6 +10,6 @@ export const AccountService = {
   addSellerBill: (sellerId, bill) => http().post(`/shop/pending/${sellerId}`, { ...bill }),
   getPendingBill: () => http().get('/shop/pending'),
   acceptPendingBill: (billId) => http().post(`/shop/bill/${billId}`),
-  getPaidBill: () => http().get().get('/shop/history'),
+  getPaidBill: () => http().get('/shop/history'),
   denyPendingBill: (billId) => http().delete(`/shop/bill/${billId}`)
 }

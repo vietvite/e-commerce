@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Bill.module.scss";
-import { parseCurrency } from "../../../commons/index";
+import { parseCurrency, calcCostProductList } from "../../../commons/index";
 import { X, Check } from "react-feather";
 import {
   acceptPendingBill,
@@ -9,6 +9,8 @@ import {
 import { connect } from "react-redux";
 class Bill extends React.Component {
   render() {
+    const orderDate = new Date(this.props.bill.orderDate);
+    const deliveryDate = new Date(this.props.bill.deliveryDate);
     return (
       <div className={style.bill}>
         <table>
@@ -22,9 +24,9 @@ class Bill extends React.Component {
           <thead>
             <tr>
               <th colSpan="1">ID: {this.props.bill.id}</th>
-              <th colSpan="2">Ngày tạo: {this.props.bill.createDate}</th>
+              <th colSpan="2">Ngày tạo: {(`${orderDate.getDate()}/${orderDate.getMonth()+1}/${orderDate.getFullYear()}`)}</th>
               <th colSpan="2">
-                Ngày giao hàng: {this.props.bill.deliveryDate}
+                Ngày giao hàng: {(`${deliveryDate.getDate()}/${deliveryDate.getMonth()+1}/${deliveryDate.getFullYear()}`)}
               </th>
             </tr>
             <tr className={style.grayBackground2}>
@@ -51,7 +53,7 @@ class Bill extends React.Component {
                 </td>
                 <td className={style.alignCenter}>
                   {parseCurrency(
-                    item.price * this.props.bill.listQuantity[index]
+                    item.price * item.quantity
                   )}
                   đ
                 </td>
@@ -62,7 +64,7 @@ class Bill extends React.Component {
             <tr>
               <td colSpan="5" className={style.alignRight}>
                 <span>
-                  Tổng tiền: {parseCurrency(this.props.bill.totalPrice)}đ
+                  Tổng tiền: {calcCostProductList(this.props.listProduct || [])}đ
                 </span>
                 {!this.props.bill.isAccept && (
                   <>
