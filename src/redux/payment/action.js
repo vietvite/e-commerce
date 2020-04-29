@@ -1,27 +1,33 @@
-import { SET_ADDRESS, SET_ACCOUNT_DETAIL, SET_PENDING_BILL, SET_PAID_BILL, SET_DELIVERY_INFO } from "./constants";
+import {
+  SET_ADDRESS,
+  SET_ACCOUNT_DETAIL,
+  SET_PENDING_BILL,
+  SET_PAID_BILL,
+  SET_DELIVERY_INFO,
+} from "./constants";
 
-export const setAddress = address => ({
+export const setAddress = (address) => ({
   type: SET_ADDRESS,
-  address
-})
+  address,
+});
 
-export const setAccountDetail = account => ({
+export const setAccountDetail = (account) => ({
   type: SET_ACCOUNT_DETAIL,
-  account
-})
+  account,
+});
 
-export const setDeliveryInfo = info => ({
+export const setDeliveryInfo = (info) => ({
   type: SET_DELIVERY_INFO,
-  payload: info
-})
+  payload: info,
+});
 export const setPendingBill = (pendingBill) => ({
   type: SET_PENDING_BILL,
   payload: {
-    pendingBill
-  }
-})
+    pendingBill,
+  },
+});
 
 export const setPaidBill = (paidBill) => ({
   type: SET_PAID_BILL,
-  payload: paidBill
-})
+  paidBill,
+});

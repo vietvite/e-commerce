@@ -113,7 +113,7 @@ export const acceptPendingBill = (billId) => dispatch => {
 
 export const getPaidBill = () => dispatch => {
   return AccountService.getPaidBill().then(res => {
-    dispatch(setPaidBill(res.data));
+    dispatch(setPaidBill([...res.data]));
   })
 }
 

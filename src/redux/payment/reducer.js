@@ -39,9 +39,9 @@ export default (state = initState, action) => {
       })
 
     case SET_PENDING_BILL:
-      return Object.assign({}, state, { pendingBill: action.payload.pendingBill })
+      return Object.assign({}, state, { pendingBill: action.payload.pendingBill || [] })
     case SET_PAID_BILL:
-      return Object.assign({}, state, { bill: action.payload.paidBill })
+      return Object.assign({}, state, { bill: action.paidBill || [] })
     default:
       return state
   }
