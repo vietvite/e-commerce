@@ -54,6 +54,11 @@ export const addBillRequest = () =>
     }
 
     const listProduct = getState().cart.list || []
+    if(listProduct.length === 0) {
+      // TODO: notify empty list
+      return
+    }
+    const createBill = createBillForm(address)
 
     const listSellerBills = listProduct.reduce((listBills, product) =>
       checkExistSeller(listBills, product.seller.id)
@@ -89,12 +94,14 @@ export const addBillRequest = () =>
         createBill(product)
       ]
     }
-
-    function createBill(product) {
-      return {
-        sellerId: product.seller.id,
-        listProduct: [product],
-        deliveryAddress: address
+    
+    function createBillForm(address){
+      return function (product) {
+        return {
+          sellerId: product.seller.id,
+          listProduct: [product],
+          deliveryAddress: address
+        }
       }
     }
   }
