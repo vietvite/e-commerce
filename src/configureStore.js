@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger'
 import createRootReducer from './redux'
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
-import { isDev } from './config'
+import { NODE_ENV } from './config'
 import { loadState, saveState } from './api/sessionStorage'
 
 export const history = createBrowserHistory()
@@ -12,11 +12,12 @@ export const history = createBrowserHistory()
 export default function configureStore() {
   const loggerMiddleware = createLogger()
   const getMiddleware = () =>
-    isDev ? applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware,
-      routerMiddleware(history),
-    ) :
+    NODE_ENV === 'production'
+      ? applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware,
+        routerMiddleware(history),
+      ) :
       applyMiddleware(
         thunkMiddleware,
         // TODO: delete line below on production

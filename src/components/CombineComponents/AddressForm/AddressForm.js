@@ -1,7 +1,7 @@
 import React from 'react'
-import FormInput from '../../BaseComponents/FormInput/FormInput'
+import FormInput from 'components/FormInput/FormInput'
 import styles from './AddressForm.module.scss'
-import RedButtonLg from '../../BaseComponents/RedButtonLg/RedButtonLg'
+import RedButtonLg from 'components/RedButtonLg/RedButtonLg'
 import { PHONENUMBER_REGEX, FULLNAME_REGEX } from '../../../commons'
 
 class AddressForm extends React.Component {

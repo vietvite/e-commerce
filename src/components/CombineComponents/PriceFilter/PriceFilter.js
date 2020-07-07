@@ -1,5 +1,5 @@
 import React from "react";
-import PriceInput from "../../BaseComponents/PriceInput/PriceInput";
+import PriceInput from "components/PriceInput/PriceInput";
 import style from "./PriceFilter.module.scss";
 
 class PriceFilter extends React.Component {

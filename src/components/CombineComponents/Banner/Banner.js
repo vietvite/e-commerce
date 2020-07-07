@@ -1,9 +1,9 @@
 import React from "react";
 import { ArrowLeftCircle, ArrowRightCircle } from "react-feather";
 import styles from "./Banner.module.scss";
-import config from '../../../config'
 import { connect } from "react-redux";
-import { fetchBannerIfNeeded } from '../../../redux/banner/actionCreator'
+import { fetchBannerIfNeeded } from 'redux/banner/actionCreator'
+import { BASE_URL } from "config";
 
 let chuyen = 0;
 
@@ -69,7 +69,7 @@ class Banner extends React.Component {
     loadImage = () => {
         const list = this.props.listBanner || []
         return list.map((banner, index) => {
-            return <div key={index} className="slide"><img src={`${config.baseURL}${banner.img}`} alt="banner" /></div>;
+            return <div key={index} className="slide"><img src={`${BASE_URL}${banner.img}`} alt="banner" /></div>;
         })
     }
     render() {

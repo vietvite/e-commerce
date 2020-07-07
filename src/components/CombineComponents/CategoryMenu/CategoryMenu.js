@@ -1,8 +1,8 @@
 import React from 'react'
 import { Book, Tv, Headphones, Camera, Watch, Menu, Smartphone, Heart, Monitor, Airplay, ShoppingBag } from 'react-feather'
-import DropdownMenu from '../../BaseComponents/DropdownMenu/DropdownMenu'
+import DropdownMenu from 'components/DropdownMenu/DropdownMenu'
 import styles from './CategoryMenu.module.scss'
-import OutsideAlerter from '../../BaseComponents/OutsideAlerter/OutsideAlerter'
+import OutsideAlerter from 'components/OutsideAlerter/OutsideAlerter'
 import { connect } from 'react-redux'
 import { fetchCategoryIfNeeded } from '../../../redux/category/actionCreator'
 

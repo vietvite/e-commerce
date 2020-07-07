@@ -2,7 +2,7 @@ import React from "react";
 import style from "./ProductSection.module.scss";
 import Product from "../Product/Product";
 import { ChevronRight } from "react-feather";
-import UnderlineButton from "../../BaseComponents/UnderlineButton/UnderlineButton";
+import UnderlineButton from "components/UnderlineButton/UnderlineButton";
 import Container from "../Container/Container";
 import { NavLink, Link } from "react-router-dom";
 import { setSortCondition, setFilter } from "../../../redux/product/action";

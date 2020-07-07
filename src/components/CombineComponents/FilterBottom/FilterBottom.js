@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./FilterBottom.module.scss";
-import OrangeButton from "../../BaseComponents/OrangeButton/OrangeButton";
+import OrangeButton from "components/OrangeButton/OrangeButton";
 import { getProduct } from "../../../redux/product/actionCreator";
 import { connect } from "react-redux";
 

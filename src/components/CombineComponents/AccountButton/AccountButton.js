@@ -1,9 +1,9 @@
 import React from 'react'
 import { ChevronDown, FileText, Heart, Box, LogOut, Archive, Clipboard } from 'react-feather'
-import ButtonTransparent from '../../BaseComponents/ButtonTransparent/ButtonTransparent'
+import ButtonTransparent from 'components/ButtonTransparent/ButtonTransparent'
 import styles from './AccountButton.module.scss'
-import DropdownMenu from '../../BaseComponents/DropdownMenu/DropdownMenu'
-import OutsideAlerter from '../../BaseComponents/OutsideAlerter/OutsideAlerter'
+import DropdownMenu from 'components/DropdownMenu/DropdownMenu'
+import OutsideAlerter from 'components/OutsideAlerter/OutsideAlerter'
 
 const orderListIcon = <span className={styles.orderListIcon}><FileText color='white' strokeWidth='1px' size='1.2rem' /></span>
 const favListIcon = <span className={styles.favListIcon}><Heart color='white' strokeWidth='1px' size='1.2rem' /></span>
@@ -68,7 +68,7 @@ export default class AccountButton extends React.Component {
         {this.state.dropdownOpen && (
           <OutsideAlerter clickOutsideCallback={this.toggleDropdown} clickInsideCallback={this.delayToggle} >
             <div className={styles.dropdownWrapper}>
-              <DropdownMenu listMenu={role === 'ROLE_CUSTOMER'? listCustomerMenu: listSellerMenu} />
+              <DropdownMenu listMenu={role === 'ROLE_CUSTOMER' ? listCustomerMenu : listSellerMenu} />
             </div>
           </OutsideAlerter>
         )}

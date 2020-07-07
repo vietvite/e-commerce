@@ -2,12 +2,12 @@ import React from 'react'
 import styles from './CartItem.module.scss'
 import { NavLink, Link } from 'react-router-dom'
 import { parseCurrency } from '../../../commons'
-import config from '../../../config'
+import { BASE_URL } from 'config'
 
 const CartItem = ({ id, title, url, imageUrl, seller, price, children }) => (
   <div className={styles.cartItem}>
     <div className={styles.detail}>
-      <img alt='thumbnail' src={`${config.baseURL}${imageUrl}`} />
+      <img alt='thumbnail' src={`${BASE_URL}${imageUrl}`} />
       <div>
         <p><NavLink className={styles.navLink} to={`/product/${id}`}>
           {title}

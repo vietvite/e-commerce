@@ -1,0 +1,10 @@
+@import "scss/_variable";
+
+.priceInput {
+  width: 40%;
+  height: 30px;
+  border: 1px solid $gray-5;
+  border-radius: 2px;
+  appearance: textfield;
+  padding: 0 5px 0 5px;
+}

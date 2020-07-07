@@ -5,7 +5,7 @@ import CartTotal from "../../components/CombineComponents/CartTotal/CartTotal";
 import { cartBody } from "./CartBody.module.scss";
 import { connect } from "react-redux";
 import { calcCostProductList, countProductList } from "../../commons";
-import config from '../../config'
+import { BASE_URL } from '../../config'
 
 class Cart extends Component {
   showCart() {
@@ -27,7 +27,7 @@ class Cart extends Component {
         </div>
       )
     } else {
-      return <img style={{ display: 'block', margin: '0 auto' }} src={`${config.baseURL}/img/empty-cart.png`} alt='emptycart' />
+      return <img style={{ display: 'block', margin: '0 auto' }} src={`${BASE_URL}/img/empty-cart.png`} alt='emptycart' />
     }
   }
   render() {

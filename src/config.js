@@ -1,8 +1,7 @@
-export const isDev = true;
+// export const NODE_ENV = 'production'
+export const NODE_ENV = 'development'
 
-const LOCAL_URL = "http://localhost:8080";
-const SERVER_URL = "https://e-commerce-server-mock.herokuapp.com";
+const BASE_URL_DEV = "http://localhost:8080";
+const BASE_URL_PROD = "https://e-commerce-server-mock.herokuapp.com";
 
-export default {
-  baseURL: isDev ? LOCAL_URL : SERVER_URL,
-};
+export const BASE_URL = NODE_ENV === 'production' ? BASE_URL_PROD : BASE_URL_DEV

@@ -7,7 +7,6 @@ import AccountButton from "../components/CombineComponents/AccountButton/Account
 import Modal from "../components/CombineComponents/Modal/Modal";
 import { connect } from "react-redux";
 import { fetchCartIfNeeded } from "../redux/cart/actionCreator";
-import CheckAlert from "../components/BaseComponents/CheckAlert/CheckAlert";
 import { toggleForm } from "../redux/form/action";
 
 class Layout extends React.Component {
@@ -40,7 +39,6 @@ class Layout extends React.Component {
         ) : (
             ""
           )}
-        {this.props.checkAlert && <CheckAlert />}
       </>
     );
   }
@@ -48,7 +46,6 @@ class Layout extends React.Component {
 
 const mapStateToProps = (state) => ({
   user: state.account.user,
-  checkAlert: state.cart.checkAlert,
   form: state.form
 })
 const mapDispatchToProps = (dispatch) => ({

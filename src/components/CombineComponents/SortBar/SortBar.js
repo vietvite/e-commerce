@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./SortBar.module.scss";
-import WhiteButton from "../../BaseComponents/WhiteButton/WhiteButton";
-import SortDropDownButton from "../../BaseComponents/SortDropDownButton/SortDropDownButton";
+import WhiteButton from "components/WhiteButton/WhiteButton";
+import SortDropDownButton from "components/SortDropDownButton/SortDropDownButton";
 import { connect } from "react-redux";
 import { getCategoryRequest } from "../../../redux/category/actionCreator";
 

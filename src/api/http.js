@@ -1,11 +1,11 @@
 import axios from 'axios'
-import loadedConfig from '../config'
+import { BASE_URL } from '../config'
 
 export const limit = (page, count) => `page=${page ? page * count : 0}&size=${count}`
 
 export default function () {
   const config = {
-    baseURL: loadedConfig.baseURL,
+    baseURL: BASE_URL,
     headers: {
       'Content-Type': 'application/json'
     }

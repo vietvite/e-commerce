@@ -7,7 +7,7 @@ import {
   editProduct,
 } from "../../../redux/product/actionCreator";
 import http from "../../../api/http";
-import FormInput from "../../BaseComponents/FormInput/FormInput";
+import FormInput from "components/FormInput/FormInput";
 
 class ProductForm extends React.Component {
   constructor(props) {

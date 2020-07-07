@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./FormLogin.module.scss";
-import FormInput from "../../BaseComponents/FormInput/FormInput";
-import ButtonBackground from "../../BaseComponents/ButtonBackground/ButtonBackground";
+import FormInput from "components/FormInput/FormInput";
+import ButtonBackground from "components/ButtonBackground/ButtonBackground";
 import { Mail, Key } from "react-feather";
 import { connect } from "react-redux";
 import { login } from "../../../redux/account/actionCreator";

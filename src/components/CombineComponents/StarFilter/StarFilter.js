@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./StarFilter.module.scss";
-import StarRow from "../../BaseComponents/StarRow/StarRow";
+import StarRow from "components/StarRow/StarRow";
 import { setFilter } from "../../../redux/product/action";
 import { connect } from "react-redux";
 

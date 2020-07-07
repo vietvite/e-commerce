@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonOutline from "../../BaseComponents/ButtonOutline/ButtonOutline";
-import ButtonTransparent from "../../BaseComponents/ButtonTransparent/ButtonTransparent";
+import ButtonOutline from "components/ButtonOutline/ButtonOutline";
+import ButtonTransparent from "components/ButtonTransparent/ButtonTransparent";
 import { connect } from "react-redux";
 import {
   showFormLogin,

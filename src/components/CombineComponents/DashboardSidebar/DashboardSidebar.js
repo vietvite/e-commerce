@@ -1,5 +1,5 @@
 import React from 'react'
-import MenuItem from '../../BaseComponents/MenuItem/MenuItem'
+import MenuItem from 'components/MenuItem/MenuItem'
 import { Sidebar } from './DashboardSidebar.module.scss'
 
 const DashboardSidebar = ({ listDashboardMenu, selectTab }) => {

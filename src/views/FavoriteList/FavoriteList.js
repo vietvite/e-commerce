@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { fetchFavoriteIfNeeded, removeFavoriteRequest, addCartRequest } from '../../redux/cart/actionCreator'
 import style from './FavoriteList.module.scss'
 import CartItem from '../../components/CombineComponents/CartItem/CartItem'
-import ButtonGraySm from '../../components/BaseComponents/ButtonGraySm/ButtonGraySm'
+import ButtonGraySm from 'components/ButtonGraySm/ButtonGraySm'
 import { Trash2, ShoppingCart } from 'react-feather'
-import config from '../../config'
+import { BASE_URL } from '../../config'
 
 class FavoriteList extends Component {
     componentDidMount() {
@@ -31,7 +31,7 @@ class FavoriteList extends Component {
                         </ButtonGraySm>
                     </CartItem>)}
             </div>
-            ) : (<img style={{ display: 'block', margin: '0 auto' }} src={`${config.baseURL}/img/empty-cart.png`} alt='emptycart' />)
+            ) : (<img style={{ display: 'block', margin: '0 auto' }} src={`${BASE_URL}/img/empty-cart.png`} alt='emptycart' />)
     render() {
         let listFav = this.props.favoriteList
         return (

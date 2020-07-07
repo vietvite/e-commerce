@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import style from './OrderLater.module.scss'
 import { fetchOrderLaterIfNeeded, addBackToCartRequest, removeOrderLaterRequest } from '../../redux/cart/actionCreator'
 import CartItem from '../../components/CombineComponents/CartItem/CartItem'
-import ButtonGraySm from '../../components/BaseComponents/ButtonGraySm/ButtonGraySm'
+import ButtonGraySm from 'components/ButtonGraySm/ButtonGraySm'
 import { ShoppingCart, Trash2 } from 'react-feather'
-import config from '../../config'
+import { BASE_URL } from '../../config'
 
 class OrderLater extends Component {
   componentDidMount() {
@@ -35,7 +35,7 @@ class OrderLater extends Component {
                   </ButtonGraySm>
                 </CartItem>)}
             </div>
-          ) : (<img style={{ display: 'block', margin: '0 auto' }} src={`${config.baseURL}/img/empty-cart.png`} alt='emptycart' />)
+          ) : (<img style={{ display: 'block', margin: '0 auto' }} src={`${BASE_URL}/img/empty-cart.png`} alt='emptycart' />)
         }
       </Container>
     )

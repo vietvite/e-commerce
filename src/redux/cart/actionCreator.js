@@ -1,5 +1,5 @@
 import { CartService } from "../../api/cart";
-import { fetchCart, addCart, removeCart, updateQuantity, addFavorite, replaceListFavorite, removeFavorite, replaceListOrderLater, addOrderLater, addBackToCart, removeOrderLater, showCheckAlert } from "./action";
+import { fetchCart, addCart, removeCart, updateQuantity, addFavorite, replaceListFavorite, removeFavorite, replaceListOrderLater, addOrderLater, addBackToCart, removeOrderLater } from "./action";
 import { FavoriteService } from "../../api/favorite";
 import { OrderLaterService } from "../../api/orderlater";
 
@@ -15,7 +15,6 @@ export const addCartRequest = (productId, product) => (dispatch, getState) => {
   if (productExisted) {
     CartService.updateQuantityById(productExisted.id, productExisted.quantity + 1).then(res => {
       if (res.data.code === 1) {
-        dispatch(showCheckAlert())
         dispatch(updateQuantity(productId, productExisted.quantity + 1))
       }
     })
@@ -23,7 +22,6 @@ export const addCartRequest = (productId, product) => (dispatch, getState) => {
     CartService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
-          dispatch(showCheckAlert())
           return dispatch(addCart({ ...product, quantity: 1 }))
         }
       })
@@ -66,7 +64,6 @@ export const addFavoriteRequest = (productId, product) =>
     FavoriteService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
-          dispatch(showCheckAlert())
           return dispatch(addFavorite(product))
         }
       })
@@ -98,7 +95,6 @@ export const addOrderLaterRequest = (productId, product) =>
     OrderLaterService.addOneById(productId)
       .then(res => {
         if (res.data.code === 1) {
-          dispatch(showCheckAlert())
           return dispatch(addOrderLater(product))
         } else if (res.data.code === -1) {
           return dispatch(removeCart(productId))
@@ -113,7 +109,6 @@ export const addBackToCartRequest = (productId, product) =>
       return CartService.updateQuantityById(productId, productExisted.quantity + 1)
         .then(res => {
           if (res.data.code === 1) {
-            dispatch(showCheckAlert())
             dispatch(updateQuantity(productId, productExisted.quantity + 1))
             dispatch(removeOrderLater(productId))
           }

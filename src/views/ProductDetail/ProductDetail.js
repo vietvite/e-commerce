@@ -5,7 +5,7 @@ import { getProductDetail } from "../../redux/product/actionCreator";
 import Container from "../../components/CombineComponents/Container/Container";
 import { Star } from "react-feather";
 import { parseCurrency } from "../../commons";
-import config from "../../config";
+import { BASE_URL } from "../../config";
 import {
   addCartRequest,
 } from "../../redux/cart/actionCreator";
@@ -49,10 +49,10 @@ class ProductDetail extends React.Component {
     let reviewStar = product.reviewStar;
     let starsCount = !!reviewStar
       ? reviewStar._1star * 1 +
-        reviewStar._2star * 2 +
-        reviewStar._3star * 3 +
-        reviewStar._4star * 4 +
-        reviewStar._5star * 5
+      reviewStar._2star * 2 +
+      reviewStar._3star * 3 +
+      reviewStar._4star * 4 +
+      reviewStar._5star * 5
       : 0;
     return starsCount;
   };
@@ -62,10 +62,10 @@ class ProductDetail extends React.Component {
     let reviewStar = product.reviewStar;
     let n = !!reviewStar
       ? reviewStar._1star +
-        reviewStar._2star +
-        reviewStar._3star +
-        reviewStar._4star +
-        reviewStar._5star
+      reviewStar._2star +
+      reviewStar._3star +
+      reviewStar._4star +
+      reviewStar._5star
       : 0;
     return n;
   };
@@ -90,7 +90,7 @@ class ProductDetail extends React.Component {
         <div className={style.productDetail}>
           <div className={style.productImage}>
             <img
-              src={`${config.baseURL}${this.props.product.imageUrl}`}
+              src={`${BASE_URL}${this.props.product.imageUrl}`}
               alt={this.props.product.title}
             />
           </div>

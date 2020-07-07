@@ -1,6 +1,6 @@
 import React from 'react'
 import { ShoppingCart } from 'react-feather'
-import ButtonTransparent from '../../BaseComponents/ButtonTransparent/ButtonTransparent'
+import ButtonTransparent from 'components/ButtonTransparent/ButtonTransparent'
 import styles from './CartButton.module.scss'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'

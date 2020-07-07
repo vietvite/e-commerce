@@ -3,8 +3,8 @@ import { style } from "./CartList.module.scss";
 import CartItem from '../CartItem/CartItem'
 import { removeCartRequest, changeQuantityCartRequest, addFavoriteRequest, addOrderLaterRequest } from '../../../redux/cart/actionCreator'
 import { connect } from "react-redux";
-import QuantityForm from "../../BaseComponents/QuantityForm/QuantityForm";
-import ButtonGraySm from "../../BaseComponents/ButtonGraySm/ButtonGraySm";
+import QuantityForm from "components/QuantityForm/QuantityForm";
+import ButtonGraySm from "components/ButtonGraySm/ButtonGraySm";
 import { Trash2, ShoppingBag, Heart } from "react-feather";
 
 class CartList extends React.Component {

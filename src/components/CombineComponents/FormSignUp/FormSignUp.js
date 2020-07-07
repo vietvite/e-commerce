@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./FormSignUp.module.scss";
-import FormInput from "../../BaseComponents/FormInput/FormInput";
-import ButtonBackground from "../../BaseComponents/ButtonBackground/ButtonBackground";
+import FormInput from "components/FormInput/FormInput";
+import ButtonBackground from "components/ButtonBackground/ButtonBackground";
 import { Mail, Key, Users, Phone } from "react-feather";
 import { connect } from "react-redux";
 import { signup } from "../../../redux/account/actionCreator";
@@ -94,7 +94,7 @@ class FormSignUp extends React.Component {
   render() {
     return (
       <div className={style.formSignUp}>
-        <h1>{this.props.type === 1? "ĐĂNG KÝ" : "ĐĂNG KÝ MỞ SHOP"}</h1>
+        <h1>{this.props.type === 1 ? "ĐĂNG KÝ" : "ĐĂNG KÝ MỞ SHOP"}</h1>
         <span>{this.props.errors.message}</span>
         <form>
           <div className={style.formGroupBody}>

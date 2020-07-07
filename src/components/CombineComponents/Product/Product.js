@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Product.module.scss";
 import { Star, ShoppingCart, Heart } from "react-feather";
 import { connect } from "react-redux";
-import config from "../../../config";
+import { BASE_URL } from "../../../config";
 import { NavLink } from "react-router-dom";
 import {
   addCartRequest,
@@ -61,7 +61,7 @@ class Product extends React.Component {
           title={this.props.item.title}
         >
           <img
-            src={`${config.baseURL}${this.props.item.imageUrl}`}
+            src={`${BASE_URL}${this.props.item.imageUrl}`}
             className={style.productImage}
             alt={this.props.item.title}
           />

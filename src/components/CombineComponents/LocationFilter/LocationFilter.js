@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./LocationFilter.module.scss";
-import CheckboxInput from "../../BaseComponents/CheckboxInput/CheckboxInput";
+import CheckboxInput from "components/CheckboxInput/CheckboxInput";
 
 class LocationFilter extends React.Component {
   render() {

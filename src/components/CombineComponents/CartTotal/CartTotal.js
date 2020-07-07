@@ -1,5 +1,5 @@
 import React from "react";
-import RedButtonLg from "../../BaseComponents/RedButtonLg/RedButtonLg";
+import RedButtonLg from "components/RedButtonLg/RedButtonLg";
 import style from './CartTotal.module.scss'
 import { ChevronsRight } from "react-feather";
 import { parseCurrency } from "../../../commons";

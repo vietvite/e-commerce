@@ -1,10 +1,9 @@
-import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART, ADD_FAVORITE, REMOVE_FAVORITE, REPLACE_LIST_FAVORITE, REPLACE_LIST_ORDER_LATER, ADD_ORDER_LATER, ADD_BACKTO_CART, REMOVE_ORDER_LATER, SHOW_CHECKALERT, HIDE_CHECKALERT } from "./constants";
+import { ADD_CART, REMOVE_CART, UPDATE_QUANTITY, UPDATE_LIST_CART, DESTROY_CART, ADD_FAVORITE, REMOVE_FAVORITE, REPLACE_LIST_FAVORITE, REPLACE_LIST_ORDER_LATER, ADD_ORDER_LATER, ADD_BACKTO_CART, REMOVE_ORDER_LATER } from "./constants";
 
 const initState = {
   list: [],
   favorites: [],
   orderLater: [],
-  checkAlert: false
 };
 
 export default (state = initState, action) => {
@@ -89,14 +88,6 @@ export default (state = initState, action) => {
       return Object.assign({}, state, {
         orderLater: state.orderLater.filter(product => product.id !== action.id)
       })
-
-    /**
-     * CheckALert
-     */
-    case SHOW_CHECKALERT:
-      return Object.assign({}, state, { checkAlert: true });
-    case HIDE_CHECKALERT:
-      return Object.assign({}, state, { checkAlert: false });
 
     default:
       return state;

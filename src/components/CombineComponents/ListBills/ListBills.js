@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import style from "./ListBills.module.scss";
-import { NavLink } from "react-router-dom";
 import { parseCurrency, calcCostProductList } from "../../../commons";
 import { connect } from "react-redux";
 import { getPaidBill } from "../../../redux/payment/actionCreator";
@@ -11,7 +10,7 @@ class ListBills extends Component {
   }
   getDate = (date) => {
     let now = new Date(date);
-    return `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`
+    return `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`
   }
   render() {
     return (
@@ -46,8 +45,8 @@ class ListBills extends Component {
                     {bill.listProduct.length === 1
                       ? bill.listProduct[0].title
                       : `${bill.listProduct[0].title} và ${
-                          bill.listProduct.length - 1
-                        } sản phẩm`}
+                      bill.listProduct.length - 1
+                      } sản phẩm`}
                   </td>
                   <td className={style.alignCenter}>
                     {parseCurrency(calcCostProductList(bill.listProduct || []))}
