@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_URL } from '../config'
+import { BASE_URL } from 'config'
 
 export const limit = (page, count) => `page=${page ? page * count : 0}&size=${count}`
 

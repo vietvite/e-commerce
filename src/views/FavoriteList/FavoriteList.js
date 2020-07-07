@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Container from './../../components/CombineComponents/Container/Container'
+import Container from '../../components/Container/Container'
 import { connect } from 'react-redux'
-import { fetchFavoriteIfNeeded, removeFavoriteRequest, addCartRequest } from '../../redux/cart/actionCreator'
+import { fetchFavoriteIfNeeded, removeFavoriteRequest, addCartRequest } from 'redux/cart/actionCreator'
 import style from './FavoriteList.module.scss'
-import CartItem from '../../components/CombineComponents/CartItem/CartItem'
+import CartItem from '../../components/CartItem/CartItem'
 import ButtonGraySm from 'components/ButtonGraySm/ButtonGraySm'
 import { Trash2, ShoppingCart } from 'react-feather'
-import { BASE_URL } from '../../config'
+import { BASE_URL } from 'config'
 
 class FavoriteList extends Component {
     componentDidMount() {

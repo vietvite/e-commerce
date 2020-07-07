@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./WhiteButton.module.scss";
 import { connect } from "react-redux";
-import { getProduct } from "../../redux/product/actionCreator";
+import { getProduct } from "redux/product/actionCreator";
 
 class WhiteButton extends React.Component {
   handleClick = () => {

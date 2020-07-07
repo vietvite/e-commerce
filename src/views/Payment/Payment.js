@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import Container from '../../components/CombineComponents/Container/Container'
+import Container from '../../components/Container/Container'
 import RedButtonLg from 'components/RedButtonLg/RedButtonLg'
 import style from './Payment.module.scss'
-import AddressForm from '../../components/CombineComponents/AddressForm/AddressForm'
+import AddressForm from '../../components/AddressForm/AddressForm'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { parseCurrency, calcCostProductList } from '../../commons'
-import { getAddressRequest, accountDetailRequest, updateDeliveryInfoRequest, addBillRequest } from '../../redux/payment/actionCreator'
-import { setError } from '../../redux/account/action'
-import { setDeliveryInfo } from '../../redux/payment/action'
+import { parseCurrency, calcCostProductList } from 'commons'
+import { getAddressRequest, accountDetailRequest, updateDeliveryInfoRequest, addBillRequest } from 'redux/payment/actionCreator'
+import { setError } from 'redux/account/action'
+import { setDeliveryInfo } from 'redux/payment/action'
 
 class Payment extends Component {
   constructor() {

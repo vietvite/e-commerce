@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Container from "../../components/CombineComponents/Container/Container";
-import CartList from "../../components/CombineComponents/CartList/CartList";
-import CartTotal from "../../components/CombineComponents/CartTotal/CartTotal";
+import Container from "../../components/Container/Container";
+import CartList from "../../components/CartList/CartList";
+import CartTotal from "../../components/CartTotal/CartTotal";
 import { cartBody } from "./CartBody.module.scss";
 import { connect } from "react-redux";
-import { calcCostProductList, countProductList } from "../../commons";
-import { BASE_URL } from '../../config'
+import { calcCostProductList, countProductList } from "commons";
+import { BASE_URL } from 'config'
 
 class Cart extends Component {
   showCart() {

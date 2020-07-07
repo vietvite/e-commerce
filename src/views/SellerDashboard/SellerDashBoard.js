@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import DashboardSidebar from "../../components/CombineComponents/DashboardSidebar/DashboardSidebar";
+import DashboardSidebar from "../../components/DashboardSidebar/DashboardSidebar";
 import { DashBoard } from "./SellerDashBoard.module.scss";
-import Container from "../../components/CombineComponents/Container/Container";
-import ListPendingOrder from "../../components/CombineComponents/ListPendingOrder/ListPendingOrder";
-import ProductOfShop from "../../components/CombineComponents/ProductOfShop/ProductOfShop";
-import BillManagement from "../../components/CombineComponents/BillManagement/BillManagement";
+import Container from "../../components/Container/Container";
+import ListPendingOrder from "../../components/ListPendingOrder/ListPendingOrder";
+import ProductOfShop from "../../components/ProductOfShop/ProductOfShop";
+import BillManagement from "../../components/BillManagement/BillManagement";
 import styles from './SellerDashBoard.module.scss';
 import { Archive, FileText, Clipboard } from "react-feather";
 

@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "../components/CombineComponents/Header/Header";
-import Footer from "../components/CombineComponents/Footer/Footer";
-import Navbar from "../components/CombineComponents/Navbar/Navbar";
-import AuthGroupButton from "../components/CombineComponents/AuthGroupButton/AuthGroupButton";
-import AccountButton from "../components/CombineComponents/AccountButton/AccountButton";
-import Modal from "../components/CombineComponents/Modal/Modal";
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
+import Navbar from "components/Navbar/Navbar";
+import AuthGroupButton from "components/AuthGroupButton/AuthGroupButton";
+import AccountButton from "components/AccountButton/AccountButton";
+import Modal from "components/Modal/Modal";
 import { connect } from "react-redux";
-import { fetchCartIfNeeded } from "../redux/cart/actionCreator";
-import { toggleForm } from "../redux/form/action";
+import { fetchCartIfNeeded } from "redux/cart/actionCreator";
+import { toggleForm } from "redux/form/action";
 
 class Layout extends React.Component {
   render() {

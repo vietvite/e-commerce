@@ -1,7 +1,7 @@
-import { CartService } from "../../api/cart";
+import { CartService } from "api/cart";
 import { fetchCart, addCart, removeCart, updateQuantity, addFavorite, replaceListFavorite, removeFavorite, replaceListOrderLater, addOrderLater, addBackToCart, removeOrderLater } from "./action";
-import { FavoriteService } from "../../api/favorite";
-import { OrderLaterService } from "../../api/orderlater";
+import { FavoriteService } from "api/favorite";
+import { OrderLaterService } from "api/orderlater";
 
 export const getAllCartProduct = () =>
   dispatch => {

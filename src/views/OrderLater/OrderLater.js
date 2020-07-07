@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Container from '../../components/CombineComponents/Container/Container'
+import Container from '../../components/Container/Container'
 import { connect } from 'react-redux'
 import style from './OrderLater.module.scss'
-import { fetchOrderLaterIfNeeded, addBackToCartRequest, removeOrderLaterRequest } from '../../redux/cart/actionCreator'
-import CartItem from '../../components/CombineComponents/CartItem/CartItem'
+import { fetchOrderLaterIfNeeded, addBackToCartRequest, removeOrderLaterRequest } from 'redux/cart/actionCreator'
+import CartItem from '../../components/CartItem/CartItem'
 import ButtonGraySm from 'components/ButtonGraySm/ButtonGraySm'
 import { ShoppingCart, Trash2 } from 'react-feather'
-import { BASE_URL } from '../../config'
+import { BASE_URL } from 'config'
 
 class OrderLater extends Component {
   componentDidMount() {

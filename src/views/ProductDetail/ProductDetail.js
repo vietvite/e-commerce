@@ -1,16 +1,16 @@
 import React from "react";
 import style from "./ProductDetail.module.scss";
 import { connect } from "react-redux";
-import { getProductDetail } from "../../redux/product/actionCreator";
-import Container from "../../components/CombineComponents/Container/Container";
+import { getProductDetail } from "redux/product/actionCreator";
+import Container from "../../components/Container/Container";
 import { Star } from "react-feather";
-import { parseCurrency } from "../../commons";
-import { BASE_URL } from "../../config";
+import { parseCurrency } from "commons";
+import { BASE_URL } from "config";
 import {
   addCartRequest,
-} from "../../redux/cart/actionCreator";
+} from "redux/cart/actionCreator";
 import { push } from "connected-react-router";
-import { showFormLogin, toggleForm } from "../../redux/form/action";
+import { showFormLogin, toggleForm } from "redux/form/action";
 
 class ProductDetail extends React.Component {
   // constructor(props) {

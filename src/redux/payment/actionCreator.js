@@ -1,4 +1,4 @@
-import { AccountService } from "../../api/account";
+import { AccountService } from "api/account";
 import { setAddress, setAccountDetail, setPendingBill, setPaidBill } from "./action";
 import { push } from "connected-react-router";
 import { fetchCart } from "../cart/action";
@@ -54,7 +54,7 @@ export const addBillRequest = () =>
     }
 
     const listProduct = getState().cart.list || []
-    if(listProduct.length === 0) {
+    if (listProduct.length === 0) {
       // TODO: notify empty list
       return
     }
@@ -94,8 +94,8 @@ export const addBillRequest = () =>
         createBill(product)
       ]
     }
-    
-    function createBillForm(address){
+
+    function createBillForm(address) {
       return function (product) {
         return {
           sellerId: product.seller.id,

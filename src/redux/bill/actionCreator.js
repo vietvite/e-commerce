@@ -1,4 +1,4 @@
-import { AccountService } from "../../api/account";
+import { AccountService } from "api/account";
 import { setBill } from "./action";
 
 export const getBillRequest = () =>

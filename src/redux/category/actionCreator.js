@@ -1,4 +1,4 @@
-import { CategoryService } from "../../api/category";
+import { CategoryService } from "api/category";
 import { replaceListCategory } from "./action";
 
 export const getCategoryRequest = () =>

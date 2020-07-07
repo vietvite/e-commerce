@@ -1,5 +1,5 @@
 import { requesting, setUser, endRequest, setError, removeUser } from "./action"
-import { AuthService } from '../../api/auth'
+import { AuthService } from 'api/auth'
 import { push } from 'connected-react-router'
 import { destroyCart } from "../cart/action"
 

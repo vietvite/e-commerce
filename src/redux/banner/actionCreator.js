@@ -1,4 +1,4 @@
-import { BannerService } from "../../api/banner";
+import { BannerService } from "api/banner";
 import { updateListBanner } from "./action";
 
 export const getBanner = () =>

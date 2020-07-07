@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./PriceInput.module.scss";
-import { setFilter } from "../../redux/product/action";
-import { infinityNumber } from "../../commons";
+import { setFilter } from "redux/product/action";
+import { infinityNumber } from "commons";
 import { connect } from "react-redux";
 
 class PriceInput extends React.Component {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { calcCostProductList, parseCurrency } from '../../commons/utils'
-import { getBillRequest } from '../../redux/bill/actionCreator'
-import Container from '../../components/CombineComponents/Container/Container'
+import { calcCostProductList, parseCurrency } from 'commons/utils'
+import { getBillRequest } from 'redux/bill/actionCreator'
+import Container from '../../components/Container/Container'
 import style from './Bill.module.scss'
 // import moment from 'moment'
 

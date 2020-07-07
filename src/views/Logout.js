@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
-import { logout } from '../redux/account/actionCreator';
+import { logout } from 'redux/account/actionCreator';
 
 class Logout extends Component {
   componentWillMount() {

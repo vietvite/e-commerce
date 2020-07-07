@@ -7,7 +7,7 @@ import {
   SET_FILTER,
   GET_PRODUCT_DETAIL,
 } from "./constants";
-import { infinityNumber } from "../../commons/index";
+import { infinityNumber } from "commons/index";
 const initState = {
   list: [],
   product: "",

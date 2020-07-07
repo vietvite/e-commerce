@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./MenuItem.module.scss";
 // import { render } from '@testing-library/react'
-import { setFilter } from "../../redux/product/action";
+import { setFilter } from "redux/product/action";
 import { connect } from "react-redux";
-import { getProduct } from "../../redux/product/actionCreator";
+import { getProduct } from "redux/product/actionCreator";
 import { push } from "connected-react-router";
 
 class MenuItem extends React.Component {

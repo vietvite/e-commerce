@@ -1,5 +1,5 @@
 import http from "./http";
-import { infinityNumber } from "../commons";
+import { infinityNumber } from "commons";
 
 const ProductService = {
   getProductOfShop: () => http().get("/product/shop"),

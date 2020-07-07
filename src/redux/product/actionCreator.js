@@ -1,4 +1,4 @@
-import ProductService from "../../api/product";
+import ProductService from "api/product";
 import {
   receiveListProduct,
   sendingRequest,

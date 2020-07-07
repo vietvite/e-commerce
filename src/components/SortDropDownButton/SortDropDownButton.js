@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./SortDropDownButton.module.scss";
 import { connect } from "react-redux";
-import { getProduct } from "../../redux/product/actionCreator";
+import { getProduct } from "redux/product/actionCreator";
 
 class SortDropDownButton extends React.Component {
   handleChange = (event) => {

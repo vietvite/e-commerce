@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./OrangeButton.module.scss";
 import { connect } from "react-redux";
-import { getProduct } from "../../redux/product/actionCreator";
+import { getProduct } from "redux/product/actionCreator";
 
 class OrangeButton extends React.Component {
   onClick = () => {
