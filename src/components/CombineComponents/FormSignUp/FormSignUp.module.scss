@@ -45,6 +45,20 @@
     }
     .btnSubmitWrap {
       text-align: center;
+
+      .buttonBackground {
+        height: 2.5rem;
+        border-radius: 30px;
+        padding: 0 1.2rem;
+        background-image: linear-gradient(135deg, $pink-9, $blue-8);
+        cursor: pointer;
+        color: $white;
+        font-size: 1rem;
+        white-space: nowrap;
+        &:hover {
+          background-image: linear-gradient(135deg, $pink-6, $blue-7);
+        }
+      }
     }
   }
 }

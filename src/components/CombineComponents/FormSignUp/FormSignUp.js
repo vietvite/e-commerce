@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./FormSignUp.module.scss";
 import FormInput from "components/FormInput/FormInput";
-import ButtonBackground from "components/ButtonBackground/ButtonBackground";
 import { Mail, Key, Users, Phone } from "react-feather";
 import { connect } from "react-redux";
 import { signup } from "../../../redux/account/actionCreator";
@@ -167,9 +166,12 @@ class FormSignUp extends React.Component {
               </div>
             </div>
             <div className={style.btnSubmitWrap}>
-              <ButtonBackground
+              <button
+                onClick={this.signupHandler}
                 disabled={this.props.disableSignup}
-                onClick={this.signupHandler}>Đăng kí</ButtonBackground>
+                className={style.buttonBackground}>
+                Đăng kí
+              </button>
             </div>
           </div>
         </form>

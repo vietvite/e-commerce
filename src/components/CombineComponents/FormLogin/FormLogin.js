@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./FormLogin.module.scss";
 import FormInput from "components/FormInput/FormInput";
-import ButtonBackground from "components/ButtonBackground/ButtonBackground";
 import { Mail, Key } from "react-feather";
 import { connect } from "react-redux";
 import { login } from "../../../redux/account/actionCreator";
@@ -101,9 +100,12 @@ class FormLogin extends React.Component {
             </div>
             <p className={style.formForgot}>Quên mật khẩu?</p>
             <div className={style.btnSubmitWrap}>
-              <ButtonBackground
+              <button
+                onClick={this.loginHandler}
                 disabled={this.props.disableButton}
-                onClick={this.loginHandler}>Đăng nhập</ButtonBackground>
+                className={style.buttonBackground}>
+                Đăng nhập
+              </button>
             </div>
           </div>
         </form>
