@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styles from './AccountButton.module.scss'
 import { ChevronDown, FileText, Heart, Box, LogOut, Archive, Clipboard } from 'react-feather'
 import ButtonTransparent from 'components/ButtonTransparent/ButtonTransparent'
-import styles from './AccountButton.module.scss'
 import DropdownMenu from 'components/DropdownMenu/DropdownMenu'
 import OutsideAlerter from 'components/OutsideAlerter/OutsideAlerter'
+import { ROLE_CUSTOMER } from 'globalConstants'
 
 const orderListIcon = <span className={styles.orderListIcon}><FileText color='white' strokeWidth='1px' size='1.2rem' /></span>
 const favListIcon = <span className={styles.favListIcon}><Heart color='white' strokeWidth='1px' size='1.2rem' /></span>
@@ -11,10 +12,10 @@ const orderLaterIcon = <span className={styles.orderLaterIcon}><Box color='white
 const logOutIcon = <span className={styles.logOutIcon}><LogOut color='white' strokeWidth='1px' size='1.2rem' /></span>
 
 const listCustomerMenu = [
-  { icon: orderListIcon, name: 'Đơn hàng', url: '/bills', },
-  { icon: favListIcon, name: 'Danh sách yêu thích', url: '/favorites' },
-  { icon: orderLaterIcon, name: 'Danh sách mua sau', url: '/orderlater' },
-  { icon: logOutIcon, name: 'Đăng xuất', url: '/logout' },
+  { icon: orderListIcon, name: 'Đơn hàng', url: '/customer/bills', },
+  { icon: favListIcon, name: 'Danh sách yêu thích', url: '/customer/favorites' },
+  { icon: orderLaterIcon, name: 'Danh sách mua sau', url: '/customer/orderlater' },
+  { icon: logOutIcon, name: 'Đăng xuất', url: '/customer/logout' },
 ]
 
 const productIcon = <span className={styles.productIcon}><Archive color='white' strokeWidth='1px' size='1.2rem' /></span>
@@ -28,20 +29,30 @@ const listSellerMenu = [
   { icon: logOutIcon, name: 'Đăng xuất', url: '/logout' }
 ]
 
-export default class AccountButton extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      dropdownOpen: false
-    }
-    this.toggleDropdown = this.toggleDropdown.bind(this)
-    this.delayToggle = this.delayToggle.bind(this)
-  }
+export default function AccountButton(props) {
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
-  toggleDropdown() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    })
+  return (
+    <div className={styles.account}>
+      <div onMouseDown={toggleDropdown} >
+        <ButtonTransparent>
+          <span className={styles.buttonText}>{props.fullname}</span>
+          <ChevronDown />
+        </ButtonTransparent>
+      </div>
+
+      {dropdownOpen && (
+        <OutsideAlerter clickOutsideCallback={toggleDropdown} clickInsideCallback={delayToggle} >
+          <div className={styles.dropdownWrapper}>
+            <DropdownMenu listMenu={props.role === ROLE_CUSTOMER ? listCustomerMenu : listSellerMenu} />
+          </div>
+        </OutsideAlerter>
+      )}
+    </div>
+  )
+
+  function toggleDropdown() {
+    setDropdownOpen(!dropdownOpen)
   }
 
   /**
@@ -49,30 +60,9 @@ export default class AccountButton extends React.Component {
    * Use this because dropdown menu is using OutsideAlerter
    * which is immediately execute callback when click inside it.
    */
-  delayToggle() {
+  function delayToggle() {
     setTimeout(() => {
-      this.toggleDropdown()
+      toggleDropdown()
     }, 200);
-  }
-  render() {
-    const { fullname, role } = this.props
-    return (
-      <div className={styles.account}>
-        <div onMouseDown={this.toggleDropdown} >
-          <ButtonTransparent>
-            <span className={styles.buttonText}>{fullname}</span>
-            <ChevronDown />
-          </ButtonTransparent>
-        </div>
-
-        {this.state.dropdownOpen && (
-          <OutsideAlerter clickOutsideCallback={this.toggleDropdown} clickInsideCallback={this.delayToggle} >
-            <div className={styles.dropdownWrapper}>
-              <DropdownMenu listMenu={role === 'ROLE_CUSTOMER' ? listCustomerMenu : listSellerMenu} />
-            </div>
-          </OutsideAlerter>
-        )}
-      </div>
-    )
   }
 }

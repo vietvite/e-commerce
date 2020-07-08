@@ -2,8 +2,6 @@ import React from "react";
 import FormSignUp from "components/FormSignUp/FormSignUp";
 import FormLogin from "components/FormLogin/FormLogin";
 import style from "./Modal.module.scss";
-import { showFormLogin, showFormSignup, hideFormSeller } from "redux/form/action";
-import { connect } from "react-redux";
 
 class Modal extends React.Component {
   toggleFormModal = (event) => {
@@ -55,24 +53,4 @@ class Modal extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    form: state.form,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showFormLogin: () => {
-      dispatch(showFormLogin());
-    },
-    showFormSignup: () => {
-      dispatch(showFormSignup());
-    },
-    hideSellerForm: () => {
-      dispatch(hideFormSeller())
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default Modal

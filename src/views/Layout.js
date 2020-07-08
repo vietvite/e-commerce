@@ -2,54 +2,44 @@ import React from "react";
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import Navbar from "components/Navbar/Navbar";
-import AuthGroupButton from "components/AuthGroupButton/AuthGroupButton";
 import AccountButton from "components/AccountButton/AccountButton";
-import Modal from "components/Modal/Modal";
-import { connect } from "react-redux";
-import { fetchCartIfNeeded } from "redux/cart/actionCreator";
-import { toggleForm } from "redux/form/action";
+import { ROLE_CUSTOMER } from "globalConstants";
+import ConnectedAuthGroupButton from "containers/ConnectedAuthGroupButton";
+import ConnectedModal from "containers/ConnectedModal";
 
-class Layout extends React.Component {
-  render() {
-    if (this.props.user && this.props.user.role === "ROLE_CUSTOMER") {
-      setTimeout(() => {
-        this.props.fetchCartIfNeeded()
-      }, 500);
-    }
-    const authenticatedMenu = <AccountButton {...this.props.user} />;
-    const unAuthenticatedMenu = (
-      <AuthGroupButton toggleFormModal={this.toggleFormModal} />
-    );
-
-    return (
-      <>
-        <Header>
-          {this.props.user ? authenticatedMenu : unAuthenticatedMenu}
-        </Header>
-        <Navbar />
-        {this.props.children}
-
-        <Footer />
-
-        {this.props.form.showModal && !this.props.user ? (
-          <Modal
-            form={this.props.form.form}
-            toggleFormModal={this.props.toggleModal}
-          />
-        ) : (
-            ""
-          )}
-      </>
-    );
+function Layout(props) {
+  // Fetch cart for show cart quantity
+  if (props.user && props.user.role === ROLE_CUSTOMER) {
+    setTimeout(() => {
+      props.fetchCartIfNeeded()
+    }, 500);
   }
+
+  const authenticatedMenu = <AccountButton {...props.user} />;
+  const unAuthenticatedMenu = (
+    <ConnectedAuthGroupButton />
+  );
+
+  return (
+    <>
+      <Header>
+        {props.user ? authenticatedMenu : unAuthenticatedMenu}
+      </Header>
+      <Navbar />
+      {props.children}
+
+      <Footer />
+
+      {props.form.showModal && !props.user ? (
+        <ConnectedModal
+          form={props.form.form}
+          toggleFormModal={props.toggleModal}
+        />
+      ) : (
+          ""
+        )}
+    </>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  user: state.account.user,
-  form: state.form
-})
-const mapDispatchToProps = (dispatch) => ({
-  fetchCartIfNeeded: () => dispatch(fetchCartIfNeeded()),
-  toggleModal: () => dispatch(toggleForm())
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default Layout

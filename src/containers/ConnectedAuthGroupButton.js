@@ -23,7 +23,7 @@ class AuthGroupButton extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     showFormLogin: () => {
       dispatch(toggleForm());
